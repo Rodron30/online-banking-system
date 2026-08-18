@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             const isHidden =
                 full.hasAttribute("hidden");
 
@@ -56,27 +55,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     ""
                 );
 
-
                 if (unavailable) {
 
                     unavailable.setAttribute(
                         "hidden",
                         ""
                     );
-                }
 
+                }
 
                 if (label) {
 
                     label.textContent =
                         "Hide Card Details";
-                }
 
+                }
 
                 if (icon) {
 
                     icon.innerHTML = `
-
                         <path d="
                             M3 3l18 18
                             M10.6 10.6
@@ -93,13 +90,11 @@ document.addEventListener("DOMContentLoaded", function () {
                             s3.5 7 10 7
                             c1 0 2-.2 2.9-.5
                         "/>
-
                     `;
+
                 }
 
-            }
-
-            else {
+            } else {
 
                 /* HIDE */
 
@@ -112,18 +107,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     "hidden"
                 );
 
-
                 if (label) {
 
                     label.textContent =
                         "Show Card Details";
-                }
 
+                }
 
                 if (icon) {
 
                     icon.innerHTML = `
-
                         <path d="
                             M2 12
                             s3.5-6 10-6
@@ -136,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             cx="12"
                             cy="12"
                             r="2.5"/>
-
                     `;
+
                 }
 
             }
@@ -145,7 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
-
 
 
     /* =====================================================
@@ -180,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 event.preventDefault();
 
-
                 const isClosed =
                     accountDetailsPanel.hasAttribute(
                         "hidden"
@@ -198,18 +189,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         "true"
                     );
 
-
                     accountDetailsCaret.innerHTML = `
-
-                        <path d="
-                            m6 9 6 6 6-6
-                        "/>
-
+                        <path d="m6 9 6 6 6-6"/>
                     `;
 
-                }
-
-                else {
+                } else {
 
                     accountDetailsPanel.setAttribute(
                         "hidden",
@@ -221,13 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "false"
                     );
 
-
                     accountDetailsCaret.innerHTML = `
-
-                        <path d="
-                            m9 6 6 6-6 6
-                        "/>
-
+                        <path d="m9 6 6 6-6 6"/>
                     `;
 
                 }
@@ -236,7 +215,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -268,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     return;
+
                 }
 
 
@@ -284,6 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     return;
+
                 }
 
 
@@ -300,17 +280,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         showCopyFeedback();
 
-                    }
-
-                    else {
+                    } else {
 
                         fallbackCopy(rawValue);
 
                     }
 
-                }
-
-                catch (error) {
+                } catch (error) {
 
                     console.warn(
                         "Clipboard access failed.",
@@ -325,7 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
-
 
 
     /* =====================================================
@@ -350,15 +325,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         button.innerHTML = `
-
-            <svg viewBox="0 0 24 24">
-
-                <path d="
-                    M5 12l4 4L19 6
-                "/>
-
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12l4 4L19 6"/>
             </svg>
-
         `;
 
 
@@ -381,7 +350,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1500);
 
     }
-
 
 
     /* =====================================================
@@ -426,9 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             showCopyFeedback();
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.warn(
                 "Unable to copy account number.",
@@ -444,4 +410,235 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    /* =====================================================
+       MOBILE SIDEBAR / HAMBURGER
+       IMPORTANT:
+       Button ID = sidebarToggleBtn
+       Sidebar ID = appSidebar
+       Backdrop ID = sidebarBackdrop
+    ===================================================== */
+
+    const sidebar =
+        document.getElementById(
+            "appSidebar"
+        );
+
+    const sidebarBackdrop =
+        document.getElementById(
+            "sidebarBackdrop"
+        );
+
+    const sidebarToggle =
+        document.getElementById(
+            "sidebarToggleBtn"
+        );
+
+
+    function openSidebar() {
+
+        if (!sidebar) {
+            return;
+        }
+
+
+        sidebar.classList.add(
+            "open"
+        );
+
+
+        if (sidebarBackdrop) {
+
+            sidebarBackdrop.classList.add(
+                "open"
+            );
+
+        }
+
+
+        if (sidebarToggle) {
+
+            sidebarToggle.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            sidebarToggle.setAttribute(
+                "aria-label",
+                "Close navigation"
+            );
+
+        }
+
+
+        document.body.classList.add(
+            "sidebar-open"
+        );
+
+    }
+
+
+    function closeSidebar() {
+
+        if (!sidebar) {
+            return;
+        }
+
+
+        sidebar.classList.remove(
+            "open"
+        );
+
+
+        if (sidebarBackdrop) {
+
+            sidebarBackdrop.classList.remove(
+                "open"
+            );
+
+        }
+
+
+        if (sidebarToggle) {
+
+            sidebarToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            sidebarToggle.setAttribute(
+                "aria-label",
+                "Open navigation"
+            );
+
+        }
+
+
+        document.body.classList.remove(
+            "sidebar-open"
+        );
+
+    }
+
+
+    /* =====================================================
+       HAMBURGER CLICK
+    ===================================================== */
+
+    if (sidebarToggle) {
+
+        sidebarToggle.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                if (
+                    sidebar &&
+                    sidebar.classList.contains(
+                        "open"
+                    )
+                ) {
+
+                    closeSidebar();
+
+                } else {
+
+                    openSidebar();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       BACKDROP CLICK
+    ===================================================== */
+
+    if (sidebarBackdrop) {
+
+        sidebarBackdrop.addEventListener(
+            "click",
+            function () {
+
+                closeSidebar();
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CLOSE SIDEBAR AFTER NAVIGATION
+    ===================================================== */
+
+    if (sidebar) {
+
+        const navigationItems =
+            sidebar.querySelectorAll(
+                "a.sidebar-link, .sidebar-brand, .sidebar-logout-btn"
+            );
+
+
+        navigationItems.forEach(
+            function (item) {
+
+                item.addEventListener(
+                    "click",
+                    function () {
+
+                        closeSidebar();
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                closeSidebar();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CLOSE SIDEBAR WHEN RETURNING TO DESKTOP
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            if (window.innerWidth > 900) {
+
+                closeSidebar();
+
+            }
+
+        }
+    );
+
 });
+
