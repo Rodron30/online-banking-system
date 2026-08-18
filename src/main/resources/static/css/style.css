@@ -200,7 +200,17 @@ svg {
     display: flex;
     align-items: stretch;
 
-    background: var(--bg);
+    background:
+        linear-gradient(
+            rgba(6, 35, 26, 0.72),
+            rgba(6, 35, 26, 0.72)
+        ),
+        url("/images/bg-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .app-content {
@@ -208,7 +218,25 @@ svg {
     flex: 1 1 auto;
     width: calc(100% - var(--sidebar-width));
 
-    background: var(--bg);
+    background: transparent;
+}
+
+.app-content::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        linear-gradient(
+            rgba(6, 35, 26, 0.35),
+            rgba(6, 35, 26, 0.35)
+        ),
+        url("/images/bg-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* =========================================================
@@ -1092,7 +1120,7 @@ svg {
 
     grid-template-columns:
         minmax(0, 1fr)
-        280px;
+        250px;
 
     gap: 16px;
 
@@ -1105,20 +1133,24 @@ svg {
 }
 
 .dashboard-main {
+    min-width: 0;
     display: flex;
     flex-direction: column;
 
-    gap: 16px;
+    gap: 14px;
 }
 
 .dashboard-side {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
 
-    gap: 16px;
+    gap: 14px;
 }
 
 .dashboard-side .card {
+    width: 100%;
     margin: 0;
 }
 
@@ -1186,8 +1218,8 @@ svg {
 
     width: 100%;
 
-    height: 275px;
-    min-height: 275px;
+    height: 248px;
+    min-height: 248px;
 
     padding: 27px 28px;
 
@@ -1532,7 +1564,8 @@ svg {
    ========================================================= */
 
 .balance-summary {
-    padding: 20px;
+    padding: 18px;
+     min-height: 225px;
 }
 
 .balance-summary-heading,
@@ -1769,7 +1802,13 @@ svg {
 }
 
 .quick-tile {
-    min-height: 64px;
+    min-height: 60px;
+
+    padding: 9px;
+
+    border-radius: 10px;
+
+    font-size: 10px;
 
     display: flex;
     flex-direction: column;
@@ -1846,6 +1885,8 @@ svg {
 
 .transactions-card {
     width: 100%;
+
+    min-height: 160px;
 
     padding: 16px 18px 12px;
 
@@ -2280,11 +2321,16 @@ svg {
 
     overflow: hidden;
 
-    background: var(--green-900);
-    background-image:
-        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.05), transparent 45%),
-        radial-gradient(circle at 85% 90%, rgba(255, 255, 255, 0.04), transparent 45%),
-        linear-gradient(160deg, var(--green-900) 0%, var(--green-800) 45%, var(--green-700) 100%);
+    background:
+        linear-gradient(
+            rgba(6, 35, 26, 0.35),
+            rgba(6, 35, 26, 0.35)
+        ),
+        url("/images/bg-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .auth-wrap::before {
@@ -2613,14 +2659,21 @@ svg {
 
     .dashboard-container {
         width: min(calc(100% - 28px), 1100px);
+
+        margin: 0 auto;
+
+        padding: 22px 0 30px;
     }
 
     .dashboard-grid {
+        display: grid;
         grid-template-columns:
             minmax(0, 1fr)
-            300px;
+            250px;
 
-        gap: 14px;
+        gap: 16px;
+
+        align-items: start;
     }
 
     .atm-card {
@@ -2898,9 +2951,9 @@ svg {
     }
 
     .quick-tile {
-        min-height: 66px;
+        min-height: 60x;
 
-        padding: 10px;
+        padding: 9px;
     }
 
     .transactions-card {
