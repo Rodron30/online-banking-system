@@ -202,13 +202,13 @@ svg {
 
     background:
         linear-gradient(
-            rgba(6, 35, 26, 0.72),
-            rgba(6, 35, 26, 0.72)
+            rgba(6, 35, 26, 0.58),
+            rgba(6, 35, 26, 0.58)
         ),
         url("/images/bg-hero.jpg");
 
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -219,24 +219,6 @@ svg {
     width: calc(100% - var(--sidebar-width));
 
     background: transparent;
-}
-
-.app-content::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-
-    background:
-        linear-gradient(
-            rgba(6, 35, 26, 0.35),
-            rgba(6, 35, 26, 0.35)
-        ),
-        url("/images/bg-hero.jpg");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 /* =========================================================
