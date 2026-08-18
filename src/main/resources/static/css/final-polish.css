@@ -61,3 +61,50 @@
         min-height: 210px;
     }
 }
+
+/* =========================================================
+   FINAL BACKGROUND FIX
+   ========================================================= */
+
+body {
+    background: #f4f7f5;
+}
+
+/* Dashboard background */
+body:has(.dashboard-container) {
+    background:
+        linear-gradient(
+            rgba(5, 45, 34, 0.58),
+            rgba(5, 45, 34, 0.58)
+        ),
+        url("../images/bg-hero.jpg") center center / cover fixed no-repeat;
+}
+
+/* Keep dashboard content readable */
+body:has(.dashboard-container) .app {
+    background: transparent;
+}
+
+body:has(.dashboard-container) .app-content {
+    background: transparent;
+}
+
+/* =========================================================
+   LOGIN / AUTH BACKGROUND
+   ========================================================= */
+
+body:has(.auth-wrap) {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4, 48, 36, 0.72),
+            rgba(7, 82, 59, 0.62)
+        ),
+        url("../images/bg-hero.jpg") center center / cover fixed no-repeat;
+}
+
+.auth-wrap {
+    min-height: 100vh;
+}
