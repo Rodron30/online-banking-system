@@ -1,28 +1,17 @@
-/* =========================================================
-   RODRON BANK — MODULAR CSS ENTRY
-   ========================================================= */
-
-/* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
-/* Core */
 @import url("./variables.css");
 @import url("./reset.css");
 @import url("./animations.css");
 
-/* Layout */
 @import url("./layout.css");
 @import url("./sidebar.css");
 @import url("./topbar.css");
 
-/* Pages */
 @import url("./dashboard.css");
 @import url("./transactions.css");
 
-/* Components */
 @import url("./components.css");
 @import url("./responsive.css");
 
-/* Final overrides — LAST */
 @import url("./final-polish.css");
-
