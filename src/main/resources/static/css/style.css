@@ -6,23 +6,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 /* Core */
-@import url("./css/variables.css");
-@import url("./css/reset.css");
-@import url("./css/animations.css");
+@import url("./variables.css");
+@import url("./reset.css");
+@import url("./animations.css");
 
 /* Layout */
-@import url("./css/layout.css");
-@import url("./css/sidebar.css");
-@import url("./css/topbar.css");
+@import url("./layout.css");
+@import url("./sidebar.css");
+@import url("./topbar.css");
 
 /* Pages */
-@import url("./css/dashboard.css");
-@import url("./css/transactions.css");
+@import url("./dashboard.css");
+@import url("./transactions.css");
 
 /* Components */
-@import url("./css/components.css");
-@import url("./css/responsive.css");
+@import url("./components.css");
+@import url("./responsive.css");
 
 /* Final overrides — LAST */
-@import url("./css/final-polish.css");
+@import url("./final-polish.css");
 
