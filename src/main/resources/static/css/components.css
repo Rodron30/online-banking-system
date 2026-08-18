@@ -1,0 +1,413 @@
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.btn:hover {
+    box-shadow: var(--shadow-card-hover);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--green-700);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--green-600);
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: #ffffff;
+}
+
+.btn-gold:hover {
+    background: var(--gold-light);
+}
+
+.btn-danger {
+    background: var(--red-soft);
+
+    color: var(--red);
+
+    border: 1px solid #f0d3d0;
+}
+
+.btn-danger:hover {
+    background: #f7ddd9;
+}
+
+.btn-mint {
+    background: var(--green-soft);
+
+    color: var(--green-700);
+
+    border: 1px solid #cdead9;
+}
+
+.btn-mint:hover {
+    background: #dcf0e4;
+}
+
+.btn-small {
+    padding: 7px 13px;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+
+.auth-wrap {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+
+    overflow: hidden;
+
+    background: var(--green-900);
+    background-image:
+        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.05), transparent 45%),
+        radial-gradient(circle at 85% 90%, rgba(255, 255, 255, 0.04), transparent 45%),
+        linear-gradient(160deg, var(--green-900) 0%, var(--green-800) 45%, var(--green-700) 100%);
+}
+
+.auth-wrap::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: 0.5;
+
+    background-image:
+        repeating-linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.035) 0px,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px,
+            transparent 46px
+        );
+}
+
+.auth-wrap::after {
+    content: "";
+
+    position: absolute;
+
+    width: 640px;
+    height: 640px;
+
+    right: -220px;
+    bottom: -260px;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle, rgba(169, 130, 47, 0.16), transparent 70%);
+}
+
+.auth-card {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 36px 34px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-lg);
+
+    animation: rb-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 0 22px;
+}
+
+.auth-brand-icon {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--green-800);
+    color: var(--gold-light);
+}
+
+.auth-brand-icon svg {
+    width: 24px;
+    height: 24px;
+
+    fill: currentColor;
+    stroke: none;
+}
+
+.auth-brand-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+.auth-brand-text strong {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+
+    color: var(--navy);
+
+    letter-spacing: 0.01em;
+}
+
+.auth-brand-text small {
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--faint);
+
+    font-size: 11px;
+}
+
+.auth-card h1 {
+    margin: 0 0 6px;
+
+    color: var(--navy);
+
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.auth-card .sub {
+    margin: 0 0 26px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--navy);
+
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    display: block;
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1.5px solid var(--border);
+
+    border-radius: var(--radius-sm);
+
+    background: #fbfcfb;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--green-600);
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(19, 94, 63, 0.12);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 10px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    cursor: pointer;
+}
+
+.link-alt {
+    margin: 20px 0 0;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.link-alt a {
+    color: var(--green-700);
+    font-weight: 700;
+}
+
+.link-alt a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert {
+    padding: 12px 16px;
+
+    margin-bottom: 18px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 13.5px;
+}
+
+.alert-error {
+    background: var(--red-soft);
+
+    color: #93332c;
+
+    border: 1px solid #f0d3d0;
+}
+
+.alert-success {
+    background: var(--green-soft);
+
+    color: var(--green-700);
+
+    border: 1px solid #cdead9;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    padding: 16px 0 0;
+
+    color: var(--faint);
+
+    text-align: center;
+
+    font-size: 8px;
+    letter-spacing: 0.03em;
+}

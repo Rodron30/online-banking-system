@@ -1,0 +1,66 @@
+/* =========================================================
+   RODRON BANK
+   DESIGN SYSTEM — "LEDGER"
+   A quiet, paper-and-ink take on online banking:
+   deep forest green, brushed brass, and tabular
+   monospace figures wherever money is shown —
+   the numbers read like entries in a passbook.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap");
+
+/* =========================================================
+   ROOT TOKENS
+   ========================================================= */
+
+:root {
+    /* -- brand green ------------------------------------- */
+    --green-900: #06231a;
+    --green-800: #0a3626;
+    --green-700: #0e4a32;
+    --green-600: #135e3f;
+    --green-500: #1a7a51;
+    --green-soft: #e9f3ec;
+
+    /* -- brass / gold accent ------------------------------ */
+    --gold: #a9822f;
+    --gold-light: #cca34f;
+    --gold-soft: #f5eeda;
+
+    /* -- neutrals ------------------------------------------ */
+    --navy: #142621;
+    --text: #16241e;
+    --muted: #66766d;
+    --faint: #8a978f;
+
+    --bg: #f5f7f4;
+    --white: #ffffff;
+
+    --border: #e2e8e2;
+    --border-strong: #cdd7ce;
+
+    --red: #b8433a;
+    --red-soft: #faeae8;
+
+    /* -- type ------------------------------------------------ */
+    --font-display: "Space Grotesk", "Inter", sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    /* -- layout ---------------------------------------------- */
+    --sidebar-width: 236px;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+
+    /* -- elevation -------------------------------------------- */
+    --shadow:
+        0 1px 2px rgba(14, 36, 26, 0.04),
+        0 8px 24px rgba(14, 36, 26, 0.055);
+
+    --shadow-lg:
+        0 20px 48px rgba(10, 28, 20, 0.14);
+
+    --shadow-card-hover:
+        0 14px 32px rgba(10, 28, 20, 0.1);
+}

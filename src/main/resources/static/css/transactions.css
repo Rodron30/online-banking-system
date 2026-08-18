@@ -1,0 +1,333 @@
+/* =========================================================
+   TRANSACTIONS
+   ========================================================= */
+
+.transactions-card {
+    width: 100%;
+
+    padding: 16px 18px 12px;
+
+    margin: 0;
+}
+
+.section-header {
+    min-height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 0 1px 10px;
+}
+
+.section-header h2 {
+    margin: 0;
+
+    color: var(--navy);
+
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.section-header a,
+.view-all-link {
+    color: var(--green-700);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.section-header a:hover,
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-sm);
+
+    background: #ffffff;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.transactions-card table {
+    width: 100%;
+
+    min-width: 650px;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+.transactions-card th {
+    padding: 10px 12px;
+
+    background: var(--bg);
+
+    border-bottom: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 8.5px;
+    font-weight: 800;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.transactions-card td {
+    padding: 10px 12px;
+
+    border-bottom: 1px solid #eef1ee;
+
+    color: var(--text);
+
+    font-size: 9.5px;
+
+    white-space: nowrap;
+}
+
+.transactions-card tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.transactions-card tbody tr {
+    transition: background 0.12s ease;
+}
+
+.transactions-card tbody tr:hover {
+    background: #fafcfa;
+}
+
+.transactions-card td:last-child,
+.transactions-card th:last-child {
+    text-align: right;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 3px 8px;
+
+    border-radius: 999px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.03em;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+.badge-deposit,
+.badge-transfer_in {
+    background: var(--green-soft);
+    color: var(--green-700);
+}
+
+.badge-withdraw,
+.badge-transfer_out {
+    background: var(--red-soft);
+    color: var(--red);
+}
+
+.amount-positive,
+.amount-pos {
+    color: var(--green-600);
+    font-weight: 600;
+}
+
+.amount-negative,
+.amount-neg {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.status-dot {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--green-700);
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+    padding: 32px 16px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+.empty-icon {
+    margin-bottom: 8px;
+
+    font-size: 26px;
+}
+
+.empty-state h3 {
+    margin: 6px 0 2px;
+
+    color: var(--navy);
+
+    font-family: var(--font-display);
+    font-size: 14px;
+}
+
+.empty-state p {
+    margin: 0;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+
+    margin-top: 6px;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.03em;
+
+    line-height: 1;
+}
+
+.status-active {
+    background: var(--green-600);
+    color: #ffffff;
+}
+
+.status-frozen {
+    background: var(--red);
+    color: #ffffff;
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.summary-row {
+    min-height: 36px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 6px 2px;
+
+    border-top: 1px solid var(--border);
+}
+
+.summary-row span {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.summary-row strong {
+    color: var(--navy);
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+.summary-status {
+    padding: 4px 8px;
+
+    border-radius: 999px;
+
+    background: var(--green-soft);
+
+    color: var(--green-700) !important;
+}
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.stat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+.stat-card {
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.stat-card .num {
+    color: var(--navy);
+
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.stat-card .lbl {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
