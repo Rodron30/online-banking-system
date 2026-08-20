@@ -1,0 +1,408 @@
+/* =========================================================
+   RODRON BANK
+   LAYOUT — GLASS LEDGER
+   Standard / Clean / Responsive
+   ========================================================= */
+
+
+/* =========================================================
+   APP SHELL
+   ========================================================= */
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(26, 122, 81, 0.035),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(169, 130, 47, 0.025),
+            transparent 32%
+        ),
+        var(--bg);
+}
+
+
+/* =========================================================
+   APP CONTENT
+   ========================================================= */
+
+.app-content {
+    width: calc(100% - var(--sidebar-width));
+    min-width: 0;
+    min-height: 100vh;
+
+    flex: 1 1 auto;
+
+    position: relative;
+    z-index: 1;
+
+    background: transparent;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   GENERAL CONTAINERS
+   ========================================================= */
+
+.container,
+.page-wrap {
+    width: min(calc(100% - 48px), 1200px);
+
+    margin: 0 auto;
+    padding: 30px 0 55px;
+}
+
+
+/* =========================================================
+   DASHBOARD CONTAINER
+   ========================================================= */
+
+.dashboard-container {
+    width: min(calc(100% - 84px), 1210px);
+
+    min-width: 0;
+
+    margin: 0 auto;
+    padding: 22px 0 30px;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid {
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px;
+
+    gap: 16px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   DASHBOARD COLUMNS
+   ========================================================= */
+
+.dashboard-main,
+.dashboard-side {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   DASHBOARD SIDE CARDS
+   ========================================================= */
+
+.dashboard-side .card {
+    margin: 0;
+}
+
+
+/* =========================================================
+   GLASS CARD
+   ========================================================= */
+
+.card,
+.dashboard-card {
+    position: relative;
+
+    min-width: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.76),
+            rgba(255, 255, 255, 0.58)
+        );
+
+    border: 1px solid var(--glass-border);
+
+    border-radius: var(--radius);
+
+    box-shadow:
+        var(--shadow-card),
+        var(--shadow-inset);
+
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+
+    transition:
+        box-shadow var(--transition),
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition);
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.card:hover,
+.dashboard-card:hover {
+    border-color: rgba(14, 74, 50, 0.16);
+
+    box-shadow:
+        var(--shadow-card-hover),
+        var(--shadow-inset);
+}
+
+
+/* =========================================================
+   STANDARD CARD
+   ========================================================= */
+
+.card {
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARD
+   ========================================================= */
+
+.dashboard-card {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   GLASS HIGHLIGHT
+   ========================================================= */
+
+.card::before,
+.dashboard-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.10),
+            transparent 45%
+        );
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.card > *,
+.dashboard-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   FULL WIDTH
+   ========================================================= */
+
+.full-width {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CONTENT ROW
+   ========================================================= */
+
+.content-row {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: stretch;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   CONTENT COLUMN
+   ========================================================= */
+
+.content-column {
+    min-width: 0;
+
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-container {
+        width: min(calc(100% - 48px), 1100px);
+        padding-top: 20px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            250px;
+
+        gap: 14px;
+    }
+
+    .dashboard-main,
+    .dashboard-side {
+        gap: 14px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .app-content {
+        width: 100%;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .dashboard-main,
+    .dashboard-side {
+        width: 100%;
+        gap: 16px;
+    }
+
+    .dashboard-side {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        align-items: start;
+    }
+
+    .dashboard-side .card {
+        margin: 0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .container,
+    .page-wrap {
+        width: calc(100% - 24px);
+
+        padding:
+            18px 0 36px;
+    }
+
+    .dashboard-container {
+        width: calc(100% - 24px);
+
+        padding:
+            16px 0 24px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .dashboard-main,
+    .dashboard-side {
+        gap: 14px;
+    }
+
+    .dashboard-side {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        padding: 18px;
+        margin-bottom: 14px;
+
+        border-radius: var(--radius-sm);
+    }
+
+    .content-row {
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .container,
+    .page-wrap,
+    .dashboard-container {
+        width: calc(100% - 20px);
+    }
+
+    .card {
+        padding: 16px;
+    }
+}

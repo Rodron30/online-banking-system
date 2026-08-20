@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Rodron Bank</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <div th:replace="~{fragments/navbar :: navbar('profile')}"></div>
+
+    <div class="app-content">
+
+        <div th:replace="~{fragments/topbar :: topbar('', 'Profile', 'View your account holder information.')}"></div>
+
+        <main class="container">
+
+            <section class="profile-page-card">
+
+                <div class="profile-hero">
+                    <div class="profile-avatar-large" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="4"/>
+                            <path d="M4 21c.8-4 3.4-6 8-6s7.2 2 8 6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 th:text="${user.fullName}">System Administrator</h2>
+                        <p class="profile-role">Customer</p>
+                    </div>
+                </div>
+
+                <div class="profile-details-glass">
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Full Name</span>
+                        <strong class="profile-detail-value" th:text="${user.fullName}">System Administrator</strong>
+                    </div>
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Username</span>
+                        <strong class="profile-detail-value" th:text="${user.username}">admin</strong>
+                    </div>
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Email</span>
+                        <strong class="profile-detail-value" th:text="${user.email}">admin@bank.local</strong>
+                    </div>
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Role</span>
+                        <strong class="profile-detail-value accent" th:text="${user.role != null ? user.role.name() : '—'}">ADMIN</strong>
+                    </div>
+                    <div class="profile-detail-row">
+                        <span class="profile-detail-label">Member Since</span>
+                        <strong class="profile-detail-value accent" th:if="${user.createdAt != null}" th:text="${#temporals.format(user.createdAt, 'MMMM dd, yyyy')}">August 10, 2026</strong>
+                        <strong class="profile-detail-value" th:unless="${user.createdAt != null}">—</strong>
+                    </div>
+                </div>
+
+                <a class="profile-back-link" th:href="@{/dashboard}">← Back to Dashboard</a>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>

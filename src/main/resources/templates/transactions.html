@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transaction History | Rodron Bank</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/transactions.css}">
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =================================================
+         SIDEBAR
+         ================================================= -->
+
+    <div th:replace="~{fragments/navbar :: navbar('history')}"></div>
+
+
+    <!-- =================================================
+         CONTENT
+         ================================================= -->
+
+    <div class="app-content">
+
+        <!-- TOPBAR -->
+        <div th:replace="~{fragments/topbar :: topbar('', 'Transaction History', ${'Account No: ' + account.accountNumber})}">
+        </div>
+
+
+        <!-- =================================================
+             TRANSACTION PAGE
+             ================================================= -->
+
+        <main class="transaction-page">
+
+            <div class="transactions-card">
+
+                <!-- =================================================
+                     TRANSACTION TABLE
+                     ================================================= -->
+
+                <div
+                    class="table-wrapper"
+                    th:if="${transactions != null and !transactions.isEmpty()}">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Counterparty</th>
+                                <th>Amount</th>
+                                <th>Balance After</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr th:each="tx : ${transactions}">
+
+                                <!-- DATE -->
+                                <td>
+
+                                    <span
+                                        class="transaction-date"
+                                        th:if="${tx.timestamp != null}"
+                                        th:text="${#temporals.format(tx.timestamp, 'MMM dd, yyyy HH:mm')}">
+                                        Jan 01, 2026 12:00
+                                    </span>
+
+                                    <span th:unless="${tx.timestamp != null}">
+                                        —
+                                    </span>
+
+                                </td>
+
+
+                                <!-- TYPE -->
+                                <td>
+
+                                    <span
+                                        class="badge"
+                                        th:classappend="${tx.type != null ? 'badge-' + #strings.toLowerCase(tx.type.name()) : ''}"
+                                        th:text="${tx.type != null ? tx.type.name() : 'UNKNOWN'}">
+                                        DEPOSIT
+                                    </span>
+
+                                </td>
+
+
+                                <!-- DESCRIPTION -->
+                                <td
+                                    th:text="${tx.description != null and !tx.description.isBlank()
+                                        ? tx.description
+                                        : '—'}">
+                                    —
+                                </td>
+
+
+                                <!-- COUNTERPARTY -->
+                                <td
+                                    th:text="${tx.counterpartyAccountNumber != null
+                                        ? tx.counterpartyAccountNumber
+                                        : '—'}">
+                                    —
+                                </td>
+
+
+                                <!-- AMOUNT -->
+                                <td>
+
+                                    <!-- MONEY RECEIVED -->
+                                    <span
+                                        th:if="${tx.type != null and
+                                            (tx.type.name() == 'DEPOSIT'
+                                            or tx.type.name() == 'TRANSFER_IN')}"
+                                        class="amount-pos"
+                                        th:text="${'+₱' + #numbers.formatDecimal(
+                                            tx.amount,
+                                            1,
+                                            'COMMA',
+                                            2,
+                                            'POINT'
+                                        )}">
+                                        +₱0.00
+                                    </span>
+
+
+                                    <!-- MONEY SENT -->
+                                    <span
+                                        th:if="${tx.type != null and
+                                            (tx.type.name() == 'WITHDRAW'
+                                            or tx.type.name() == 'TRANSFER_OUT')}"
+                                        class="amount-neg"
+                                        th:text="${'-₱' + #numbers.formatDecimal(
+                                            tx.amount,
+                                            1,
+                                            'COMMA',
+                                            2,
+                                            'POINT'
+                                        )}">
+                                        -₱0.00
+                                    </span>
+
+
+                                    <!-- UNKNOWN -->
+                                    <span
+                                        th:if="${tx.type == null or
+                                            (tx.type.name() != 'DEPOSIT'
+                                            and tx.type.name() != 'TRANSFER_IN'
+                                            and tx.type.name() != 'WITHDRAW'
+                                            and tx.type.name() != 'TRANSFER_OUT')}">
+                                        —
+                                    </span>
+
+                                </td>
+
+
+                                <!-- BALANCE AFTER -->
+                                <td>
+
+                                    <span
+                                        class="balance-after"
+                                        th:if="${tx.balanceAfter != null}"
+                                        th:text="${'₱' + #numbers.formatDecimal(
+                                            tx.balanceAfter,
+                                            1,
+                                            'COMMA',
+                                            2,
+                                            'POINT'
+                                        )}">
+                                        ₱0.00
+                                    </span>
+
+                                    <span
+                                        class="balance-after"
+                                        th:unless="${tx.balanceAfter != null}">
+                                        ₱0.00
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- =================================================
+                     EMPTY STATE
+                     ================================================= -->
+
+                <div
+                    class="empty-state"
+                    th:if="${transactions == null or transactions.isEmpty()}">
+
+                    <div class="empty-icon">⌁</div>
+
+                    <h3>No Transactions</h3>
+
+                    <p>No transactions have been recorded yet.</p>
+
+                </div>
+
+
+                <!-- =================================================
+                     BACK TO DASHBOARD
+                     ================================================= -->
+
+                <div class="transaction-back">
+
+                    <a th:href="@{/dashboard}">
+                        ← Back to Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

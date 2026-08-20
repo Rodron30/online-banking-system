@@ -1,0 +1,704 @@
+<header xmlns:th="http://www.thymeleaf.org"
+        th:fragment="topbar(eyebrow, heading, subtitle)"
+        class="topbar">
+
+    <!-- =====================================================
+         MOBILE SIDEBAR BUTTON
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="sidebar-toggle-btn"
+        id="sidebarToggleBtn"
+        aria-label="Open navigation"
+        aria-controls="appSidebar"
+        aria-expanded="false">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+
+    </button>
+
+
+    <!-- =====================================================
+         WELCOME
+    ====================================================== -->
+
+    <div class="topbar-welcome">
+
+        <p
+            class="topbar-eyebrow"
+            th:if="${eyebrow != null and !eyebrow.isEmpty()}"
+            th:text="${eyebrow}">
+            Welcome back,
+        </p>
+
+        <h1 th:text="${heading}">
+            Page Title
+        </h1>
+
+        <p
+            class="topbar-subtitle"
+            th:if="${subtitle != null and !subtitle.isEmpty()}"
+            th:text="${subtitle}">
+            Manage your accounts and transactions securely.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOPBAR RIGHT
+    ====================================================== -->
+
+    <div class="topbar-right">
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================== -->
+
+        <div class="topbar-notif-wrapper">
+
+            <button
+                type="button"
+                class="topbar-notif"
+                id="notifBellBtn"
+                aria-label="Notifications"
+                aria-expanded="false"
+                aria-controls="notifDropdown">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                    <path d="
+                        M18 9
+                        a6 6 0 0 0-12 0
+                        c0 7-3 7-3 9
+                        h18
+                        c0-2-3-2-3-9
+                    "/>
+
+                    <path d="M10 21h4"/>
+
+                </svg>
+
+                <span
+                    class="topbar-notif-badge"
+                    id="notifBadge"
+                    hidden>
+                    0
+                </span>
+
+            </button>
+
+
+            <!-- =================================================
+                 NOTIFICATION DROPDOWN
+            ================================================== -->
+
+            <div
+                class="notif-dropdown"
+                id="notifDropdown"
+                hidden>
+
+                <div class="notif-dropdown-header">
+
+                    <span>
+                        Notifications
+                    </span>
+
+                    <button
+                        type="button"
+                        id="notifMarkAllBtn">
+
+                        Mark all as read
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="notif-dropdown-list"
+                    id="notifList">
+
+                    <div class="notif-empty">
+                        Loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             USER
+        ================================================== -->
+
+        <div class="topbar-user">
+
+            <div
+                class="topbar-user-avatar"
+                aria-hidden="true">
+
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="12"
+                        cy="8"
+                        r="4"/>
+
+                    <path d="
+                        M4 21
+                        c.8-4 3.4-6 8-6
+                        s7.2 2 8 6
+                    "/>
+
+                </svg>
+
+            </div>
+
+
+            <span
+                class="topbar-user-name"
+                th:text="${user != null ? user.fullName : 'User'}">
+
+                User
+
+            </span>
+
+
+            <svg
+                class="topbar-chevron"
+                viewBox="0 0 24 24"
+                aria-hidden="true">
+
+                <path d="m7 10 5 5 5-5"/>
+
+            </svg>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT / NOTIFICATIONS
+    ====================================================== -->
+
+    <script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
+
+        const bellBtn =
+            document.getElementById("notifBellBtn");
+
+        const dropdown =
+            document.getElementById("notifDropdown");
+
+        const badge =
+            document.getElementById("notifBadge");
+
+        const list =
+            document.getElementById("notifList");
+
+        const markAllBtn =
+            document.getElementById("notifMarkAllBtn");
+
+
+        /* =====================================================
+           CSRF
+        ===================================================== */
+
+        const csrfHeader =
+            /*[[${_csrf != null ? _csrf.headerName : ''}]]*/ '';
+
+        const csrfToken =
+            /*[[${_csrf != null ? _csrf.token : ''}]]*/ '';
+
+
+        function postHeaders() {
+
+            const headers = {};
+
+            if (csrfHeader && csrfToken) {
+                headers[csrfHeader] = csrfToken;
+            }
+
+            return headers;
+        }
+
+        /* =====================================================
+           NOTIFICATION ICONS
+        ====================================================== */
+
+        const typeIcons = {
+
+            DEPOSIT: "⬆",
+
+            WITHDRAWAL: "⬇",
+
+            WITHDRAW: "⬇",
+
+            TRANSFER_SENT: "↗",
+
+            TRANSFER_RECEIVED: "↙",
+
+            PIN_CHANGED: "🔒",
+
+            ACCOUNT_FROZEN: "❄",
+
+            ACCOUNT_ACTIVATED: "✓",
+
+            ACCOUNT_DELETED: "✕"
+
+        };
+
+
+        /* =====================================================
+           REFRESH UNREAD COUNT
+        ====================================================== */
+
+        function refreshUnreadCount() {
+
+            if (!badge) {
+                return;
+            }
+
+            fetch(
+                "/api/notifications/unread-count",
+                {
+                    method: "GET",
+                    credentials: "same-origin",
+                    cache: "no-store"
+                }
+            )
+
+            .then(function (response) {
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Unread count request failed."
+                    );
+                }
+
+                return response.json();
+
+            })
+
+            .then(function (data) {
+
+                const count =
+                    Number(data.count || 0);
+
+                if (count > 0) {
+
+                    badge.hidden = false;
+
+                    badge.textContent =
+                        count > 9
+                            ? "9+"
+                            : String(count);
+
+                } else {
+
+                    badge.hidden = true;
+                    badge.textContent = "0";
+
+                }
+
+            })
+
+            .catch(function () {
+
+                badge.hidden = true;
+                badge.textContent = "0";
+
+            });
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHtml(value) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                value == null
+                    ? ""
+                    : String(value);
+
+            return div.innerHTML;
+        }
+
+
+        /* =====================================================
+           LOAD NOTIFICATIONS
+        ====================================================== */
+
+        function loadNotifications() {
+
+            if (!list) {
+                return;
+            }
+
+            list.innerHTML =
+                '<div class="notif-empty">Loading...</div>';
+
+
+            fetch(
+                "/api/notifications",
+                {
+                    method: "GET",
+                    credentials: "same-origin",
+                    cache: "no-store"
+                }
+            )
+
+            .then(function (response) {
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Notification request failed."
+                    );
+                }
+
+                return response.json();
+
+            })
+
+            .then(function (items) {
+
+                if (
+                    !Array.isArray(items) ||
+                    items.length === 0
+                ) {
+
+                    list.innerHTML =
+                        '<div class="notif-empty">' +
+                        'No notifications yet.' +
+                        '</div>';
+
+                    return;
+                }
+
+
+                list.innerHTML =
+                    items.map(function (notification) {
+
+                        const icon =
+                            typeIcons[
+                                notification.type
+                            ] || "🔔";
+
+
+                        const unreadClass =
+                            notification.isRead
+                                ? ""
+                                : " notif-item-unread";
+
+
+                        return (
+
+                            '<div class="notif-item' +
+                            unreadClass +
+                            '" data-id="' +
+                            escapeHtml(
+                                notification.id
+                            ) +
+                            '">' +
+
+                                '<span class="notif-item-icon">' +
+                                    icon +
+                                '</span>' +
+
+                                '<div class="notif-item-body">' +
+
+                                    '<p class="notif-item-message">' +
+                                        escapeHtml(
+                                            notification.message
+                                        ) +
+                                    '</p>' +
+
+                                    '<p class="notif-item-time">' +
+                                        escapeHtml(
+                                            notification.createdAt
+                                        ) +
+                                    '</p>' +
+
+                                '</div>' +
+
+                            '</div>'
+
+                        );
+
+                    }).join("");
+
+            })
+
+            .catch(function () {
+
+                list.innerHTML =
+                    '<div class="notif-empty">' +
+                    'Unable to load notifications.' +
+                    '</div>';
+
+            });
+
+        }
+
+
+        /* =====================================================
+           OPEN / CLOSE NOTIFICATION
+        ====================================================== */
+
+        if (bellBtn && dropdown) {
+
+            bellBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+
+                    const isClosed =
+                        dropdown.hasAttribute("hidden");
+
+
+                    if (isClosed) {
+
+                        dropdown.removeAttribute("hidden");
+
+                        dropdown.classList.add(
+                            "notif-dropdown-open"
+                        );
+
+                        bellBtn.setAttribute(
+                            "aria-expanded",
+                            "true"
+                        );
+
+                        loadNotifications();
+
+                    } else {
+
+                        dropdown.classList.remove(
+                            "notif-dropdown-open"
+                        );
+
+                        dropdown.setAttribute(
+                            "hidden",
+                            ""
+                        );
+
+                        bellBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           CLICK OUTSIDE NOTIFICATION
+        ====================================================== */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    !dropdown ||
+                    !bellBtn
+                ) {
+                    return;
+                }
+
+
+                if (
+                    !dropdown.contains(event.target) &&
+                    !bellBtn.contains(event.target)
+                ) {
+
+                    dropdown.classList.remove(
+                        "notif-dropdown-open"
+                    );
+
+                    dropdown.setAttribute(
+                        "hidden",
+                        ""
+                    );
+
+                    bellBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           CLICK NOTIFICATION
+        ====================================================== */
+
+        if (list) {
+
+            list.addEventListener(
+                "click",
+                function (event) {
+
+                    const item =
+                        event.target.closest(
+                            ".notif-item"
+                        );
+
+
+                    if (!item) {
+                        return;
+                    }
+
+
+                    const id =
+                        item.getAttribute("data-id");
+
+
+                    if (!id) {
+                        return;
+                    }
+
+
+                    if (
+                        !item.classList.contains(
+                            "notif-item-unread"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    item.classList.remove(
+                        "notif-item-unread"
+                    );
+
+
+                    fetch(
+                        "/api/notifications/" +
+                        encodeURIComponent(id) +
+                        "/read",
+                        {
+                            method: "POST",
+                            credentials: "same-origin",
+                            headers: postHeaders()
+                        }
+                    )
+
+                    .then(function (response) {
+
+                        if (!response.ok) {
+                            throw new Error(
+                                "Unable to mark notification as read."
+                            );
+                        }
+
+                        refreshUnreadCount();
+
+                    })
+
+                    .catch(function () {
+
+                        item.classList.add(
+                            "notif-item-unread"
+                        );
+
+                    });
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           MARK ALL AS READ
+        ====================================================== */
+
+        if (markAllBtn) {
+
+            markAllBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+
+                    fetch(
+                        "/api/notifications/read-all",
+                        {
+                            method: "POST",
+                            credentials: "same-origin",
+                            headers: postHeaders()
+                        }
+                    )
+
+                    .then(function (response) {
+
+                        if (!response.ok) {
+                            throw new Error(
+                                "Unable to mark all notifications as read."
+                            );
+                        }
+
+                        refreshUnreadCount();
+                        loadNotifications();
+
+                    })
+
+                    .catch(function () {});
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           INITIAL NOTIFICATION CHECK
+        ====================================================== */
+
+        refreshUnreadCount();
+
+
+        /* =====================================================
+           AUTO REFRESH
+        ====================================================== */
+
+        setInterval(
+            refreshUnreadCount,
+            10000
+        );
+
+    });
+    </script>
+
+</header>

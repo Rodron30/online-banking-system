@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Rodron Bank</title>
+
+    <!-- =====================================================
+         MAIN CSS
+    ====================================================== -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <div
+        th:replace="~{fragments/navbar :: navbar('dashboard')}">
+    </div>
+
+
+    <!-- =====================================================
+         APP CONTENT
+    ====================================================== -->
+
+    <div class="app-content">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <div
+            th:replace="~{fragments/topbar :: topbar(
+                'Welcome back,',
+                ${user.fullName},
+                'Manage your accounts and transactions securely.'
+            )}">
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD MAIN
+        ================================================== -->
+
+        <main class="dashboard-container">
+
+
+            <!-- =================================================
+                 ALERTS
+            ================================================== -->
+
+            <div
+                class="alert alert-success"
+                th:if="${success}"
+                th:text="${success}">
+                Success
+            </div>
+
+
+            <div
+                class="alert alert-error"
+                th:if="${error}"
+                th:text="${error}">
+                Error
+            </div>
+
+
+            <!-- =================================================
+                 DASHBOARD GRID
+            ================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- =================================================
+                     MAIN COLUMN
+                ================================================== -->
+
+                <div class="dashboard-main">
+
+
+                    <!-- =================================================
+                         ATM CARD
+                    ================================================== -->
+
+                    <section class="atm-section">
+
+
+                        <!-- SECTION HEADER -->
+
+                        <div class="dashboard-section-header">
+
+                            <h2>
+                                My ATM Card
+                            </h2>
+
+                        </div>
+
+
+                        <!-- ATM CARD WRAPPER -->
+
+                        <div class="atm-card-wrapper">
+
+
+                            <!-- =================================================
+                                 ATM CARD
+                            ================================================== -->
+
+                            <div class="atm-card">
+
+
+                                <!-- CARD PATTERN -->
+
+                                <div
+                                    class="atm-pattern"
+                                    aria-hidden="true">
+                                </div>
+
+
+                                <!-- BANK WATERMARK -->
+
+                                <div
+                                    class="atm-bank-watermark"
+                                    aria-hidden="true">
+
+                                    <svg viewBox="0 0 120 100">
+
+                                        <path
+                                            d="M8 37h104L60 10 8 37Z"/>
+
+                                        <path
+                                            d="
+                                                M18 43h84v9H18z
+                                                M25 55h12v32H25z
+                                                M54 55h12v32H54z
+                                                M83 55h12v32H83z
+                                                M14 88h92v7H14z
+                                            "/>
+
+                                    </svg>
+
+                                </div>
+
+
+                                <!-- =================================================
+                                     CARD HEADER
+                                ================================================== -->
+
+                                <div class="atm-card-head">
+
+
+                                    <div class="atm-card-brand">
+
+
+                                        <span
+                                            class="atm-card-logo"
+                                            aria-hidden="true">
+
+                                            <svg viewBox="0 0 64 64">
+
+                                                <path
+                                                    d="M7 25h50L32 9 7 25Z"/>
+
+                                                <path
+                                                    d="
+                                                        M12 28h40v5H12z
+                                                        M16 35h6v18h-6z
+                                                        M29 35h6v18h-6z
+                                                        M42 35h6v18h-6z
+                                                        M10 54h44v4H10z
+                                                    "/>
+
+                                            </svg>
+
+                                        </span>
+
+
+                                        <span>
+
+                                            <strong>
+                                                RODRON BANK
+                                            </strong>
+
+                                            <small>
+                                                ONLINE BANKING SYSTEM
+                                            </small>
+
+                                        </span>
+
+
+                                    </div>
+
+
+                                    <div class="atm-card-type">
+                                        DEBIT CARD
+                                    </div>
+
+
+                                </div>
+
+
+                                <!-- =================================================
+                                     CHIP
+                                ================================================== -->
+
+                                <div class="atm-chip-row">
+
+
+                                    <div
+                                        class="atm-chip"
+                                        aria-hidden="true">
+
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+
+                                    </div>
+
+
+                                    <svg
+                                        class="atm-contactless"
+                                        viewBox="0 0 32 32"
+                                        aria-hidden="true">
+
+                                        <path
+                                            d="M10 21a7 7 0 0 0 0-10"/>
+
+                                        <path
+                                            d="M15 24a11 11 0 0 0 0-16"/>
+
+                                        <path
+                                            d="M20 27a15 15 0 0 0 0-22"/>
+
+                                    </svg>
+
+
+                                </div>
+
+
+                                <!-- =================================================
+                                     ACCOUNT NUMBER
+                                ================================================== -->
+
+                                <div class="atm-number">
+
+
+                                    <!-- MASKED ACCOUNT NUMBER -->
+
+                                    <span
+                                        id="cardNumberMasked"
+                                        th:if="${account != null
+                                            and account.accountNumber != null
+                                            and !#strings.isEmpty(account.accountNumber)}"
+                                        th:text="${#strings.length(account.accountNumber) >= 4
+                                            ? '**** **** ** ' +
+                                              #strings.substring(
+                                                  account.accountNumber,
+                                                  #strings.length(account.accountNumber) - 4
+                                              )
+                                            : account.accountNumber}">
+
+                                        **** **** ** 5520
+
+                                    </span>
+
+
+                                    <!-- FULL ACCOUNT NUMBER -->
+
+                                    <span
+                                        id="cardNumberFull"
+                                        hidden
+                                        th:if="${account != null
+                                            and account.accountNumber != null
+                                            and !#strings.isEmpty(account.accountNumber)}"
+                                        th:text="${account.accountNumber}">
+
+                                        1234567890
+
+                                    </span>
+
+
+                                    <!-- ACCOUNT UNAVAILABLE -->
+
+                                    <span
+                                        id="cardNumberUnavailable"
+                                        th:if="${account == null
+                                            or account.accountNumber == null
+                                            or #strings.isEmpty(account.accountNumber)}">
+
+                                        Account number unavailable
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- =================================================
+                                     CARD FOOTER
+                                ================================================== -->
+
+                                <div class="atm-card-foot">
+
+
+                                    <!-- CARD HOLDER -->
+
+                                    <div>
+
+                                        <div class="atm-card-foot-label">
+                                            CARD HOLDER
+                                        </div>
+
+                                        <div
+                                            class="atm-card-foot-value"
+                                            th:text="${user.fullName}">
+
+                                            Rodron Camangyan
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- EXPIRY -->
+
+                                    <div>
+
+                                        <div class="atm-card-foot-label">
+                                            EXPIRES
+                                        </div>
+
+                                        <div class="atm-card-foot-value">
+                                            08/28
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- VISA -->
+
+                                    <div class="atm-card-visa">
+                                        VISA
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- =================================================
+                                 CARD DETAILS BUTTON
+                            ================================================== -->
+
+                            <button
+                                type="button"
+                                class="card-toggle-btn"
+                                id="cardToggleBtn"
+                                aria-expanded="false">
+
+
+                                <svg
+                                    id="cardToggleIcon"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true">
+
+                                    <path
+                                        d="
+                                            M2 12
+                                            s3.5-6 10-6
+                                            10 6 10 6
+                                            -3.5 6-10 6
+                                            S2 12 2 12Z
+                                        "/>
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="2.5"/>
+
+                                </svg>
+
+
+                                <span id="cardToggleLabel">
+                                    Show Card Details
+                                </span>
+
+
+                            </button>
+
+
+                        </div>
+
+
+                    </section>
+
+
+                    <!-- =================================================
+                         RECENT TRANSACTIONS
+                    ================================================== -->
+
+                    <section class="transactions-card">
+
+
+                        <!-- =================================================
+                             TRANSACTION HEADER
+                        ================================================== -->
+
+                        <div class="transactions-card-header">
+
+
+                            <div>
+
+                                <h2>
+                                    Recent Transactions
+                                </h2>
+
+                                <p>
+                                    Your latest account activity
+                                </p>
+
+                            </div>
+
+
+                            <a
+                                th:href="@{/transactions}"
+                                class="view-all">
+
+                                View All
+
+                                <span aria-hidden="true">
+                                    ›
+                                </span>
+
+                            </a>
+
+
+                        </div>
+
+
+                        <!-- =================================================
+                             TRANSACTION TABLE
+                        ================================================== -->
+
+                        <div
+                            class="transactions-table-wrap"
+                            th:if="${recentTransactions != null
+                                and !recentTransactions.isEmpty()}">
+
+
+                            <table>
+
+
+                                <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Description
+                                    </th>
+
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                <tr
+                                    th:each="tx : ${recentTransactions}">
+
+
+                                    <!-- DATE -->
+
+                                    <td>
+
+                                        <span
+                                            th:if="${tx.timestamp != null}"
+                                            th:text="${#temporals.format(
+                                                tx.timestamp,
+                                                'MMM dd, yyyy'
+                                            )}">
+
+                                            Aug 18, 2026
+
+                                        </span>
+
+                                        <span
+                                            th:unless="${tx.timestamp != null}">
+
+                                            —
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- DESCRIPTION -->
+
+                                    <td>
+
+                                        <span
+                                            th:if="${tx.description != null
+                                                and !tx.description.isBlank()}"
+                                            th:text="${tx.description}">
+
+                                            Transaction
+
+                                        </span>
+
+                                        <span
+                                            th:unless="${tx.description != null
+                                                and !tx.description.isBlank()}"
+                                            th:text="${tx.type != null
+                                                ? tx.type.name()
+                                                : '—'}">
+
+                                            Transaction
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <!-- TYPE -->
+
+                                    <td>
+
+
+                                        <span
+                                            class="transaction-type"
+                                            th:if="${tx.type != null}"
+                                            th:classappend="${#strings.toLowerCase(
+                                                tx.type.name()
+                                            ).replace('_', '-')}"
+                                            th:text="${tx.type.name()}">
+
+                                            DEPOSIT
+
+                                        </span>
+
+
+                                        <span
+                                            class="transaction-type"
+                                            th:unless="${tx.type != null}">
+
+                                            UNKNOWN
+
+                                        </span>
+
+
+                                    </td>
+
+
+                                    <!-- AMOUNT -->
+
+                                    <td
+                                        class="amount-positive"
+                                        th:if="${tx.type != null
+                                            and (
+                                                tx.type.name() == 'DEPOSIT'
+                                                or
+                                                tx.type.name() == 'TRANSFER_IN'
+                                            )}"
+                                        th:text="${tx.amount != null
+                                            ? '+ PHP ' +
+                                              #numbers.formatDecimal(
+                                                  tx.amount,
+                                                  1,
+                                                  'COMMA',
+                                                  2,
+                                                  'POINT'
+                                              )
+                                            : '+ PHP 0.00'}">
+
+                                        + PHP 50,000.00
+
+                                    </td>
+
+
+                                    <td
+                                        class="amount-negative"
+                                        th:if="${tx.type != null
+                                            and (
+                                                tx.type.name() == 'WITHDRAW'
+                                                or
+                                                tx.type.name() == 'TRANSFER_OUT'
+                                            )}"
+                                        th:text="${tx.amount != null
+                                            ? '- PHP ' +
+                                              #numbers.formatDecimal(
+                                                  tx.amount,
+                                                  1,
+                                                  'COMMA',
+                                                  2,
+                                                  'POINT'
+                                              )
+                                            : '- PHP 0.00'}">
+
+                                        - PHP 5,000.00
+
+                                    </td>
+
+
+                                    <td
+                                        class="amount-positive"
+                                        th:if="${tx.type == null}">
+
+                                        —
+
+                                    </td>
+
+
+                                    <!-- STATUS -->
+
+                                    <td>
+
+                                        <span class="transaction-status">
+
+                                            Completed
+
+                                        </span>
+
+                                    </td>
+
+
+                                </tr>
+
+
+                                </tbody>
+
+
+                            </table>
+
+
+                        </div>
+
+
+                        <!-- =================================================
+                             EMPTY TRANSACTIONS
+                        ================================================== -->
+
+                        <div
+                            class="transactions-empty"
+                            th:if="${recentTransactions == null
+                                or recentTransactions.isEmpty()}">
+
+                            No transactions yet.
+
+                        </div>
+
+
+                        <!-- =================================================
+                             TRANSACTION FOOTER
+                        ================================================== -->
+
+                        <div
+                            class="transactions-footer"
+                            th:if="${recentTransactions != null
+                                and !recentTransactions.isEmpty()}">
+
+                            Showing your latest account activity.
+
+                        </div>
+
+
+                    </section>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT COLUMN
+                ================================================== -->
+
+                <aside class="dashboard-side">
+
+
+                    <!-- =================================================
+                         ACCOUNT BALANCE
+                    ================================================== -->
+
+                    <section class="card balance-summary">
+
+
+                        <div class="balance-summary-heading">
+
+
+                            <h2>
+                                Account Balance
+                            </h2>
+
+
+                            <button
+                                type="button"
+                                class="copy-account-btn"
+                                id="copyAccountBtn"
+                                aria-label="Copy account number">
+
+
+                                <svg viewBox="0 0 24 24">
+
+                                    <rect
+                                        x="9"
+                                        y="9"
+                                        width="11"
+                                        height="11"
+                                        rx="2"/>
+
+                                    <path
+                                        d="
+                                            M15 9V6
+                                            a2 2 0 0 0-2-2H5
+                                            a2 2 0 0 0-2 2v8
+                                            a2 2 0 0 0 2 2h4
+                                        "/>
+
+                                </svg>
+
+
+                            </button>
+
+
+                        </div>
+
+
+                        <!-- ACCOUNT TYPE -->
+
+                        <p class="account-type-label">
+                            SAVINGS ACCOUNT
+                        </p>
+
+
+                        <!-- BALANCE -->
+
+                        <div
+                            class="balance-summary-amount"
+                            th:if="${account != null}"
+                            th:text="${'PHP ' +
+                                #numbers.formatDecimal(
+                                    account.balance,
+                                    1,
+                                    'COMMA',
+                                    2,
+                                    'POINT'
+                                )}">
+
+                            PHP 125,750.00
+
+                        </div>
+
+
+                        <!-- MASKED ACCOUNT -->
+
+                        <div
+                            class="balance-summary-masked"
+                            th:if="${account != null
+                                and account.accountNumber != null
+                                and !#strings.isEmpty(account.accountNumber)}"
+                            th:text="${#strings.length(account.accountNumber) >= 4
+                                ? '**** **** ** ' +
+                                  #strings.substring(
+                                      account.accountNumber,
+                                      #strings.length(account.accountNumber) - 4
+                                  )
+                                : account.accountNumber}">
+
+                            **** **** ** 5520
+
+                        </div>
+
+
+                        <!-- ACCOUNT UNAVAILABLE -->
+
+                        <div
+                            class="balance-summary-masked"
+                            th:if="${account == null
+                                or account.accountNumber == null
+                                or #strings.isEmpty(account.accountNumber)}">
+
+                            Account number unavailable
+
+                        </div>
+
+
+                        <!-- AVAILABLE BALANCE -->
+
+                        <div class="balance-summary-row">
+
+                            <span>
+                                Available Balance
+                            </span>
+
+
+                            <strong
+                                th:if="${account != null}"
+                                th:text="${'PHP ' +
+                                    #numbers.formatDecimal(
+                                        account.balance,
+                                        1,
+                                        'COMMA',
+                                        2,
+                                        'POINT'
+                                    )}">
+
+                                PHP 125,750.00
+
+                            </strong>
+
+
+                        </div>
+
+
+                        <!-- ACCOUNT DETAILS TOGGLE -->
+
+                        <a
+                            class="balance-summary-link"
+                            href="#"
+                            id="accountDetailsToggle"
+                            aria-expanded="false">
+
+                            <span>
+                                View Account Details
+                            </span>
+
+
+                            <svg
+                                id="accountDetailsCaret"
+                                viewBox="0 0 24 24">
+
+                                <path
+                                    d="m9 6 6 6-6 6"/>
+
+                            </svg>
+
+                        </a>
+
+
+                        <!-- ACCOUNT DETAILS -->
+
+                        <div
+                            class="balance-summary-details"
+                            id="accountDetailsPanel"
+                            hidden>
+
+
+                            <!-- ACCOUNT NUMBER -->
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Account Number
+                                </span>
+
+
+                                <strong
+                                    th:if="${account != null
+                                        and account.accountNumber != null
+                                        and !#strings.isEmpty(account.accountNumber)}"
+                                    th:text="${account.accountNumber}">
+
+                                    1234567890
+
+                                </strong>
+
+
+                                <strong
+                                    th:if="${account == null
+                                        or account.accountNumber == null
+                                        or #strings.isEmpty(account.accountNumber)}">
+
+                                    Unavailable
+
+                                </strong>
+
+                            </div>
+
+
+                            <!-- OPENING DATE -->
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Opening Date
+                                </span>
+
+
+                                <strong
+                                    th:if="${account != null
+                                        and account.createdAt != null}"
+                                    th:text="${#temporals.format(
+                                        account.createdAt,
+                                        'MMMM dd, yyyy'
+                                    )}">
+
+                                    January 15, 2025
+
+                                </strong>
+
+
+                                <strong
+                                    th:unless="${account != null
+                                        and account.createdAt != null}">
+
+                                    —
+
+                                </strong>
+
+                            </div>
+
+
+                            <!-- ACCOUNT STATUS -->
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Account Status
+                                </span>
+
+
+                                <strong
+                                    class="summary-status"
+                                    th:if="${account != null}"
+                                    th:text="${account.status != null
+                                        ? account.status.name()
+                                        : 'UNKNOWN'}">
+
+                                    ACTIVE
+
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </section>
+
+
+                    <!-- =================================================
+                         QUICK ACTIONS
+                    ================================================== -->
+
+                    <section class="quick-actions-section">
+
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+
+                        <div class="quick-actions-grid">
+
+
+                            <!-- DEPOSIT -->
+
+                            <a
+                                th:href="@{/deposit-withdraw}"
+                                class="quick-tile quick-tile-deposit">
+
+                                <span class="quick-tile-icon">
+
+                                    <svg viewBox="0 0 24 24">
+
+                                        <path d="M12 3v12"/>
+                                        <path d="M7 10l5 5 5-5"/>
+                                        <path d="M5 20h14"/>
+
+                                    </svg>
+
+                                </span>
+
+                                <span>
+                                    Deposit
+                                </span>
+
+                            </a>
+
+
+                            <!-- WITHDRAW -->
+
+                            <a
+                                th:href="@{/deposit-withdraw}"
+                                class="quick-tile quick-tile-withdraw">
+
+                                <span class="quick-tile-icon">
+
+                                    <svg viewBox="0 0 24 24">
+
+                                        <path d="M12 21V9"/>
+                                        <path d="M7 14l5-5 5 5"/>
+                                        <path d="M5 4h14"/>
+
+                                    </svg>
+
+                                </span>
+
+                                <span>
+                                    Withdraw
+                                </span>
+
+                            </a>
+
+
+                            <!-- TRANSFER -->
+
+                            <a
+                                th:href="@{/transfer}"
+                                class="quick-tile quick-tile-transfer">
+
+                                <span class="quick-tile-icon">
+
+                                    <svg viewBox="0 0 24 24">
+
+                                        <path d="M3 8h16"/>
+                                        <path d="m15 4 4 4-4 4"/>
+                                        <path d="M21 16H5"/>
+                                        <path d="m9 12-4 4 4 4"/>
+
+                                    </svg>
+
+                                </span>
+
+                                <span>
+                                    Transfer
+                                </span>
+
+                            </a>
+
+
+                            <!-- HISTORY -->
+
+                            <a
+                                th:href="@{/transactions}"
+                                class="quick-tile quick-tile-history">
+
+                                <span class="quick-tile-icon">
+
+                                    <svg viewBox="0 0 24 24">
+
+                                        <rect
+                                            x="5"
+                                            y="3"
+                                            width="14"
+                                            height="18"
+                                            rx="2"/>
+
+                                        <path d="M8 8h8"/>
+                                        <path d="M8 12h8"/>
+                                        <path d="M8 16h5"/>
+
+                                    </svg>
+
+                                </span>
+
+                                <span>
+                                    Transaction<br>
+                                    History
+                                </span>
+
+                            </a>
+
+
+                        </div>
+
+
+                    </section>
+
+
+                </aside>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="dashboard-footer">
+
+                © 2026 Rodron Bank.
+                All rights reserved.
+
+            </footer>
+
+
+        </main>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script th:src="@{/js/sidebar.js}"></script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+
+
+</body>
+
+</html>

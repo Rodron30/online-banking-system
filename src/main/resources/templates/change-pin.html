@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change PIN | Rodron Bank</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <div th:replace="~{fragments/navbar :: navbar('pin')}"></div>
+
+    <div class="app-content">
+
+        <div th:replace="~{fragments/topbar :: topbar('', 'Change PIN', 'Update the PIN used for your ATM card.')}"></div>
+
+        <main class="container">
+
+            <div class="card">
+
+                <div class="alert alert-success" th:if="${success}" th:text="${success}">Success</div>
+                <div class="alert alert-error" th:if="${error}" th:text="${error}">Error</div>
+
+                <form th:action="@{/change-pin}" method="post" onsubmit="return checkPinsMatch(event)">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                    <div class="form-group">
+                        <label for="currentPin">Current PIN</label>
+                        <input id="currentPin" name="currentPin" type="password" inputmode="numeric"
+                            pattern="[0-9]{4,6}" minlength="4" maxlength="6" required
+                            autocomplete="off" placeholder="Enter current PIN">
+                        <small>Default PIN for new accounts is 1234.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPin">New PIN</label>
+                        <input id="newPin" name="newPin" type="password" inputmode="numeric"
+                            pattern="[0-9]{4,6}" minlength="4" maxlength="6" required
+                            autocomplete="off" placeholder="Enter new PIN">
+                        <small>4–6 digits.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPin">Confirm New PIN</label>
+                        <input id="confirmPin" name="confirmPin" type="password" inputmode="numeric"
+                            pattern="[0-9]{4,6}" minlength="4" maxlength="6" required
+                            autocomplete="off" placeholder="Re-enter new PIN">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Change PIN</button>
+
+                </form>
+
+                <p class="link-alt">
+                    <a th:href="@{/dashboard}">← Back to Dashboard</a>
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+<script>
+    function checkPinsMatch(event) {
+        var newPin = document.getElementById('newPin').value;
+        var confirmPin = document.getElementById('confirmPin').value;
+
+        if (newPin !== confirmPin) {
+            event.preventDefault();
+            alert('New PIN and confirmation do not match.');
+            return false;
+        }
+
+        // Let the form submit normally to the server.
+        return true;
+    }
+</script>
+
+</body>
+</html>

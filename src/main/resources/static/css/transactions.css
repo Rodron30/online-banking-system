@@ -1,0 +1,1797 @@
+/* =========================================================
+   RODRON BANK — TRANSPARENT + BOX SHADOW FINAL
+   GLOBAL POLISH
+   ========================================================= */
+
+/* =========================================================
+   1. ROOT — REPLACE YOUR VARIABLES.CSS WITH THIS
+   ========================================================= */
+
+:root {
+
+    /* BRAND */
+    --green-900: #06231a;
+    --green-800: #0a3626;
+    --green-700: #0e4a32;
+    --green-600: #135e3f;
+    --green-500: #1a7a51;
+    --green-soft: rgba(233, 243, 236, 0.72);
+
+    /* GOLD */
+    --gold: #a9822f;
+    --gold-light: #cca34f;
+    --gold-soft: rgba(245, 238, 218, 0.72);
+
+    /* TEXT */
+    --navy: #142621;
+    --text: #16241e;
+    --muted: #66766d;
+    --faint: #8a978f;
+
+    /* BACKGROUND */
+    --bg: #eef3ef;
+    --white: rgba(255, 255, 255, 0.62);
+
+    /* BORDERS */
+    --border: rgba(255, 255, 255, 0.72);
+    --border-strong: rgba(205, 215, 206, 0.90);
+
+    /* STATUS */
+    --red: #b8433a;
+    --red-soft: rgba(250, 234, 232, 0.72);
+
+    /* FONTS */
+    --font-display: "Space Grotesk", "Inter", sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    /* LAYOUT */
+    --sidebar-width: 236px;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+
+    /* =====================================================
+       TRANSPARENT GLASS SHADOWS
+       ===================================================== */
+
+    --shadow:
+        0 2px 5px rgba(12, 38, 27, 0.05),
+        0 10px 28px rgba(12, 38, 27, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+
+    --shadow-lg:
+        0 18px 45px rgba(8, 30, 21, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+
+    --shadow-card-hover:
+        0 16px 36px rgba(8, 30, 21, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+    --shadow-soft:
+        0 7px 20px rgba(10, 35, 25, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.70);
+}
+
+
+/* =========================================================
+   2. RESET.CSS — FINAL
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.72),
+            transparent 38%
+        ),
+        var(--bg);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: var(--font-body);
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(255, 255, 255, 0.70),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 90% 100%,
+            rgba(211, 230, 218, 0.42),
+            transparent 38%
+        ),
+        var(--bg);
+
+    color: var(--text);
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+}
+
+.atm-number,
+.balance-summary-amount,
+.stat-card .num,
+.transactions-card td.amount-positive,
+.transactions-card td.amount-negative,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg,
+.atm-card-foot-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+}
+
+svg {
+    display: block;
+}
+
+.sidebar-brand-icon svg,
+.sidebar-icon svg,
+.sidebar-secure-icon svg,
+.topbar svg,
+.card-toggle-btn svg,
+.quick-tile-icon svg,
+.sidebar-toggle-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   3. LAYOUT.CSS — FINAL
+   ========================================================= */
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+
+    background: transparent;
+}
+
+.app-content {
+    min-width: 0;
+    flex: 1 1 auto;
+    width: calc(100% - var(--sidebar-width));
+
+    background: transparent;
+}
+
+.container,
+.page-wrap {
+    width: min(calc(100% - 48px), 1200px);
+    margin: 0 auto;
+    padding: 30px 0 55px;
+}
+
+.dashboard-container {
+    width: min(calc(100% - 84px), 1210px);
+    margin: 0 auto;
+    padding: 22px 0 30px;
+}
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px;
+
+    gap: 16px;
+    align-items: start;
+}
+
+.dashboard-main,
+.dashboard-side {
+    min-width: 0;
+}
+
+.dashboard-main,
+.dashboard-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dashboard-side .card {
+    margin: 0;
+}
+
+
+/* =========================================================
+   ALL GENERIC CARDS
+   ========================================================= */
+
+.card,
+.dashboard-card,
+.transactions-card,
+.recent-transactions-card,
+.balance-summary,
+.quick-actions-section,
+.stat-card,
+.admin-card,
+.profile-card,
+.form-card,
+.content-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.76),
+            rgba(255, 255, 255, 0.48)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.78);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card {
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.card:hover,
+.dashboard-card:hover,
+.transactions-card:hover {
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-card-hover);
+}
+
+
+/* =========================================================
+   4. SIDEBAR.CSS — FINAL
+   ========================================================= */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+    flex: 0 0 var(--sidebar-width);
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(246, 250, 247, 0.52)
+        );
+
+    border-right: 1px solid rgba(255, 255, 255, 0.82);
+
+    box-shadow:
+        5px 0 22px rgba(10, 35, 25, 0.07),
+        inset -1px 0 0 rgba(255, 255, 255, 0.65);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    scrollbar-width: thin;
+}
+
+
+/* BRAND */
+
+.sidebar-brand {
+    width: 100%;
+    min-height: 92px;
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 22px;
+
+    flex-shrink: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10, 54, 38, 0.96),
+            rgba(6, 35, 26, 0.92)
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 22px rgba(6, 35, 26, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.sidebar-brand-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(204, 163, 79, 0.96),
+            rgba(169, 130, 47, 0.92)
+        );
+
+    color: var(--green-900);
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.sidebar-brand-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+    stroke: none;
+}
+
+.sidebar-brand-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.sidebar-brand-text strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+.sidebar-brand-text small {
+    display: block;
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+/* NAV */
+
+.sidebar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 12px;
+}
+
+.sidebar-link {
+    width: 100%;
+    height: 42px;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 14px;
+
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    border-left: 2px solid transparent;
+
+    color: #4b5a52;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.16s ease,
+        color 0.16s ease,
+        border-color 0.16s ease,
+        box-shadow 0.16s ease;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.sidebar-link:hover {
+    background: rgba(233, 243, 236, 0.72);
+    color: var(--green-700);
+
+    box-shadow:
+        0 5px 14px rgba(10, 54, 38, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.70);
+}
+
+.sidebar-link.active {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(233, 243, 236, 0.88),
+            rgba(218, 237, 224, 0.62)
+        );
+
+    color: var(--green-700);
+
+    border-left-color: var(--gold);
+
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 16px rgba(10, 54, 38, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.sidebar-icon {
+    width: 18px;
+    min-width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 14px 12px;
+}
+
+.sidebar-logout-form {
+    margin: 0;
+    padding: 0 0 8px;
+    border-bottom: 1px solid rgba(205, 215, 206, 0.65);
+}
+
+.sidebar-logout-btn {
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 0 14px;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--red);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+        background 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+.sidebar-logout-btn:hover {
+    background: rgba(250, 234, 232, 0.72);
+
+    box-shadow:
+        0 5px 14px rgba(184, 67, 58, 0.08);
+}
+
+
+/* SECURE */
+
+.sidebar-secure-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px;
+
+    border-radius: var(--radius-sm);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(233, 243, 236, 0.78),
+            rgba(255, 255, 255, 0.48)
+        );
+
+    border: 1px dashed rgba(188, 220, 201, 0.85);
+
+    box-shadow:
+        0 5px 15px rgba(10, 54, 38, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.sidebar-secure-icon {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--green-700);
+}
+
+.sidebar-secure-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* TOGGLE */
+
+.sidebar-toggle-btn {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.80);
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.58);
+    color: var(--navy);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 9998;
+}
+
+.sidebar-toggle-btn:hover {
+    background: rgba(233, 243, 236, 0.78);
+}
+
+.sidebar-toggle-btn:active {
+    transform: scale(0.96);
+}
+
+.sidebar-toggle-btn svg {
+    width: 21px;
+    height: 21px;
+    pointer-events: none;
+}
+
+
+/* BACKDROP */
+
+.sidebar-backdrop {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(9, 20, 15, 0.42);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-backdrop.sidebar-backdrop-open {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   5. TOPBAR.CSS — FINAL
+   ========================================================= */
+
+.topbar {
+    position: relative;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 30px 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.48)
+        );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 7px 22px rgba(10, 35, 25, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.topbar-welcome {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.topbar-welcome p,
+.topbar-eyebrow {
+    margin: 0;
+    color: var(--faint);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.topbar-welcome h1 {
+    margin: 3px 0;
+    color: var(--navy);
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.topbar-subtitle {
+    color: var(--muted);
+    font-size: 10.5px;
+}
+
+.topbar-right {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 13px;
+}
+
+.topbar-notif-wrapper {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.topbar-notif {
+    position: relative;
+    z-index: 1002;
+
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--navy);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-notif:hover {
+    background: rgba(233, 243, 236, 0.78);
+    border-color: rgba(205, 215, 206, 0.85);
+    box-shadow: var(--shadow);
+}
+
+.topbar-notif svg {
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+}
+
+.topbar-notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.90);
+
+    background: var(--red);
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+
+    box-shadow: 0 4px 10px rgba(184, 67, 58, 0.18);
+}
+
+.topbar-user {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 3px 10px 3px 3px;
+
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+
+    background: rgba(255, 255, 255, 0.46);
+
+    color: var(--navy);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-user:hover {
+    background: rgba(233, 243, 236, 0.72);
+    border-color: rgba(205, 215, 206, 0.90);
+    box-shadow: var(--shadow);
+}
+
+.topbar-user-avatar {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 94, 63, 0.96),
+            rgba(10, 54, 38, 0.96)
+        );
+
+    color: var(--gold-light);
+
+    box-shadow:
+        0 5px 13px rgba(6, 35, 26, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.topbar-user-name {
+    max-width: 145px;
+    overflow: hidden;
+
+    color: var(--navy);
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* NOTIFICATION */
+
+.notif-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 360px;
+    max-width: calc(100vw - 30px);
+    max-height: 430px;
+
+    display: none;
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.84),
+            rgba(255, 255, 255, 0.58)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-lg);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.notif-dropdown.notif-dropdown-open {
+    display: flex;
+    animation: rb-rise 0.18s ease both;
+}
+
+.notif-dropdown-header {
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 12px 15px;
+
+    background: rgba(255, 255, 255, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+.notif-dropdown-list {
+    width: 100%;
+    max-height: 360px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.notif-item {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.28);
+
+    border-bottom: 1px solid rgba(230, 237, 232, 0.70);
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.notif-item:hover {
+    background: rgba(248, 250, 248, 0.72);
+}
+
+.notif-item-unread {
+    background: rgba(233, 243, 236, 0.68);
+}
+
+.notif-item-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(233, 243, 236, 0.82);
+    color: var(--green-700);
+
+    box-shadow:
+        0 4px 10px rgba(10, 54, 38, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+
+/* =========================================================
+   6. DASHBOARD.CSS — TRANSPARENT FINAL
+   ========================================================= */
+
+.dashboard-card {
+    width: 100%;
+    min-width: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.76),
+            rgba(255, 255, 255, 0.46)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(255, 255, 255, 0.95);
+}
+
+
+/* ATM */
+
+.atm-section {
+    padding: 16px 18px 14px;
+}
+
+.atm-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 560px;
+    min-height: 285px;
+
+    margin: 0 auto;
+    padding: 22px 24px 19px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18, 59, 43, 0.96),
+            rgba(14, 51, 38, 0.94),
+            rgba(9, 39, 29, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        0 20px 42px rgba(9, 39, 29, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    color: #ffffff;
+}
+
+.atm-card-logo {
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 5px 14px rgba(0, 0, 0, 0.12);
+}
+
+.card-toggle-btn {
+    background: rgba(255, 255, 255, 0.42);
+
+    border: 1px solid rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        0 5px 14px rgba(10, 35, 25, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.card-toggle-btn:hover {
+    background: rgba(233, 243, 236, 0.70);
+    border-color: rgba(255, 255, 255, 0.90);
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* RECENT TRANSACTIONS */
+
+.recent-transactions-card {
+    padding: 16px 18px 14px;
+}
+
+.recent-transactions-wrapper,
+.table-wrapper {
+    background: rgba(255, 255, 255, 0.42);
+
+    border: 1px solid rgba(255, 255, 255, 0.78);
+
+    box-shadow:
+        0 6px 18px rgba(10, 35, 25, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.recent-transactions-table,
+.transactions-card table {
+    background: transparent;
+}
+
+.recent-transactions-table th,
+.transactions-card th {
+    background: rgba(246, 248, 246, 0.62);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+.recent-transactions-table td,
+.transactions-card td {
+    background: rgba(255, 255, 255, 0.24);
+
+    border-bottom: 1px solid rgba(238, 241, 238, 0.72);
+}
+
+.recent-transactions-table tbody tr:hover,
+.transactions-card tbody tr:hover {
+    background: rgba(250, 252, 250, 0.62);
+}
+
+
+/* BALANCE */
+
+.balance-summary {
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.44)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.copy-account-btn {
+    background: rgba(255, 255, 255, 0.48);
+
+    border: 1px solid rgba(255, 255, 255, 0.78);
+
+    box-shadow: var(--shadow-soft);
+}
+
+.copy-account-btn:hover {
+    background: rgba(233, 243, 236, 0.72);
+    box-shadow: var(--shadow);
+}
+
+
+/* QUICK ACTIONS */
+
+.quick-tile {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.70),
+            rgba(255, 255, 255, 0.42)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.80);
+
+    box-shadow: var(--shadow-soft);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.quick-tile:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(255, 255, 255, 0.94);
+
+    box-shadow: var(--shadow-card-hover);
+}
+
+.quick-tile-icon {
+    background: rgba(241, 246, 242, 0.62);
+
+    border: 1px solid rgba(255, 255, 255, 0.70);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        0 4px 10px rgba(10, 35, 25, 0.045);
+}
+
+/* =========================================================
+   TRANSACTION PAGE
+   ========================================================= */
+
+.transaction-page {
+    width: min(calc(100% - 44px), 1180px);
+    margin: 0 auto;
+    padding: 22px 0 32px;
+}
+
+
+/* =========================================================
+   TRANSACTIONS CARD
+   ========================================================= */
+
+.transactions-card {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 18px 20px 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.76),
+            rgba(255, 255, 255, 0.46)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.transactions-card:hover {
+    border-color: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow-card-hover);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.section-header {
+    min-height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 0 2px 12px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.38);
+
+    border: 1px solid rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 7px 20px rgba(10, 35, 25, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.74);
+
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.transactions-card table {
+    width: 100%;
+
+    min-width: 860px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    table-layout: fixed;
+
+    background: transparent;
+}
+
+
+/* =========================================================
+   COLUMN WIDTH
+   ========================================================= */
+
+.transactions-card th:nth-child(1),
+.transactions-card td:nth-child(1) {
+    width: 18%;
+}
+
+.transactions-card th:nth-child(2),
+.transactions-card td:nth-child(2) {
+    width: 22%;
+}
+
+.transactions-card th:nth-child(3),
+.transactions-card td:nth-child(3) {
+    width: 17%;
+}
+
+.transactions-card th:nth-child(4),
+.transactions-card td:nth-child(4) {
+    width: 24%;
+}
+
+.transactions-card th:nth-child(5),
+.transactions-card td:nth-child(5) {
+    width: 19%;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.transactions-card th {
+    height: 42px;
+
+    padding: 11px 13px;
+
+    background: rgba(246, 248, 246, 0.62);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.76);
+
+    color: var(--muted);
+
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+
+    text-align: left;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.transactions-card td {
+    height: 46px;
+
+    padding: 12px 13px;
+
+    background: rgba(255, 255, 255, 0.22);
+
+    border-bottom: 1px solid rgba(238, 241, 238, 0.72);
+
+    color: var(--text);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1.3;
+
+    text-align: left;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   LAST ROW
+   ========================================================= */
+
+.transactions-card tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   ROW HOVER
+   ========================================================= */
+
+.transactions-card tbody tr {
+    transition:
+        background 0.14s ease,
+        box-shadow 0.14s ease;
+}
+
+.transactions-card tbody tr:hover td {
+    background: rgba(250, 252, 250, 0.58);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.50),
+        inset 0 -1px 0 rgba(220, 230, 223, 0.38);
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.transactions-card td:nth-child(1) {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.transactions-card td:nth-child(2) {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TYPE
+   ========================================================= */
+
+.transactions-card td:nth-child(3) {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   AMOUNT
+   ========================================================= */
+
+.transactions-card th:nth-child(4),
+.transactions-card td:nth-child(4) {
+    text-align: right;
+}
+
+.transactions-card td:nth-child(4) {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.transactions-card th:nth-child(5),
+.transactions-card td:nth-child(5) {
+    text-align: left;
+}
+
+.transactions-card td:nth-child(5) {
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 24px;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 8.5px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 4px 10px rgba(10, 35, 25, 0.045),
+        inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+
+/* =========================================================
+   TRANSACTION TYPE COLORS
+   ========================================================= */
+
+.badge-deposit,
+.badge-transfer_in {
+    background: rgba(233, 243, 236, 0.78);
+    color: var(--green-700);
+}
+
+.badge-withdraw,
+.badge-transfer_out {
+    background: rgba(250, 234, 232, 0.78);
+    color: var(--red);
+}
+
+
+/* =========================================================
+   STATUS COLORS
+   ========================================================= */
+
+.badge-completed,
+.badge-success,
+.status-completed {
+    background: rgba(233, 243, 236, 0.78);
+    color: var(--green-700);
+}
+
+.badge-pending,
+.status-pending {
+    background: rgba(245, 238, 218, 0.78);
+    color: var(--gold);
+}
+
+.badge-failed,
+.badge-rejected,
+.status-failed,
+.status-rejected {
+    background: rgba(250, 234, 232, 0.78);
+    color: var(--red);
+}
+
+
+/* =========================================================
+   NEGATIVE AMOUNT
+   ========================================================= */
+
+.transactions-card td.amount-negative,
+.transactions-card td.amount-neg,
+.transactions-card .amount-negative,
+.transactions-card .amount-neg {
+    color: var(--red);
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   POSITIVE AMOUNT
+   ========================================================= */
+
+.transactions-card td.amount-positive,
+.transactions-card td.amount-pos,
+.transactions-card .amount-positive,
+.transactions-card .amount-pos {
+    color: var(--green-700);
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.transaction-back {
+    margin-bottom: 12px;
+}
+
+.transaction-back a {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.76);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.44);
+
+    box-shadow: var(--shadow-soft);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    color: var(--green-700);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.transaction-back a:hover {
+    color: var(--green-600);
+
+    transform: translateX(-2px);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+    .transaction-page {
+        width: min(calc(100% - 28px), 1180px);
+        padding: 18px 0 28px;
+    }
+
+    .transactions-card {
+        padding: 15px 15px 14px;
+        border-radius: 14px;
+    }
+
+    .section-header {
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+
+    .table-wrapper {
+        border-radius: 10px;
+    }
+
+    .transactions-card table {
+        min-width: 760px;
+    }
+
+    .transactions-card th {
+        height: 40px;
+        padding: 10px 11px;
+        font-size: 8.5px;
+    }
+
+    .transactions-card td {
+        height: 44px;
+        padding: 10px 11px;
+        font-size: 9.5px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .transaction-page {
+        width: calc(100% - 20px);
+        padding: 14px 0 24px;
+    }
+
+    .transactions-card {
+        padding: 13px 12px 12px;
+        border-radius: 13px;
+    }
+
+    .section-header {
+        min-height: 32px;
+        padding: 0 1px 9px;
+    }
+
+    .table-wrapper {
+        border-radius: 9px;
+    }
+
+    .transactions-card table {
+        min-width: 720px;
+    }
+
+    .transactions-card th {
+        height: 38px;
+        padding: 9px 10px;
+        font-size: 8px;
+    }
+
+    .transactions-card td {
+        height: 42px;
+        padding: 9px 10px;
+        font-size: 9px;
+    }
+
+    .badge {
+        min-height: 22px;
+        padding: 4px 8px;
+        font-size: 8px;
+    }
+
+    .transaction-back a {
+        padding: 7px 10px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / CLICK FIX
+   ========================================================= */
+
+.transactions-card a,
+.transactions-card button,
+.transaction-back a {
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   SMOOTH SCROLL
+   ========================================================= */
+
+.table-wrapper {
+    scroll-behavior: smooth;
+}
