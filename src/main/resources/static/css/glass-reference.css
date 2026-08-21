@@ -425,51 +425,43 @@ body {
 
 
 /* =========================================================
-   TRANSPARENT DASHBOARD CARD & ATM CONTAINER FIX
+   ATM SECTION GLASS BOX WITH SHADOW
    ========================================================= */
 
 .dashboard-card {
     width: 100% !important;
     min-width: 0 !important;
-
     background: transparent !important;
-
     border: none !important;
-
     box-shadow: none !important;
-
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-
     overflow: visible !important;
-}
-
-.dashboard-card:hover {
-    box-shadow: none !important;
-    border-color: transparent !important;
 }
 
 .atm-section {
     width: 100% !important;
-
     max-width: 880px !important;
-
     margin: 0 !important;
-
-    padding: 0 !important;
-
+    padding: 24px !important;
     box-sizing: border-box !important;
 
-    background: transparent !important;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 91, 75, 0.48),
+            rgba(5, 38, 33, 0.36)
+        ) !important;
 
-    border: none !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 16px !important;
 
-    box-shadow: none !important;
+    box-shadow: var(--glass-shadow) !important;
 
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
 
-    overflow: visible !important;
+    overflow: hidden !important;
 }
 
 
