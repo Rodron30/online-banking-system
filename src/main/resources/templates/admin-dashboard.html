@@ -10,7 +10,6 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/admin.css}">
     <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
-
 </head>
 
 <body>
@@ -46,7 +45,24 @@
                     <a
                         class="admin-back-link"
                         th:href="@{/dashboard}">
-                        ← User Dashboard
+
+                        <!-- Arrow Icon -->
+                        <svg
+                            class="admin-back-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true">
+
+                            <path
+                                d="M15 18l-6-6 6-6"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+
+                        <span>User Dashboard</span>
+
                     </a>
 
                 </div>
@@ -82,52 +98,182 @@
 
                 <div class="admin-stat-grid">
 
-                    <!-- Total Users -->
+
+                    <!-- =================================================
+                         TOTAL USERS
+                         ================================================= -->
 
                     <div class="admin-stat-card">
 
-                        <div
-                            class="admin-stat-num"
-                            th:text="${users != null ? #lists.size(users) : 0}">
-                            0
+                        <div class="admin-stat-icon admin-stat-icon-users">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true">
+
+                                <path
+                                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+
+                                <circle
+                                    cx="9"
+                                    cy="7"
+                                    r="4"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"/>
+
+                                <path
+                                    d="M22 21v-2a4 4 0 0 0-3-3.87"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+
+                                <path
+                                    d="M16 3.13a4 4 0 0 1 0 7.75"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+                            </svg>
+
                         </div>
 
-                        <div class="admin-stat-label">
-                            Total Users
+
+                        <div class="admin-stat-content">
+
+                            <div
+                                class="admin-stat-num"
+                                th:text="${users != null ? #lists.size(users) : 0}">
+                                0
+                            </div>
+
+                            <div class="admin-stat-label">
+                                Total Users
+                            </div>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Total Accounts -->
+                    <!-- =================================================
+                         TOTAL ACCOUNTS
+                         ================================================= -->
 
                     <div class="admin-stat-card">
 
-                        <div
-                            class="admin-stat-num"
-                            th:text="${accounts != null ? #lists.size(accounts) : 0}">
-                            0
+                        <div class="admin-stat-icon admin-stat-icon-accounts">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true">
+
+                                <rect
+                                    x="3"
+                                    y="5"
+                                    width="18"
+                                    height="14"
+                                    rx="2"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"/>
+
+                                <path
+                                    d="M3 10h18"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"/>
+
+                                <path
+                                    d="M7 15h4"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+
+                                <path
+                                    d="M15 15h2"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+                            </svg>
+
                         </div>
 
-                        <div class="admin-stat-label">
-                            Total Accounts
+
+                        <div class="admin-stat-content">
+
+                            <div
+                                class="admin-stat-num"
+                                th:text="${accounts != null ? #lists.size(accounts) : 0}">
+                                0
+                            </div>
+
+                            <div class="admin-stat-label">
+                                Total Accounts
+                            </div>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Total Transactions -->
+                    <!-- =================================================
+                         TOTAL TRANSACTIONS
+                         ================================================= -->
 
                     <div class="admin-stat-card">
 
-                        <div
-                            class="admin-stat-num"
-                            th:text="${transactions != null ? #lists.size(transactions) : 0}">
-                            0
+                        <div class="admin-stat-icon admin-stat-icon-transactions">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true">
+
+                                <path
+                                    d="M3 7h13"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+
+                                <path
+                                    d="M13 4l3 3-3 3"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+
+                                <path
+                                    d="M21 17H8"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"/>
+
+                                <path
+                                    d="M11 14l-3 3 3 3"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"/>
+                            </svg>
+
                         </div>
 
-                        <div class="admin-stat-label">
-                            Total Transactions
+
+                        <div class="admin-stat-content">
+
+                            <div
+                                class="admin-stat-num"
+                                th:text="${transactions != null ? #lists.size(transactions) : 0}">
+                                0
+                            </div>
+
+                            <div class="admin-stat-label">
+                                Total Transactions
+                            </div>
+
                         </div>
 
                     </div>
@@ -142,7 +288,56 @@
                 <section class="admin-card">
 
                     <h2 class="admin-section-title">
-                        Bank Accounts
+                        <svg
+                            class="admin-section-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true">
+
+                            <path
+                                d="M3 10h18"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M5 10v8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M9 10v8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M15 10v8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M19 10v8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M2 18h20"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M12 3l9 5H3l9-5z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linejoin="round"/>
+                        </svg>
+
+                        <span>Bank Accounts</span>
                     </h2>
 
 
@@ -153,7 +348,6 @@
                         <table class="admin-table admin-accounts-table">
 
                             <thead>
-
                             <tr>
                                 <th>Account No.</th>
                                 <th>Owner</th>
@@ -162,7 +356,6 @@
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
-
                             </thead>
 
 
@@ -257,7 +450,35 @@
                                                 type="submit"
                                                 class="btn btn-danger btn-small"
                                                 onclick="return confirm('Are you sure you want to freeze this account?');">
-                                                Freeze
+
+                                                <svg
+                                                    class="admin-button-icon"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    aria-hidden="true">
+
+                                                    <rect
+                                                        x="4"
+                                                        y="4"
+                                                        width="16"
+                                                        height="16"
+                                                        rx="3"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"/>
+
+                                                    <path
+                                                        d="M9 4v16"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"/>
+
+                                                    <path
+                                                        d="M15 4v16"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"/>
+                                                </svg>
+
+                                                <span>Freeze</span>
+
                                             </button>
 
                                         </form>
@@ -279,7 +500,23 @@
                                                 type="submit"
                                                 class="btn btn-mint btn-small"
                                                 onclick="return confirm('Are you sure you want to activate this account?');">
-                                                Activate
+
+                                                <svg
+                                                    class="admin-button-icon"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    aria-hidden="true">
+
+                                                    <path
+                                                        d="M5 12l4 4L19 6"
+                                                        stroke="currentColor"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"/>
+                                                </svg>
+
+                                                <span>Activate</span>
+
                                             </button>
 
                                         </form>
@@ -300,7 +537,46 @@
                                                 type="submit"
                                                 class="btn btn-danger btn-small"
                                                 onclick="return confirm('Are you sure you want to delete this account? It will be hidden from the dashboard and can no longer be used.');">
-                                                Delete
+
+                                                <svg
+                                                    class="admin-button-icon"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    aria-hidden="true">
+
+                                                    <path
+                                                        d="M4 7h16"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                        stroke-linecap="round"/>
+
+                                                    <path
+                                                        d="M10 11v6"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                        stroke-linecap="round"/>
+
+                                                    <path
+                                                        d="M14 11v6"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                        stroke-linecap="round"/>
+
+                                                    <path
+                                                        d="M6 7l1 13h10l1-13"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                        stroke-linejoin="round"/>
+
+                                                    <path
+                                                        d="M9 7V4h6v3"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.8"
+                                                        stroke-linejoin="round"/>
+                                                </svg>
+
+                                                <span>Delete</span>
+
                                             </button>
 
                                         </form>
@@ -336,8 +612,42 @@
                 <section class="admin-card">
 
                     <h2 class="admin-section-title">
-                        All Transactions
+
+                        <svg
+                            class="admin-section-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true">
+
+                            <path
+                                d="M4 4h16v16H4z"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linejoin="round"/>
+
+                            <path
+                                d="M8 9h8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M8 13h8"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M8 17h5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+                        </svg>
+
+                        <span>All Transactions</span>
+
                     </h2>
+
 
                     <p class="admin-page-subtitle">
                         System-wide transaction history.
@@ -567,5 +877,4 @@
 </div>
 
 </body>
-
 </html>
