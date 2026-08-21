@@ -1,5 +1,12 @@
 /* =========================================================
-   RODRON BANK — FINAL DASHBOARD STYLE
+   RODRON BANK — FINAL STYLE
+   Layout / Structure / Responsive
+   Glass visual styling handled by glass-reference.css
+   ========================================================= */
+
+
+/* =========================================================
+   GOOGLE FONTS
    ========================================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap");
@@ -10,7 +17,6 @@
    ========================================================= */
 
 :root {
-
     --green-900: #06231a;
     --green-800: #0a3626;
     --green-700: #0e4a32;
@@ -23,19 +29,19 @@
     --gold-light: #cca34f;
     --gold-soft: #f5eeda;
 
-    --navy: #000000;
-    --text: #000000;
-    --muted: #000000;
-    --faint: #000000;
-
-    --bg: #f5f7f4;
     --white: #ffffff;
 
-    --border: rgba(0, 0, 0, 0.14);
-    --border-strong: rgba(0, 0, 0, 0.22);
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.70);
+    --faint: rgba(255, 255, 255, 0.52);
 
-    --red: #000000;
-    --red-soft: rgba(0, 0, 0, 0.05);
+    --bg: #06231a;
+
+    --border: rgba(255, 255, 255, 0.18);
+    --border-strong: rgba(255, 255, 255, 0.28);
+
+    --red: #d93434;
+    --red-soft: rgba(217, 52, 52, 0.14);
 
     --font-display: "Space Grotesk", "Inter", sans-serif;
     --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
@@ -46,16 +52,15 @@
     --radius: 14px;
     --radius-sm: 9px;
 
-    /* FINAL CARD SHADOW */
     --shadow:
-        0 2px 5px rgba(0, 0, 0, 0.05),
-        0 8px 22px rgba(0, 0, 0, 0.08);
+        0 2px 5px rgba(0, 0, 0, 0.08),
+        0 8px 22px rgba(0, 0, 0, 0.14);
 
     --shadow-lg:
-        0 16px 40px rgba(0, 0, 0, 0.14);
+        0 16px 40px rgba(0, 0, 0, 0.20);
 
     --shadow-hover:
-        0 10px 28px rgba(0, 0, 0, 0.12);
+        0 10px 28px rgba(0, 0, 0, 0.18);
 }
 
 
@@ -86,7 +91,7 @@ body {
 
     font-family: var(--font-body);
     background: var(--bg);
-    color: #000000;
+    color: var(--text);
 
     line-height: 1.5;
 
@@ -98,8 +103,8 @@ h1,
 h2,
 h3,
 h4 {
+    margin-top: 0;
     font-family: var(--font-display);
-    color: #000000;
     letter-spacing: -0.01em;
 }
 
@@ -115,8 +120,16 @@ textarea {
     font: inherit;
 }
 
-button {
+button,
+a,
+input,
+select,
+textarea {
     -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
 }
 
 img {
@@ -126,6 +139,11 @@ img {
 svg {
     display: block;
 }
+
+
+/* =========================================================
+   MONOSPACE NUMBERS
+   ========================================================= */
 
 .atm-number,
 .balance-summary-amount,
@@ -140,6 +158,11 @@ svg {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
 }
+
+
+/* =========================================================
+   ICONS
+   ========================================================= */
 
 .sidebar-brand-icon svg,
 .sidebar-icon svg,
@@ -180,7 +203,11 @@ svg {
 .balance-summary,
 .quick-actions-section,
 .atm-card-wrapper {
-    animation: rb-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation:
+        rb-rise
+        0.4s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both;
 }
 
 
@@ -240,15 +267,20 @@ svg {
     overflow-y: auto;
     overflow-x: hidden;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(6, 35, 26, 0.82);
 
-    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
 
     box-shadow:
-        4px 0 18px rgba(0, 0, 0, 0.08);
+        4px 0 18px rgba(0, 0, 0, 0.14);
 
     scrollbar-width: thin;
 }
+
+
+/* =========================================================
+   SIDEBAR BRAND
+   ========================================================= */
 
 .sidebar-brand {
     width: 100%;
@@ -257,14 +289,17 @@ svg {
 
     display: flex;
     align-items: center;
-    gap: 12px;
 
+    gap: 12px;
     padding: 15px 20px;
 
     flex-shrink: 0;
 
-    background: var(--green-800);
+    background: rgba(6, 35, 26, 0.88);
+
     color: #ffffff;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .sidebar-brand-icon {
@@ -304,6 +339,7 @@ svg {
     color: #ffffff;
 
     font-family: var(--font-display);
+
     font-size: 15px;
     font-weight: 700;
 
@@ -313,7 +349,7 @@ svg {
 .sidebar-brand-text small {
     margin-top: 4px;
 
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.68);
 
     font-size: 8px;
     font-weight: 700;
@@ -349,13 +385,12 @@ svg {
     align-items: center;
 
     gap: 11px;
-
     padding: 0 13px;
 
     border-radius: var(--radius-sm);
-    border-left: 2px solid transparent;
+    border: 1px solid transparent;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.90);
 
     font-size: 13px;
     font-weight: 600;
@@ -371,19 +406,29 @@ svg {
         transform 0.15s ease;
 }
 
-.sidebar-link:hover,
-.sidebar-link.active {
-    background: rgba(0, 0, 0, 0.06);
-    color: #000000;
-}
-
 .sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
     transform: translateX(1px);
 }
 
 .sidebar-link.active {
-    border-left-color: var(--green-700);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(26, 122, 81, 0.62),
+            rgba(26, 122, 81, 0.28)
+        );
+
+    border-color: rgba(61, 188, 135, 0.50);
+
+    color: #ffffff;
+
     font-weight: 700;
+
+    box-shadow:
+        inset 0 0 18px rgba(70, 210, 153, 0.08),
+        0 4px 14px rgba(0, 0, 0, 0.10);
 }
 
 .sidebar-icon {
@@ -395,7 +440,7 @@ svg {
     align-items: center;
     justify-content: center;
 
-    color: #000000;
+    color: currentColor;
 }
 
 .sidebar-icon svg {
@@ -409,9 +454,9 @@ svg {
    ========================================================= */
 
 .sidebar-bottom {
-    margin-top: auto;
-
     width: 100%;
+
+    margin-top: auto;
 
     display: flex;
     flex-direction: column;
@@ -425,7 +470,7 @@ svg {
     margin: 0;
     padding: 0 0 8px;
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .sidebar-logout-btn {
@@ -436,25 +481,42 @@ svg {
     align-items: center;
 
     gap: 11px;
-
     padding: 0 13px;
 
-    border: 0;
+    border: 1px solid rgba(60, 188, 135, 0.50);
     border-radius: var(--radius-sm);
 
-    background: transparent;
-    color: #000000;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(26, 122, 81, 0.80),
+            rgba(19, 94, 63, 0.70)
+        );
+
+    color: #ffffff;
 
     font-size: 13px;
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: background 0.15s ease;
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
 }
 
 .sidebar-logout-btn:hover {
-    background: rgba(0, 0, 0, 0.06);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 151, 101, 0.90),
+            rgba(19, 94, 63, 0.82)
+        );
+
+    box-shadow: var(--shadow);
+
+    transform: translateY(-1px);
 }
 
 .sidebar-secure-box {
@@ -462,14 +524,13 @@ svg {
     align-items: center;
 
     gap: 9px;
-
     padding: 12px;
 
     border-radius: var(--radius-sm);
 
-    background: rgba(0, 0, 0, 0.035);
+    background: rgba(255, 255, 255, 0.045);
 
-    border: 1px dashed rgba(0, 0, 0, 0.22);
+    border: 1px dashed rgba(255, 255, 255, 0.20);
 }
 
 .sidebar-secure-icon {
@@ -482,7 +543,7 @@ svg {
     align-items: center;
     justify-content: center;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .sidebar-secure-icon svg {
@@ -493,7 +554,7 @@ svg {
 .sidebar-secure-box strong {
     display: block;
 
-    color: #000000;
+    color: #ffffff;
 
     font-size: 11px;
     font-weight: 800;
@@ -504,7 +565,7 @@ svg {
 
     margin-top: 2px;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.62);
 
     font-size: 9px;
 }
@@ -525,20 +586,22 @@ svg {
 
     padding: 0;
 
-    border: 1px solid rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.20);
     border-radius: var(--radius-sm);
 
-    background: #ffffff;
-    color: #000000;
+    background: rgba(6, 35, 26, 0.72);
+
+    color: #ffffff;
 
     cursor: pointer;
 
     position: relative;
+
     z-index: 100;
 }
 
 .sidebar-toggle-btn:hover {
-    background: #f3f3f3;
+    background: rgba(19, 94, 63, 0.80);
 }
 
 .sidebar-toggle-btn svg {
@@ -554,7 +617,7 @@ svg {
 
     z-index: 150;
 
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.50);
 
     backdrop-filter: blur(2px);
 
@@ -567,7 +630,9 @@ svg {
 
 .sidebar-backdrop.sidebar-backdrop-open {
     display: block;
+
     opacity: 1;
+
     pointer-events: auto;
 }
 
@@ -590,14 +655,17 @@ svg {
 
     padding: 16px 28px 13px;
 
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(6, 35, 26, 0.54);
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 
     box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.05);
+        0 3px 12px rgba(0, 0, 0, 0.12);
 
     z-index: 50;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .topbar-welcome {
@@ -609,7 +677,7 @@ svg {
 .topbar-eyebrow {
     margin: 0;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.70);
 
     font-size: 10.5px;
     font-weight: 600;
@@ -618,7 +686,7 @@ svg {
 .topbar-welcome h1 {
     margin: 3px 0;
 
-    color: #000000;
+    color: #ffffff;
 
     font-size: 22px;
     font-weight: 700;
@@ -627,7 +695,8 @@ svg {
 }
 
 .topbar-subtitle {
-    color: #000000;
+    color: rgba(255, 255, 255, 0.62);
+
     font-size: 10px;
 }
 
@@ -652,8 +721,8 @@ svg {
 .topbar-notif {
     position: relative;
 
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 42px;
 
     display: inline-flex;
     align-items: center;
@@ -661,15 +730,17 @@ svg {
 
     padding: 0;
 
-    border: 1px solid rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: var(--radius-sm);
 
-    background: #ffffff;
-    color: #000000;
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
 
     cursor: pointer;
 
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.14);
 
     transition:
         background 0.15s ease,
@@ -677,13 +748,13 @@ svg {
 }
 
 .topbar-notif:hover {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.14);
     box-shadow: var(--shadow);
 }
 
 .topbar-notif svg {
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
 }
 
 .topbar-notif-badge {
@@ -703,9 +774,10 @@ svg {
 
     border-radius: 999px;
 
-    border: 2px solid #ffffff;
+    border: 2px solid var(--green-900);
 
-    background: #000000;
+    background: #e31f26;
+
     color: #ffffff;
 
     font-size: 9px;
@@ -731,14 +803,16 @@ svg {
 
     border-radius: 999px;
 
-    border: 1px solid rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
-    background: #ffffff;
-    color: #000000;
+    background: rgba(255, 255, 255, 0.07);
+
+    color: #ffffff;
 
     cursor: pointer;
 
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.10);
 
     transition:
         background 0.15s ease,
@@ -746,15 +820,15 @@ svg {
 }
 
 .topbar-user:hover {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.12);
     box-shadow: var(--shadow);
 }
 
 .topbar-user-avatar {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
 
-    flex: 0 0 30px;
+    flex: 0 0 34px;
 
     display: inline-flex;
     align-items: center;
@@ -762,13 +836,21 @@ svg {
 
     border-radius: 50%;
 
-    background: #000000;
+    background:
+        linear-gradient(
+            135deg,
+            #1a7a51,
+            #0e4a32
+        );
+
     color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .topbar-user-avatar svg {
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
 }
 
 .topbar-user-name {
@@ -776,7 +858,7 @@ svg {
 
     overflow: hidden;
 
-    color: #000000;
+    color: #ffffff;
 
     font-size: 10.5px;
     font-weight: 700;
@@ -788,7 +870,8 @@ svg {
 .topbar-chevron {
     width: 13px;
     height: 13px;
-    color: #000000;
+
+    color: rgba(255, 255, 255, 0.70);
 }
 
 
@@ -810,9 +893,9 @@ svg {
     display: none;
     flex-direction: column;
 
-    background: #ffffff;
+    background: rgba(6, 35, 26, 0.96);
 
-    border: 1px solid rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 13px;
 
     box-shadow: var(--shadow-lg);
@@ -820,11 +903,19 @@ svg {
     overflow: hidden;
 
     z-index: 1001;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 .notif-dropdown.notif-dropdown-open {
     display: flex;
-    animation: rb-rise 0.18s ease both;
+
+    animation:
+        rb-rise
+        0.18s
+        ease
+        both;
 }
 
 .notif-dropdown-header {
@@ -836,13 +927,14 @@ svg {
 
     padding: 11px 14px;
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .notif-dropdown-header > span {
-    color: #000000;
+    color: #ffffff;
 
     font-family: var(--font-display);
+
     font-size: 14px;
     font-weight: 700;
 }
@@ -854,7 +946,8 @@ svg {
     border-radius: 6px;
 
     background: transparent;
-    color: #000000;
+
+    color: rgba(255, 255, 255, 0.72);
 
     font-size: 10px;
     font-weight: 700;
@@ -877,19 +970,20 @@ svg {
 
     padding: 12px 14px;
 
-    background: #ffffff;
+    background: transparent;
 
-    border-bottom: 1px solid #eeeeee;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     cursor: pointer;
 }
 
 .notif-item:hover {
-    background: #f7f7f7;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .notif-item-unread {
-    background: #f3f3f3;
+    background: rgba(26, 122, 81, 0.20);
 }
 
 .notif-item-icon {
@@ -904,8 +998,9 @@ svg {
 
     border-radius: 50%;
 
-    background: #eeeeee;
-    color: #000000;
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
 
     font-size: 14px;
 }
@@ -918,7 +1013,7 @@ svg {
 .notif-item-message {
     margin: 0 0 4px;
 
-    color: #000000;
+    color: #ffffff;
 
     font-size: 11.5px;
     font-weight: 500;
@@ -931,7 +1026,7 @@ svg {
 .notif-item-time {
     margin: 0;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.52);
 
     font-size: 9.5px;
 }
@@ -941,7 +1036,7 @@ svg {
 
     text-align: center;
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.58);
 
     font-size: 11px;
 }
@@ -1013,16 +1108,18 @@ svg {
 
 
 /* =========================================================
-   FINAL CARD STYLE
+   CARD BASE
    ========================================================= */
 
 .card,
 .dashboard-card {
-    background: rgba(255, 255, 255, 0.30);
-
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    width: 100%;
 
     border-radius: var(--radius);
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    background: rgba(255, 255, 255, 0.08);
 
     box-shadow: var(--shadow);
 
@@ -1067,7 +1164,7 @@ svg {
 .dashboard-section-header h2 {
     margin: 0;
 
-    color: #000000;
+    color: #ffffff;
 
     font-family: var(--font-display);
 
@@ -1085,19 +1182,21 @@ svg {
 
     display: flex;
     flex-direction: column;
+
     align-items: flex-start;
 
     padding: 18px 18px 14px;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.08);
 
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.16);
 
     border-radius: var(--radius);
 
     box-shadow: var(--shadow);
 
-    transition: box-shadow 0.18s ease;
+    transition:
+        box-shadow 0.18s ease;
 }
 
 .atm-card-wrapper:hover {
@@ -1135,17 +1234,22 @@ svg {
     color: #ffffff;
 
     box-shadow:
-        0 15px 34px rgba(6, 35, 26, 0.24);
+        0 15px 34px rgba(6, 35, 26, 0.30);
+
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
 }
 
 .atm-card:hover {
     box-shadow:
-        0 18px 38px rgba(6, 35, 26, 0.28);
+        0 18px 38px rgba(6, 35, 26, 0.36);
+
+    transform: translateY(-1px);
 }
 
 .atm-pattern {
     position: absolute;
-
     inset: 0;
 
     z-index: 0;
@@ -1233,6 +1337,7 @@ svg {
     height: 29px;
 
     fill: var(--gold-light);
+
     stroke: none;
 }
 
@@ -1252,12 +1357,13 @@ svg {
 
     margin-top: 1px;
 
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.70);
 
     font-size: 7px;
     font-weight: 600;
 
     letter-spacing: 0.1em;
+
     text-transform: uppercase;
 }
 
@@ -1268,6 +1374,7 @@ svg {
     font-weight: 700;
 
     letter-spacing: 0.08em;
+
     text-transform: uppercase;
 }
 
@@ -1278,6 +1385,7 @@ svg {
 
 .atm-chip-row {
     display: flex;
+
     align-items: center;
 
     gap: 10px;
@@ -1308,7 +1416,7 @@ svg {
 .atm-chip span {
     position: absolute;
 
-    background: rgba(60, 42, 6, 0.3);
+    background: rgba(60, 42, 6, 0.30);
 }
 
 .atm-chip span:nth-child(1) {
@@ -1379,7 +1487,7 @@ svg {
 }
 
 .atm-card-foot-label {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.60);
 
     font-size: 7.5px;
     font-weight: 600;
@@ -1416,6 +1524,7 @@ svg {
 
 .card-toggle-btn {
     position: relative;
+
     z-index: 3;
 
     width: auto;
@@ -1436,13 +1545,13 @@ svg {
 
     padding: 6px 11px;
 
-    border: 1px solid rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.20);
 
     border-radius: 8px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.10);
 
-    color: #000000;
+    color: #ffffff;
 
     font-size: 9px;
     font-weight: 700;
@@ -1450,21 +1559,18 @@ svg {
     cursor: pointer;
 
     box-shadow:
-        0 2px 7px rgba(0, 0, 0, 0.06);
+        0 2px 7px rgba(0, 0, 0, 0.12);
 
     transition:
         background 0.15s ease,
         border-color 0.15s ease,
-        color 0.15s ease,
         box-shadow 0.15s ease;
 }
 
 .card-toggle-btn:hover {
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0.16);
 
-    border-color: rgba(0, 0, 0, 0.28);
-
-    color: #000000;
+    border-color: rgba(255, 255, 255, 0.30);
 
     box-shadow: var(--shadow);
 }
@@ -1484,15 +1590,15 @@ svg {
 
     min-height: 210px;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.08);
 
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.16);
 
     border-radius: var(--radius);
 
     box-shadow: var(--shadow);
 
-    color: #000000;
+    color: #ffffff;
 
     transition:
         box-shadow 0.18s ease,
@@ -1501,13 +1607,15 @@ svg {
 
 .balance-summary:hover {
     box-shadow: var(--shadow-hover);
+
+    transform: translateY(-1px);
 }
 
 .balance-summary-heading,
 .summary-card h2 {
     margin: 0;
 
-    color: #000000;
+    color: #ffffff;
 
     font-family: var(--font-display);
 
@@ -1541,13 +1649,13 @@ svg {
 
     padding: 0;
 
-    border: 1px solid rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 
     border-radius: 8px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
 
-    color: #000000;
+    color: #ffffff;
 
     cursor: pointer;
 }
@@ -1558,11 +1666,11 @@ svg {
 }
 
 .copy-account-btn:hover {
-    background: #f3f3f3;
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .copy-account-btn.copied {
-    background: #000000;
+    background: var(--green-500);
     color: #ffffff;
 }
 
@@ -1575,9 +1683,9 @@ svg {
 
     border-radius: 999px;
 
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.09);
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.82);
 
     font-size: 8px;
     font-weight: 800;
@@ -1590,7 +1698,7 @@ svg {
 .balance-summary-amount {
     margin-top: 7px;
 
-    color: #000000 !important;
+    color: #ffffff;
 
     font-size: 24px;
     font-weight: 600;
@@ -1599,7 +1707,7 @@ svg {
 .balance-summary-masked {
     margin-top: 3px;
 
-    color: #000000 !important;
+    color: rgba(255, 255, 255, 0.58);
 
     font-size: 9.5px;
 }
@@ -1618,17 +1726,17 @@ svg {
 
     padding-top: 10px;
 
-    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .balance-summary-row span {
-    color: #000000 !important;
+    color: rgba(255, 255, 255, 0.60);
 
     font-size: 9.5px;
 }
 
 .balance-summary-row strong {
-    color: #000000 !important;
+    color: #ffffff;
 
     font-size: 10px;
 }
@@ -1645,16 +1753,16 @@ svg {
 
     padding-top: 10px;
 
-    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
 
-    color: #000000 !important;
+    color: #ffffff;
 
     font-size: 10px;
     font-weight: 700;
 }
 
 .balance-summary-link:hover {
-    color: #000000 !important;
+    color: #ffffff;
 }
 
 .balance-summary-link svg {
@@ -1667,9 +1775,9 @@ svg {
 
     padding-top: 9px;
 
-    border-top: 1px dashed rgba(0, 0, 0, 0.18);
+    border-top: 1px dashed rgba(255, 255, 255, 0.18);
 
-    color: #000000;
+    color: rgba(255, 255, 255, 0.70);
 }
 
 .balance-summary-details[hidden] {
@@ -1686,17 +1794,18 @@ svg {
 
     margin: 0;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255, 255, 255, 0.08);
 
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.16);
 
     border-radius: var(--radius);
 
     box-shadow: var(--shadow);
 
-    color: #000000;
+    color: #ffffff;
 
-    transition: box-shadow 0.18s ease;
+    transition:
+        box-shadow 0.18s ease;
 }
 
 .quick-actions-section:hover {
@@ -1706,7 +1815,7 @@ svg {
 .quick-actions-section h2 {
     margin: 0 0 9px;
 
-    color: #000000;
+    color: #ffffff;
 
     font-family: var(--font-display);
 
@@ -1727,6 +1836,7 @@ svg {
     min-height: 64px;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -1736,13 +1846,13 @@ svg {
 
     padding: 9px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.07);
 
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
 
     border-radius: var(--radius-sm);
 
-    color: #000000 !important;
+    color: #ffffff;
 
     font-size: 9.5px;
     font-weight: 700;
@@ -1752,7 +1862,7 @@ svg {
     cursor: pointer;
 
     box-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.04);
+        0 2px 6px rgba(0, 0, 0, 0.08);
 
     transition:
         transform 0.15s ease,
@@ -1764,11 +1874,11 @@ svg {
 .quick-tile:hover {
     transform: translateY(-2px);
 
-    background: #f8f8f8;
+    background: rgba(255, 255, 255, 0.12);
 
-    border-color: rgba(0, 0, 0, 0.20);
+    border-color: rgba(255, 255, 255, 0.24);
 
-    color: #000000 !important;
+    color: #ffffff;
 
     box-shadow: var(--shadow);
 }
@@ -1782,7 +1892,7 @@ svg {
     align-items: center;
     justify-content: center;
 
-    color: #000000 !important;
+    color: #ffffff;
 
     font-size: 16px;
 }
@@ -1796,121 +1906,7 @@ svg {
 .quick-tile-withdraw,
 .quick-tile-transfer,
 .quick-tile-history {
-    background: #ffffff;
-    color: #000000 !important;
-}
-
-
-
-
-
-/* =========================================================
-   AMOUNTS
-   ========================================================= */
-
-.transactions-card td.amount-positive,
-.transactions-card td.amount-negative,
-.amount-positive,
-.amount-negative,
-.amount-pos,
-.amount-neg {
-    color: #000000 !important;
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   TRANSACTION BADGES
-   ========================================================= */
-
-.transaction-type,
-.transactions-card .badge,
-.transaction-badge {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-width: 58px;
-
-    padding: 3px 7px;
-
-    border-radius: 999px;
-
-    background: rgba(0, 0, 0, 0.06) !important;
-
-    color: #000000 !important;
-
-    font-size: 7.5px;
-    font-weight: 800;
-
-    line-height: 1.2;
-
-    white-space: nowrap;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
-.transaction-status,
-.status-badge {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 5px;
-
-    color: #000000 !important;
-
-    font-size: 8.5px;
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-.transaction-status::before,
-.status-badge::before {
-    content: "";
-
-    width: 6px;
-    height: 6px;
-
-    flex: 0 0 6px;
-
-    border-radius: 50%;
-
-    background: #000000 !important;
-}
-
-
-/* =========================================================
-   TRANSACTIONS EMPTY / FOOTER
-   ========================================================= */
-
-.transactions-empty {
-    padding: 28px 16px;
-
-    text-align: center;
-
-    color: #000000;
-
-    font-size: 11px;
-}
-
-.transactions-footer {
-    padding: 9px 16px 12px;
-
-    color: #000000;
-
-    font-size: 9px;
-
-    border-top: 1px solid rgba(0, 0, 0, 0.14);
+    color: #ffffff;
 }
 
 
@@ -1927,6 +1923,7 @@ svg {
     padding: 10px 19px;
 
     border: 0;
+
     border-radius: var(--radius-sm);
 
     font-family: var(--font-body);
@@ -1956,12 +1953,12 @@ svg {
 }
 
 .btn-primary {
-    background: var(--green-700);
+    background: var(--green-600);
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: var(--green-600);
+    background: var(--green-500);
 }
 
 .btn-gold {
@@ -1974,24 +1971,46 @@ svg {
 }
 
 .btn-danger {
-    background: #000000;
+    background: var(--red);
     color: #ffffff;
 
-    border: 1px solid #000000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .btn-mint {
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.08);
 
-    color: #000000;
+    color: #ffffff;
 
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 .btn-small {
     padding: 6px 11px;
 
     font-size: 11px;
+}
+
+
+/* =========================================================
+   FORM / INPUT BASE
+   ========================================================= */
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.48);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
 }
 
 
@@ -2030,7 +2049,6 @@ svg {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     z-index: 0;
@@ -2055,20 +2073,25 @@ svg {
     z-index: 2;
 
     width: 100%;
-
     max-width: 420px;
 
     padding: 32px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.94);
 
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.30);
 
     border-radius: 18px;
 
     box-shadow: var(--shadow-lg);
 
-    animation: rb-rise 0.45s ease both;
+    animation:
+        rb-rise
+        0.45s
+        ease
+        both;
+
+    color: #071d16;
 }
 
 .auth-brand {
@@ -2108,6 +2131,7 @@ svg {
 
 .auth-brand-text {
     display: flex;
+
     flex-direction: column;
 
     line-height: 1.2;
@@ -2119,13 +2143,13 @@ svg {
     font-size: 14px;
     font-weight: 700;
 
-    color: #000000;
+    color: #071d16;
 }
 
 .auth-brand-text small {
     margin-top: 2px;
 
-    color: #000000;
+    color: rgba(7, 29, 22, 0.65);
 
     font-size: 8px;
     font-weight: 700;
@@ -2138,7 +2162,7 @@ svg {
 .auth-card h1 {
     margin: 0 0 5px;
 
-    color: #000000;
+    color: #071d16;
 
     font-family: var(--font-display);
 
@@ -2149,7 +2173,7 @@ svg {
 .auth-card .sub {
     margin: 0 0 23px;
 
-    color: #000000;
+    color: rgba(7, 29, 22, 0.65);
 
     font-size: 13px;
 }
@@ -2163,7 +2187,7 @@ svg {
 
     margin-bottom: 6px;
 
-    color: #000000;
+    color: #071d16;
 
     font-size: 12px;
     font-weight: 700;
@@ -2178,13 +2202,13 @@ svg {
 
     padding: 11px 13px;
 
-    border: 1.5px solid rgba(0, 0, 0, 0.18);
+    border: 1.5px solid rgba(7, 29, 22, 0.18);
 
     border-radius: var(--radius-sm);
 
-    background: #fbfcfb;
+    background: rgba(255, 255, 255, 0.75);
 
-    color: #000000;
+    color: #071d16;
 
     font-size: 13px;
 
@@ -2198,12 +2222,12 @@ svg {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: #000000;
+    border-color: var(--green-600);
 
     background: #ffffff;
 
     box-shadow:
-        0 0 0 3px rgba(0, 0, 0, 0.08);
+        0 0 0 3px rgba(19, 94, 63, 0.10);
 }
 
 .form-group small {
@@ -2211,7 +2235,7 @@ svg {
 
     margin-top: 5px;
 
-    color: #000000;
+    color: rgba(7, 29, 22, 0.58);
 
     font-size: 10px;
 }
@@ -2243,11 +2267,12 @@ svg {
     transform: translateY(-50%);
 
     border: 0;
+
     border-radius: 6px;
 
     background: transparent;
 
-    color: #000000;
+    color: #071d16;
 
     cursor: pointer;
 }
@@ -2257,13 +2282,13 @@ svg {
 
     text-align: center;
 
-    color: #000000;
+    color: rgba(7, 29, 22, 0.62);
 
     font-size: 13px;
 }
 
 .link-alt a {
-    color: #000000;
+    color: var(--green-700);
 
     font-weight: 700;
 }
@@ -2283,13 +2308,138 @@ svg {
     font-size: 12.5px;
 }
 
-.alert-error,
+.alert-error {
+    background: rgba(217, 52, 52, 0.10);
+
+    color: #ffdada;
+
+    border: 1px solid rgba(217, 52, 52, 0.28);
+}
+
 .alert-success {
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(26, 122, 81, 0.16);
 
-    color: #000000;
+    color: #d9ffe9;
 
-    border: 1px solid rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(72, 203, 145, 0.28);
+}
+
+
+/* =========================================================
+   TRANSACTION BASICS
+   ========================================================= */
+
+.transactions-card {
+    width: 100%;
+
+    min-width: 0;
+
+    margin: 0;
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+}
+
+.transactions-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.transactions-card table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.transactions-card th,
+.transactions-card td {
+    vertical-align: middle;
+}
+
+.transactions-card td.amount-positive,
+.transactions-card td.amount-negative,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg {
+    font-family: var(--font-mono);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.transaction-type,
+.transactions-card .badge,
+.transaction-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+
+    padding: 3px 7px;
+
+    border-radius: 999px;
+
+    font-size: 7.5px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+}
+
+.transaction-status,
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 8.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.transaction-status::before,
+.status-badge::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+.transactions-empty {
+    padding: 28px 16px;
+
+    text-align: center;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 11px;
+}
+
+.transactions-footer {
+    padding: 9px 16px 12px;
+
+    color: rgba(255, 255, 255, 0.58);
+
+    font-size: 9px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 
@@ -2302,7 +2452,7 @@ svg {
 
     padding: 18px 10px 22px;
 
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.78);
 
     text-align: center;
 
@@ -2312,6 +2462,487 @@ svg {
     letter-spacing: 0.02em;
 
     line-height: 1.5;
+}
+
+
+/* =========================================================
+   DEPOSIT & WITHDRAW
+   ========================================================= */
+
+.deposit-withdraw-page {
+    width: min(calc(100% - 44px), 860px);
+
+    margin: 0 auto;
+
+    padding: 22px 0 40px;
+}
+
+.deposit-withdraw-back {
+    margin: 0 0 14px;
+}
+
+.deposit-withdraw-back a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.10);
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
+}
+
+.deposit-withdraw-back a:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: rgba(255, 255, 255, 0.24);
+
+    box-shadow: var(--shadow);
+
+    transform: translateY(-1px);
+}
+
+.back-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 16px;
+    height: 16px;
+
+    font-size: 15px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW CARD
+   ========================================================= */
+
+.deposit-withdraw-card {
+    width: 100%;
+
+    margin: 0 0 15px;
+
+    padding: 20px;
+
+    border-radius: var(--radius);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+
+    box-shadow: var(--shadow);
+
+    color: #ffffff;
+}
+
+.deposit-withdraw-card:last-child {
+    margin-bottom: 0;
+}
+
+.deposit-withdraw-card-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW ICON
+   FINAL SIZE LOCK
+   ========================================================= */
+
+.deposit-withdraw-icon {
+    width: 46px;
+    height: 46px;
+
+    min-width: 46px;
+    min-height: 46px;
+
+    max-width: 46px;
+    max-height: 46px;
+
+    flex: 0 0 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    box-sizing: border-box;
+}
+
+.deposit-icon {
+    background: rgba(169, 130, 47, 0.18);
+
+    border: 1px solid rgba(204, 163, 79, 0.30);
+
+    color: var(--gold-light);
+}
+
+.withdraw-icon {
+    background: rgba(217, 52, 52, 0.12);
+
+    border: 1px solid rgba(217, 52, 52, 0.28);
+
+    color: #ff7777;
+}
+
+.deposit-withdraw-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+
+    min-width: 22px !important;
+    min-height: 22px !important;
+
+    max-width: 22px !important;
+    max-height: 22px !important;
+
+    flex: 0 0 22px;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW TITLE
+   ========================================================= */
+
+.deposit-withdraw-card-title {
+    min-width: 0;
+
+    flex: 1 1 auto;
+}
+
+.deposit-withdraw-card-title h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: var(--font-display);
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.deposit-withdraw-card-title p {
+    margin: 4px 0 0;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 10.5px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW FORM
+   ========================================================= */
+
+.deposit-withdraw-form {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+.deposit-withdraw-form .form-group {
+    margin-bottom: 15px;
+}
+
+.deposit-withdraw-form .form-group label {
+    color: #ffffff;
+
+    margin-bottom: 6px;
+
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.optional-label {
+    color: rgba(255, 255, 255, 0.48);
+
+    font-size: 9.5px;
+    font-weight: 500;
+}
+
+.deposit-withdraw-form .form-group small {
+    color: rgba(255, 255, 255, 0.52);
+
+    margin-top: 5px;
+
+    font-size: 9.5px;
+}
+
+
+/* =========================================================
+   MONEY INPUT
+   ========================================================= */
+
+.deposit-input-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+.deposit-input-wrapper .currency-symbol {
+    position: absolute;
+
+    left: 13px;
+    top: 50%;
+
+    z-index: 2;
+
+    transform: translateY(-50%);
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-family: var(--font-mono);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    pointer-events: none;
+}
+
+.deposit-withdraw-form .money-input {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 10px 13px 10px 31px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.075);
+
+    color: #ffffff;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    outline: none;
+
+    box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.06);
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.deposit-withdraw-form .money-input::placeholder {
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.deposit-withdraw-form .money-input:focus {
+    border-color: rgba(204, 163, 79, 0.65);
+
+    background: rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 0 0 3px rgba(204, 163, 79, 0.10);
+}
+
+
+/* =========================================================
+   DESCRIPTION INPUT
+   ========================================================= */
+
+.deposit-withdraw-form input:not(.money-input),
+.deposit-withdraw-form textarea,
+.deposit-withdraw-form select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 10px 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.075);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.deposit-withdraw-form input:not(.money-input)::placeholder,
+.deposit-withdraw-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.deposit-withdraw-form input:not(.money-input):focus,
+.deposit-withdraw-form textarea:focus,
+.deposit-withdraw-form select:focus {
+    border-color: rgba(255, 255, 255, 0.34);
+
+    background: rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW BUTTON
+   ========================================================= */
+
+.deposit-withdraw-submit {
+    width: 100%;
+
+    min-height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 4px;
+
+    padding: 10px 16px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.deposit-withdraw-submit:hover {
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+
+    transform: translateY(-1px);
+}
+
+.deposit-withdraw-submit:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.deposit-submit {
+    background: var(--gold);
+
+    color: #ffffff;
+}
+
+.deposit-submit:hover {
+    background: var(--gold-light);
+}
+
+.withdraw-submit {
+    background: var(--red);
+
+    color: #ffffff;
+}
+
+.withdraw-submit:hover {
+    background: #e44343;
+}
+
+
+/* =========================================================
+   BUTTON ICON SIZE LOCK
+   ========================================================= */
+
+.deposit-withdraw-button-icon {
+    width: 18px !important;
+    height: 18px !important;
+
+    min-width: 18px !important;
+    min-height: 18px !important;
+
+    max-width: 18px !important;
+    max-height: 18px !important;
+
+    flex: 0 0 18px;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    box-sizing: border-box;
 }
 
 
@@ -2355,6 +2986,10 @@ svg {
         height: 270px;
         min-height: 270px;
     }
+
+    .deposit-withdraw-page {
+        width: min(calc(100% - 34px), 800px);
+    }
 }
 
 
@@ -2377,7 +3012,9 @@ svg {
         bottom: 0;
 
         width: min(290px, 84vw);
+
         min-width: 0;
+
         max-width: min(290px, 84vw);
 
         height: 100vh;
@@ -2385,12 +3022,14 @@ svg {
         transform: translateX(-105%);
 
         transition:
-            transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            transform
+            0.28s
+            cubic-bezier(0.16, 1, 0.3, 1);
 
         z-index: 10000;
 
         box-shadow:
-            18px 0 44px rgba(0, 0, 0, 0.20);
+            18px 0 44px rgba(0, 0, 0, 0.28);
 
         pointer-events: none;
     }
@@ -2466,8 +3105,18 @@ svg {
         min-height: 260px;
     }
 
+    .transactions-card {
+        overflow-x: auto;
+    }
+
     .transactions-card table {
         min-width: 620px;
+    }
+
+    .deposit-withdraw-page {
+        width: min(calc(100% - 30px), 720px);
+
+        padding: 18px 0 30px;
     }
 }
 
@@ -2511,6 +3160,8 @@ svg {
         padding: 3px;
 
         border: 0;
+
+        background: transparent;
     }
 
     .topbar-user-avatar {
@@ -2666,6 +3317,105 @@ svg {
 
         font-size: 12px;
     }
+
+
+    /* =====================================================
+       DEPOSIT / WITHDRAW MOBILE
+       ===================================================== */
+
+    .deposit-withdraw-page {
+        width: calc(100% - 20px);
+
+        padding: 14px 0 25px;
+    }
+
+    .deposit-withdraw-back {
+        margin-bottom: 11px;
+    }
+
+    .deposit-withdraw-back a {
+        padding: 8px 10px;
+
+        font-size: 10px;
+    }
+
+    .deposit-withdraw-card {
+        padding: 16px 14px;
+
+        margin-bottom: 11px;
+    }
+
+    .deposit-withdraw-card-header {
+        gap: 10px;
+
+        margin-bottom: 15px;
+    }
+
+    .deposit-withdraw-icon {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+        min-height: 42px;
+
+        max-width: 42px;
+        max-height: 42px;
+
+        flex-basis: 42px;
+
+        border-radius: 10px;
+    }
+
+    .deposit-withdraw-icon svg {
+        width: 20px !important;
+        height: 20px !important;
+
+        min-width: 20px !important;
+        min-height: 20px !important;
+
+        max-width: 20px !important;
+        max-height: 20px !important;
+
+        flex-basis: 20px;
+    }
+
+    .deposit-withdraw-card-title h2 {
+        font-size: 15px;
+    }
+
+    .deposit-withdraw-card-title p {
+        font-size: 9.5px;
+    }
+
+    .deposit-withdraw-form .form-group {
+        margin-bottom: 13px;
+    }
+
+    .deposit-withdraw-form .money-input,
+    .deposit-withdraw-form input:not(.money-input),
+    .deposit-withdraw-form textarea,
+    .deposit-withdraw-form select {
+        height: 42px;
+    }
+
+    .deposit-withdraw-submit {
+        min-height: 42px;
+
+        font-size: 11px;
+    }
+
+    .deposit-withdraw-button-icon {
+        width: 17px !important;
+        height: 17px !important;
+
+        min-width: 17px !important;
+        min-height: 17px !important;
+
+        max-width: 17px !important;
+        max-height: 17px !important;
+
+        flex-basis: 17px;
+    }
 }
 
 
@@ -2727,6 +3477,66 @@ svg {
     .dashboard-footer {
         font-size: 11px;
     }
+
+
+    /* =====================================================
+       DEPOSIT / WITHDRAW SMALL MOBILE
+       ===================================================== */
+
+    .deposit-withdraw-page {
+        width: calc(100% - 16px);
+    }
+
+    .deposit-withdraw-card {
+        padding: 15px 12px;
+    }
+
+    .deposit-withdraw-icon {
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+        min-height: 40px;
+
+        max-width: 40px;
+        max-height: 40px;
+
+        flex-basis: 40px;
+    }
+
+    .deposit-withdraw-icon svg {
+        width: 19px !important;
+        height: 19px !important;
+
+        min-width: 19px !important;
+        min-height: 19px !important;
+
+        max-width: 19px !important;
+        max-height: 19px !important;
+
+        flex-basis: 19px;
+    }
+
+    .deposit-withdraw-card-title h2 {
+        font-size: 14px;
+    }
+
+    .deposit-withdraw-card-title p {
+        font-size: 9px;
+    }
+
+    .deposit-withdraw-form .money-input,
+    .deposit-withdraw-form input:not(.money-input),
+    .deposit-withdraw-form textarea,
+    .deposit-withdraw-form select {
+        height: 41px;
+
+        font-size: 11.5px;
+    }
+
+    .deposit-withdraw-submit {
+        min-height: 41px;
+    }
 }
 
 
@@ -2738,7 +3548,6 @@ svg {
 
     .sidebar {
         width: 285px;
-
         max-width: 88vw;
     }
 
@@ -2775,64 +3584,76 @@ svg {
     .dashboard-footer {
         font-size: 10.5px;
     }
-}
 
 
-/* =========================================================
-   GLOBAL FINAL TEXT
-   ========================================================= */
+    /* =====================================================
+       DEPOSIT / WITHDRAW VERY SMALL
+       ===================================================== */
 
-.topbar *,
-.sidebar-link,
-.sidebar-icon,
-.sidebar-bottom *,
-.dashboard-section-header *,
-.balance-summary *,
-.quick-actions-section h2,
-.quick-tile,
-.quick-tile *,
-.transactions-card-header *,
-.transactions-card th,
-.transactions-card td,
-.transactions-empty,
-.transactions-footer,
-.balance-summary-amount,
-.balance-summary-masked,
-.balance-summary-row span,
-.balance-summary-row strong,
-.transaction-status,
-.status-badge,
-.amount-positive,
-.amount-negative,
-.amount-pos,
-.amount-neg {
-    color: #000000;
-}
+    .deposit-withdraw-page {
+        width: calc(100% - 12px);
+    }
 
+    .deposit-withdraw-card {
+        padding: 14px 11px;
+    }
 
-/* =========================================================
-   KEEP ATM TEXT WHITE
-   ========================================================= */
+    .deposit-withdraw-card-header {
+        gap: 9px;
+    }
 
-.atm-card *,
-.atm-card .atm-card-brand strong,
-.atm-card .atm-card-brand small,
-.atm-card .atm-card-type,
-.atm-card .atm-number,
-.atm-card .atm-card-foot-label,
-.atm-card .atm-card-foot-value,
-.atm-card .atm-card-visa {
-    color: #ffffff;
-}
+    .deposit-withdraw-icon {
+        width: 38px;
+        height: 38px;
 
+        min-width: 38px;
+        min-height: 38px;
 
-/* =========================================================
-   FOOTER WHITE
-   ========================================================= */
+        max-width: 38px;
+        max-height: 38px;
 
-.dashboard-footer,
-.dashboard-footer * {
-    color: #ffffff !important;
+        flex-basis: 38px;
+    }
+
+    .deposit-withdraw-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+
+        min-width: 18px !important;
+        min-height: 18px !important;
+
+        max-width: 18px !important;
+        max-height: 18px !important;
+
+        flex-basis: 18px;
+    }
+
+    .deposit-withdraw-card-title h2 {
+        font-size: 13.5px;
+    }
+
+    .deposit-withdraw-card-title p {
+        font-size: 8.5px;
+    }
+
+    .deposit-withdraw-submit {
+        min-height: 40px;
+
+        font-size: 10.5px;
+    }
+
+    .deposit-withdraw-button-icon {
+        width: 16px !important;
+        height: 16px !important;
+
+        min-width: 16px !important;
+        min-height: 16px !important;
+
+        max-width: 16px !important;
+        max-height: 16px !important;
+
+        flex-basis: 16px;
+    }
 }
 
 
@@ -2845,7 +3666,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-    outline: 2px solid #000000;
+    outline: 2px solid rgba(91, 220, 163, 0.85);
 
     outline-offset: 2px;
 }

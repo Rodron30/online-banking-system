@@ -4,57 +4,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Deposit &amp; Withdraw | Rodron Bank</title>
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
-
 </head>
 
 <body>
 
 <div class="app-shell">
 
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
     <div th:replace="~{fragments/navbar :: navbar('deposit')}"></div>
 
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
     <div class="app-content">
 
+        <!-- TOPBAR -->
         <div th:replace="~{fragments/topbar :: topbar('', 'Deposit &amp; Withdraw', 'Deposit or withdraw money from your account.')}"></div>
 
-        <div class="page-wrap">
 
-            <!-- Back link -->
-            <p class="link-alt" style="margin:0 0 14px; text-align:left;">
-                <a th:href="@{/dashboard}">← Back to Dashboard</a>
-            </p>
+        <main class="page-wrap deposit-withdraw-page">
 
-            <!-- Deposit -->
-            <div class="card"><h2 class="section-title">💰 Deposit</h2>
+
+            <!-- =================================================
+                 BACK TO DASHBOARD
+                 ================================================= -->
+            <div class="deposit-withdraw-back">
+
+                <a th:href="@{/dashboard}">
+
+                    <span
+                        class="back-icon"
+                        aria-hidden="true">
+                        ←
+                    </span>
+
+                    <span>
+                        Back to Dashboard
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DEPOSIT CARD
+                 ================================================= -->
+            <section class="card deposit-withdraw-card deposit-card">
+
+
+                <!-- HEADER -->
+                <div class="deposit-withdraw-card-header">
+
+                    <div
+                        class="deposit-withdraw-icon deposit-icon"
+                        aria-hidden="true">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path
+                                d="M12 3V15"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M7.5 10.5L12 15L16.5 10.5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+
+                            <path
+                                d="M5 19.5H19"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M7 19.5V17.5H17V19.5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linejoin="round"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="deposit-withdraw-card-title">
+
+                        <h2>
+                            Deposit
+                        </h2>
+
+                        <p>
+                            Add money to your Rodron Bank account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DEPOSIT FORM
+                     ================================================= -->
                 <form
                     th:action="@{/deposit}"
-                    method="post">
+                    method="post"
+                    class="deposit-withdraw-form money-form"
+                    id="depositForm">
 
-                    <!-- CSRF Protection -->
+
+                    <!-- CSRF -->
                     <input
                         type="hidden"
                         th:name="${_csrf.parameterName}"
                         th:value="${_csrf.token}">
+
+
+
+                    <!-- =================================================
+                         DEPOSIT AMOUNT
+                         ================================================= -->
                     <div class="form-group">
-                        <label for="depositAmount">Amount (₱)</label>
-                        <input
-                            id="depositAmount"
-                            type="number"
-                            name="amount"
-                            step="0.01"
-                            min="0.01"
-                            required
-                            inputmode="decimal"
-                            autocomplete="off"
-                            placeholder="0.00">
-                        <small>Minimum amount: ₱0.01</small>
+
+                        <label for="depositAmount">
+                            Amount (₱)
+                        </label>
+
+
+                        <div class="deposit-input-wrapper">
+
+                            <span
+                                class="currency-symbol"
+                                aria-hidden="true">
+                                ₱
+                            </span>
+
+
+                            <input
+                                id="depositAmount"
+                                type="text"
+                                name="amount"
+                                required
+                                inputmode="decimal"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="0.00"
+                                class="money-input"
+                                data-money-input="true">
+
+                        </div>
+
+
+                        <small>
+                            Minimum amount: ₱0.01
+                        </small>
+
                     </div>
 
+
+
+                    <!-- =================================================
+                         DEPOSIT DESCRIPTION
+                         ================================================= -->
                     <div class="form-group">
-                        <label for="depositDescription">Description (optional)</label>
+
+                        <label for="depositDescription">
+
+                            Description
+
+                            <span class="optional-label">
+                                (optional)
+                            </span>
+
+                        </label>
+
+
                         <input
                             id="depositDescription"
                             type="text"
@@ -62,46 +203,195 @@
                             maxlength="255"
                             autocomplete="off"
                             placeholder="e.g. Cash deposit">
+
                     </div>
+
+
+
+                    <!-- =================================================
+                         DEPOSIT BUTTON
+                         ================================================= -->
                     <button
                         type="submit"
-                        class="btn btn-gold btn-block">Deposit
+                        class="btn btn-gold btn-block deposit-withdraw-submit deposit-submit">
+
+
+                        <svg
+                            class="deposit-withdraw-button-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+
+                            <path
+                                d="M12 5V19"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M6 13L12 19L18 13"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+
+                        </svg>
+
+
+                        <span>
+                            Deposit
+                        </span>
+
                     </button>
 
                 </form>
 
-            </div>
+            </section>
 
-            <!-- Withdraw -->
-            <div class="card">
-                <h2 class="section-title">💸 Withdraw</h2>
 
+
+
+            <!-- =================================================
+                 WITHDRAW CARD
+                 ================================================= -->
+            <section class="card deposit-withdraw-card withdraw-card">
+
+
+                <!-- HEADER -->
+                <div class="deposit-withdraw-card-header">
+
+                    <div
+                        class="deposit-withdraw-icon withdraw-icon"
+                        aria-hidden="true">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <path
+                                d="M12 21V9"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M7.5 13.5L12 9L16.5 13.5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+
+                            <path
+                                d="M5 4.5H19"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M7 4.5V6.5H17V4.5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linejoin="round"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="deposit-withdraw-card-title">
+
+                        <h2>
+                            Withdraw
+                        </h2>
+
+                        <p>
+                            Take money out of your Rodron Bank account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     WITHDRAW FORM
+                     ================================================= -->
                 <form
                     th:action="@{/withdraw}"
-                    method="post">
+                    method="post"
+                    class="deposit-withdraw-form money-form"
+                    id="withdrawForm">
 
-                    <!-- CSRF Protection -->
+
+                    <!-- CSRF -->
                     <input
                         type="hidden"
                         th:name="${_csrf.parameterName}"
                         th:value="${_csrf.token}">
+
+
+
+                    <!-- =================================================
+                         WITHDRAW AMOUNT
+                         ================================================= -->
                     <div class="form-group">
-                        <label for="withdrawAmount">Amount (₱)</label>
-                        <input
-                            id="withdrawAmount"
-                            type="number"
-                            name="amount"
-                            step="0.01"
-                            min="0.01"
-                            required
-                            inputmode="decimal"
-                            autocomplete="off"
-                            placeholder="0.00">
-                        <small>Minimum amount: ₱0.01</small>
+
+                        <label for="withdrawAmount">
+                            Amount (₱)
+                        </label>
+
+
+                        <div class="deposit-input-wrapper">
+
+                            <span
+                                class="currency-symbol"
+                                aria-hidden="true">
+                                ₱
+                            </span>
+
+
+                            <input
+                                id="withdrawAmount"
+                                type="text"
+                                name="amount"
+                                required
+                                inputmode="decimal"
+                                autocomplete="off"
+                                spellcheck="false"
+                                placeholder="0.00"
+                                class="money-input"
+                                data-money-input="true">
+
+                        </div>
+
+
+                        <small>
+                            Minimum amount: ₱0.01
+                        </small>
+
                     </div>
 
+
+
+                    <!-- =================================================
+                         WITHDRAW DESCRIPTION
+                         ================================================= -->
                     <div class="form-group">
-                        <label for="withdrawDescription">Description (optional)</label>
+
+                        <label for="withdrawDescription">
+
+                            Description
+
+                            <span class="optional-label">
+                                (optional)
+                            </span>
+
+                        </label>
+
+
                         <input
                             id="withdrawDescription"
                             type="text"
@@ -109,22 +399,240 @@
                             maxlength="255"
                             autocomplete="off"
                             placeholder="e.g. ATM withdrawal">
+
                     </div>
 
+
+
+                    <!-- =================================================
+                         WITHDRAW BUTTON
+                         ================================================= -->
                     <button
                         type="submit"
-                        class="btn btn-danger btn-block">Withdraw
+                        class="btn btn-danger btn-block deposit-withdraw-submit withdraw-submit">
+
+
+                        <svg
+                            class="deposit-withdraw-button-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+
+                            <path
+                                d="M12 19V5"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"/>
+
+                            <path
+                                d="M6 11L12 5L18 11"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+
+                        </svg>
+
+
+                        <span>
+                            Withdraw
+                        </span>
+
                     </button>
 
                 </form>
 
-            </div>
+            </section>
 
-        </div>
+        </main>
 
     </div>
 
 </div>
+
+
+
+<!-- =========================================================
+     MONEY FORMAT SCRIPT
+     ========================================================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const moneyInputs = document.querySelectorAll(
+        'input[data-money-input="true"]'
+    );
+
+
+    /*
+     * FORMAT:
+     *
+     * 25000     -> 25,000
+     * 250000    -> 250,000
+     * 1000000   -> 1,000,000
+     * 25000.50  -> 25,000.50
+     */
+    moneyInputs.forEach(function (input) {
+
+        input.addEventListener("input", function () {
+
+            let value = input.value;
+
+            /*
+             * Remove everything except:
+             * - numbers
+             * - decimal point
+             */
+            value = value.replace(/[^\d.]/g, "");
+
+
+            /*
+             * Allow only ONE decimal point.
+             */
+            const firstDot = value.indexOf(".");
+
+            if (firstDot !== -1) {
+
+                const integerPart =
+                    value.substring(0, firstDot);
+
+                const decimalPart =
+                    value.substring(firstDot + 1)
+                        .replace(/\./g, "");
+
+                value =
+                    integerPart +
+                    "." +
+                    decimalPart;
+            }
+
+
+            /*
+             * Split integer and decimal.
+             */
+            let parts = value.split(".");
+
+            let integerPart = parts[0] || "";
+
+            let decimalPart =
+                parts.length > 1
+                    ? parts[1]
+                    : null;
+
+
+            /*
+             * Remove unnecessary leading zeros.
+             *
+             * 00025000 -> 25000
+             */
+            if (integerPart.length > 1) {
+
+                integerPart =
+                    integerPart.replace(/^0+(?=\d)/, "");
+
+            }
+
+
+            /*
+             * Add commas.
+             */
+            if (integerPart !== "") {
+
+                integerPart =
+                    Number(integerPart).toLocaleString(
+                        "en-US",
+                        {
+                            maximumFractionDigits: 0
+                        }
+                    );
+
+            }
+
+
+            /*
+             * Rebuild value.
+             */
+            if (decimalPart !== null) {
+
+                input.value =
+                    integerPart +
+                    "." +
+                    decimalPart.substring(0, 2);
+
+            } else {
+
+                input.value =
+                    integerPart;
+
+            }
+
+        });
+
+
+
+        /*
+         * Prevent invalid characters from paste.
+         */
+        input.addEventListener("paste", function () {
+
+            setTimeout(function () {
+
+                input.dispatchEvent(
+                    new Event("input", {
+                        bubbles: true
+                    })
+                );
+
+            }, 0);
+
+        });
+
+    });
+
+
+
+    /*
+     * IMPORTANT:
+     *
+     * Before submitting the form,
+     * remove commas.
+     *
+     * Example:
+     *
+     * 25,000 -> 25000
+     *
+     * This makes the value compatible
+     * with the Spring Boot backend.
+     */
+    document.querySelectorAll(".money-form").forEach(function (form) {
+
+        form.addEventListener("submit", function () {
+
+            const amountInput =
+                form.querySelector(
+                    'input[data-money-input="true"]'
+                );
+
+
+            if (!amountInput) {
+                return;
+            }
+
+
+            /*
+             * Remove commas.
+             */
+            amountInput.value =
+                amountInput.value
+                    .replace(/,/g, "")
+                    .trim();
+
+        });
+
+    });
+
+});
+</script>
 
 </body>
 </html>

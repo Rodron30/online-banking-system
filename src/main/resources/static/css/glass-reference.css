@@ -1377,3 +1377,256 @@ a.back-dashboard {
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
 }
+
+/* =========================================================
+   DEPOSIT / WITHDRAW — FINAL GLASS OVERRIDE
+   ========================================================= */
+
+/* BACK TO DASHBOARD */
+.app-content a[href*="/dashboard"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 40px !important;
+
+    padding: 9px 18px !important;
+
+    margin: 0 0 14px 0 !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.055)
+        ) !important;
+
+    border: 1px solid rgba(225, 255, 242, 0.25) !important;
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+
+    box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.20),
+        inset 0 1px rgba(255, 255, 255, 0.10) !important;
+
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+.app-content a[href*="/dashboard"]:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(73, 230, 163, 0.18),
+            rgba(255, 255, 255, 0.08)
+        ) !important;
+
+    border-color: var(--glass-border-strong) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 15px 32px rgba(0, 0, 0, 0.24),
+        0 0 22px rgba(73, 230, 163, 0.10),
+        inset 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW CONTENT
+   ========================================================= */
+
+.app-content label {
+    color: rgba(255, 255, 255, 0.92) !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* TITLES */
+.app-content h1,
+.app-content h2,
+.app-content h3 {
+    color: #ffffff !important;
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.20) !important;
+}
+
+
+/* =========================================================
+   FORM GLASS PANELS
+   ========================================================= */
+
+/*
+   Covers common deposit/withdraw card containers.
+   If your page uses one of these classes, they will all
+   receive the same glass treatment.
+*/
+
+.deposit-card,
+.withdraw-card,
+.deposit-section,
+.withdraw-section,
+.deposit-form-card,
+.withdraw-form-card,
+.deposit-form,
+.withdraw-form,
+.transaction-form-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 91, 75, 0.48),
+            rgba(5, 38, 33, 0.36)
+        ) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
+
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FORM INPUTS — STRONGER GLASS
+   ========================================================= */
+
+.app-content input,
+.app-content select,
+.app-content textarea {
+    background:
+        rgba(255, 255, 255, 0.09) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(210, 255, 239, 0.24) !important;
+
+    border-radius: 10px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.06),
+        0 8px 18px rgba(0, 0, 0, 0.10) !important;
+
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.app-content input::placeholder,
+.app-content textarea::placeholder {
+    color: rgba(235, 250, 244, 0.55) !important;
+}
+
+
+/* =========================================================
+   FORM HELPER TEXT
+   ========================================================= */
+
+.app-content small,
+.app-content .form-help,
+.app-content .help-text,
+.app-content .minimum-amount {
+    color: rgba(235, 250, 244, 0.70) !important;
+}
+
+
+/* =========================================================
+   FORM BUTTON
+   ========================================================= */
+
+.app-content button[type="submit"],
+.app-content .deposit-btn,
+.app-content .withdraw-btn {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 164, 111, 0.82),
+            rgba(10, 92, 64, 0.82)
+        ) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(143, 255, 210, 0.34) !important;
+
+    border-radius: 10px !important;
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.18),
+        inset 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+.app-content button[type="submit"]:hover,
+.app-content .deposit-btn:hover,
+.app-content .withdraw-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(45, 188, 129, 0.90),
+            rgba(12, 108, 75, 0.90)
+        ) !important;
+
+    border-color: rgba(143, 255, 210, 0.50) !important;
+
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.22),
+        0 0 20px rgba(73, 230, 163, 0.10),
+        inset 0 1px rgba(255, 255, 255, 0.14) !important;
+}
+
+
+/* =========================================================
+   DEPOSIT / WITHDRAW ICON + HEADING
+   ========================================================= */
+
+.app-content h2 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .app-content a[href*="/dashboard"] {
+        margin-bottom: 12px !important;
+        padding: 8px 15px !important;
+    }
+
+    .deposit-card,
+    .withdraw-card,
+    .deposit-section,
+    .withdraw-section,
+    .deposit-form-card,
+    .withdraw-form-card,
+    .deposit-form,
+    .withdraw-form,
+    .transaction-form-card {
+        border-radius: 14px !important;
+        padding: 16px !important;
+    }
+}

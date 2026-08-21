@@ -2,89 +2,124 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Transfer | Rodron Bank</title>
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+    <link
+        rel="stylesheet"
+        th:href="@{/css/style.css}">
+
+    <link
+        rel="stylesheet"
+        th:href="@{/css/glass-reference.css?v=20260821}">
 
 </head>
+
 
 <body>
 
 <div class="app-shell">
 
-    <!-- =====================================================
-         NAVBAR
-         ===================================================== -->
-    <div th:replace="~{fragments/navbar :: navbar('transfer')}"></div>
 
+    <!-- =========================================================
+         NAVBAR
+         ========================================================= -->
+
+    <div
+        th:replace="~{fragments/navbar :: navbar('transfer')}">
+    </div>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
 
     <div class="app-content">
 
-        <!-- =====================================================
-             TOPBAR
-             ===================================================== -->
-        <div th:replace="~{fragments/topbar :: topbar('', 'Transfer Money', 'Send money to another bank account.')}"></div>
+
+        <!-- TOPBAR -->
+
+        <div
+            th:replace="~{fragments/topbar :: topbar('', 'Transfer Money', 'Send money to another bank account.')}">
+        </div>
 
 
-        <!-- =====================================================
-             MAIN CONTENT
-             ===================================================== -->
+
         <main class="container">
 
+
             <div class="card">
+
 
                 <!-- =================================================
                      SUCCESS MESSAGE
                      ================================================= -->
+
                 <div
                     class="alert alert-success"
                     th:if="${success}"
                     th:text="${success}">
+
                     Transfer successful.
+
                 </div>
+
 
 
                 <!-- =================================================
                      ERROR MESSAGE
                      ================================================= -->
+
                 <div
                     class="alert alert-error"
                     th:if="${error}"
                     th:text="${error}">
+
                     Transfer failed.
+
                 </div>
+
 
 
                 <!-- =================================================
                      TRANSFER FORM
                      ================================================= -->
+
                 <form
                     th:action="@{/transfer}"
                     method="post"
                     autocomplete="off"
                     id="transferForm">
 
+
                     <!-- =================================================
-                         CSRF TOKEN
+                         CSRF
                          ================================================= -->
+
                     <input
                         type="hidden"
                         th:name="${_csrf.parameterName}"
                         th:value="${_csrf.token}">
 
 
+
                     <!-- =================================================
                          DESTINATION ACCOUNT NUMBER
                          ================================================= -->
+
                     <div class="form-group">
 
                         <label for="toAccountNumber">
                             Destination Account Number
                         </label>
+
 
                         <input
                             id="toAccountNumber"
@@ -99,6 +134,7 @@
                             placeholder="Enter 16-digit account number"
                             title="Account number must be exactly 16 digits">
 
+
                         <small>
                             Enter the recipient's 16-digit account number.
                         </small>
@@ -106,24 +142,41 @@
                     </div>
 
 
+
                     <!-- =================================================
                          TRANSFER AMOUNT
                          ================================================= -->
+
                     <div class="form-group">
 
                         <label for="amount">
-                            Amount
+                            Amount (₱)
                         </label>
 
-                        <input
-                            id="amount"
-                            type="text"
-                            name="amount"
-                            required
-                            inputmode="decimal"
-                            autocomplete="off"
-                            placeholder="0.00"
-                            title="Enter a valid amount">
+
+                        <div class="deposit-input-wrapper">
+
+                            <span
+                                class="currency-symbol"
+                                aria-hidden="true">
+                                ₱
+                            </span>
+
+
+                            <input
+                                id="amount"
+                                type="text"
+                                name="amount"
+                                required
+                                inputmode="decimal"
+                                autocomplete="off"
+                                placeholder="0.00"
+                                class="money-input"
+                                data-money-input
+                                title="Enter a valid amount">
+
+                        </div>
+
 
                         <small>
                             Enter the amount you want to transfer.
@@ -132,14 +185,20 @@
                     </div>
 
 
+
                     <!-- =================================================
                          DESCRIPTION
                          ================================================= -->
+
                     <div class="form-group">
 
                         <label for="description">
                             Description
+                            <span class="optional-label">
+                                (optional)
+                            </span>
                         </label>
+
 
                         <input
                             id="description"
@@ -147,14 +206,16 @@
                             name="description"
                             maxlength="255"
                             autocomplete="off"
-                            placeholder="Optional">
+                            placeholder="e.g. Payment">
 
                     </div>
+
 
 
                     <!-- =================================================
                          SUBMIT BUTTON
                          ================================================= -->
+
                     <button
                         type="submit"
                         class="btn btn-primary btn-block">
@@ -163,12 +224,15 @@
 
                     </button>
 
+
                 </form>
+
 
 
                 <!-- =================================================
                      BACK TO DASHBOARD
                      ================================================= -->
+
                 <p class="link-alt">
 
                     <a th:href="@{/dashboard}">
@@ -176,6 +240,7 @@
                     </a>
 
                 </p>
+
 
             </div>
 
@@ -186,10 +251,17 @@
 </div>
 
 
+
 <!-- =============================================================
-     FORM VALIDATION / FORMATTING
+     TRANSFER FORM JAVASCRIPT
      ============================================================= -->
+
 <script>
+
+(function () {
+
+    "use strict";
+
 
     /*
      * =========================================================
@@ -198,220 +270,297 @@
      */
 
     const accountInput =
-        document.getElementById("toAccountNumber");
+        document.getElementById(
+            "toAccountNumber"
+        );
+
 
     if (accountInput) {
 
-        accountInput.addEventListener("input", function () {
+        accountInput.addEventListener(
+            "input",
+            function () {
 
-            // Allow numbers only
-            this.value =
-                this.value.replace(/\D/g, "");
-
-            // Maximum 16 digits
-            if (this.value.length > 16) {
-
+                /*
+                 * Numbers only
+                 */
                 this.value =
-                    this.value.slice(0, 16);
-            }
+                    this.value.replace(/\D/g, "");
 
-        });
+
+                /*
+                 * Maximum 16 digits
+                 */
+                if (this.value.length > 16) {
+
+                    this.value =
+                        this.value.substring(0, 16);
+
+                }
+
+            }
+        );
 
     }
 
 
+
     /*
      * =========================================================
-     * AMOUNT FORMATTING
+     * MONEY FORMATTER
      * =========================================================
      *
-     * Display:
+     * 25000       -> 25,000
+     * 250000      -> 250,000
+     * 1000000     -> 1,000,000
+     * 25000.50    -> 25,000.50
      *
-     * 1000       -> 1,000
-     * 45452.23   -> 45,452.23
-     * 1000000.50 -> 1,000,000.50
-     *
-     * The commas are removed before submitting to Spring Boot.
+     */
+
+    function formatMoney(value) {
+
+        if (!value) {
+            return "";
+        }
+
+
+        /*
+         * Remove commas
+         */
+        value =
+            value.replace(/,/g, "");
+
+
+        /*
+         * Numbers and decimal only
+         */
+        value =
+            value.replace(/[^\d.]/g, "");
+
+
+        /*
+         * Keep only ONE decimal point
+         */
+        const firstDot =
+            value.indexOf(".");
+
+
+        if (firstDot !== -1) {
+
+            value =
+                value.substring(0, firstDot + 1) +
+                value
+                    .substring(firstDot + 1)
+                    .replace(/\./g, "");
+
+        }
+
+
+        /*
+         * Split integer / decimal
+         */
+        const parts =
+            value.split(".");
+
+
+        let integerPart =
+            parts[0] || "";
+
+
+        let decimalPart =
+            parts.length > 1
+                ? parts[1]
+                : null;
+
+
+        /*
+         * Remove leading zeros
+         *
+         * 00025000 -> 25000
+         */
+        if (integerPart.length > 1) {
+
+            integerPart =
+                integerPart.replace(
+                    /^0+(?=\d)/,
+                    ""
+                );
+
+        }
+
+
+        /*
+         * Add commas
+         */
+        if (integerPart) {
+
+            integerPart =
+                Number(integerPart)
+                    .toLocaleString("en-US");
+
+        }
+
+
+        /*
+         * Maximum 2 decimal places
+         */
+        if (decimalPart !== null) {
+
+            decimalPart =
+                decimalPart.substring(0, 2);
+
+            return (
+                integerPart +
+                "." +
+                decimalPart
+            );
+
+        }
+
+
+        return integerPart;
+
+    }
+
+
+
+    /*
+     * =========================================================
+     * AMOUNT INPUT
+     * =========================================================
      */
 
     const amountInput =
         document.getElementById("amount");
 
+
     if (amountInput) {
 
-        amountInput.addEventListener("input", function () {
-
-            let value =
-                this.value.replace(/,/g, "");
-
-            /*
-             * Allow numbers and decimal point only.
-             */
-            value =
-                value.replace(/[^\d.]/g, "");
-
-
-            /*
-             * Allow only ONE decimal point.
-             */
-            const firstDot =
-                value.indexOf(".");
-
-            if (firstDot !== -1) {
-
-                value =
-                    value.substring(0, firstDot + 1) +
-                    value
-                        .substring(firstDot + 1)
-                        .replace(/\./g, "");
-            }
-
-
-            /*
-             * Separate integer and decimal parts.
-             */
-            let parts =
-                value.split(".");
-
-            let integerPart =
-                parts[0] || "";
-
-            let decimalPart =
-                parts.length > 1
-                    ? parts[1]
-                    : null;
-
-
-            /*
-             * Remove unnecessary leading zeros.
-             *
-             * 00045 -> 45
-             */
-            if (integerPart.length > 1) {
-
-                integerPart =
-                    integerPart.replace(/^0+(?=\d)/, "");
-            }
-
-
-            /*
-             * Add thousands separators.
-             */
-            if (integerPart) {
-
-                integerPart =
-                    Number(integerPart)
-                        .toLocaleString("en-US");
-            }
-
-
-            /*
-             * Maximum 2 decimal places.
-             */
-            if (decimalPart !== null) {
-
-                decimalPart =
-                    decimalPart.substring(0, 2);
+        amountInput.addEventListener(
+            "input",
+            function () {
 
                 this.value =
-                    integerPart +
-                    "." +
-                    decimalPart;
+                    formatMoney(this.value);
 
-            } else {
-
-                this.value =
-                    integerPart;
             }
-
-        });
+        );
 
     }
+
 
 
     /*
      * =========================================================
-     * BEFORE SUBMIT
+     * SUBMIT VALIDATION
      * =========================================================
-     *
-     * Remove commas so Spring Boot receives:
-     *
-     * 45,452.23
-     *
-     * as:
-     *
-     * 45452.23
      */
 
     const transferForm =
-        document.getElementById("transferForm");
+        document.getElementById(
+            "transferForm"
+        );
+
 
     if (transferForm) {
 
-        transferForm.addEventListener("submit", function (event) {
+        transferForm.addEventListener(
+            "submit",
+            function (event) {
 
-            /*
-             * Validate destination account number.
-             */
-            if (
-                accountInput &&
-                !/^\d{16}$/.test(accountInput.value)
-            ) {
-
-                event.preventDefault();
-
-                alert(
-                    "Destination account number must contain exactly 16 digits."
-                );
-
-                accountInput.focus();
-
-                return;
-            }
-
-
-            /*
-             * Clean amount before sending.
-             */
-            if (amountInput) {
-
-                const cleanAmount =
-                    amountInput.value.replace(/,/g, "");
 
                 /*
-                 * Validate amount.
+                 * =============================================
+                 * VALIDATE ACCOUNT NUMBER
+                 * =============================================
                  */
+
                 if (
-                    !cleanAmount ||
-                    isNaN(cleanAmount) ||
-                    Number(cleanAmount) <= 0
+                    accountInput &&
+                    !/^\d{16}$/.test(
+                        accountInput.value
+                    )
                 ) {
 
                     event.preventDefault();
 
+
                     alert(
-                        "Please enter a valid transfer amount."
+                        "Destination account number must contain exactly 16 digits."
                     );
 
-                    amountInput.focus();
+
+                    accountInput.focus();
 
                     return;
+
                 }
 
 
-                /*
-                 * Send clean numeric value
-                 * to Spring Boot.
-                 */
-                amountInput.value =
-                    cleanAmount;
-            }
 
-        });
+                /*
+                 * =============================================
+                 * VALIDATE AMOUNT
+                 * =============================================
+                 */
+
+                if (amountInput) {
+
+                    const cleanAmount =
+                        amountInput.value.replace(
+                            /,/g,
+                            ""
+                        );
+
+
+                    if (
+                        !cleanAmount ||
+                        isNaN(cleanAmount) ||
+                        Number(cleanAmount) <= 0
+                    ) {
+
+                        event.preventDefault();
+
+
+                        alert(
+                            "Please enter a valid transfer amount."
+                        );
+
+
+                        amountInput.focus();
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * =========================================
+                     * REMOVE COMMA BEFORE SUBMIT
+                     * =========================================
+                     *
+                     * 25,000
+                     *
+                     * becomes
+                     *
+                     * 25000
+                     *
+                     */
+
+                    amountInput.value =
+                        cleanAmount;
+
+                }
+
+            }
+        );
 
     }
 
+})();
+
 </script>
+
 
 </body>
 </html>
