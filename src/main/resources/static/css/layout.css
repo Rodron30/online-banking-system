@@ -1,0 +1,114 @@
+/* =========================================================
+   RODRON BANK — LAYOUT FINAL
+   ========================================================= */
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+
+    background: transparent;
+}
+
+.app-content {
+    min-width: 0;
+    flex: 1 1 auto;
+
+    width: calc(100% - var(--sidebar-width));
+
+    background: transparent;
+}
+
+.container,
+.page-wrap {
+    width: min(calc(100% - 48px), 1200px);
+    margin: 0 auto;
+
+    padding: 30px 0 55px;
+}
+
+.dashboard-container {
+    width: min(calc(100% - 84px), 1210px);
+    margin: 0 auto;
+
+    padding: 22px 0 30px;
+}
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px;
+
+    gap: 16px;
+
+    align-items: start;
+}
+
+.dashboard-main,
+.dashboard-side {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.dashboard-side .card {
+    margin: 0;
+}
+
+/* =========================================================
+   GENERIC GLASS CARDS
+   ========================================================= */
+
+.card,
+.dashboard-card,
+.transactions-card,
+.recent-transactions-card,
+.balance-summary,
+.quick-actions-section,
+.stat-card,
+.admin-card,
+.profile-card,
+.form-card,
+.content-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.76),
+            rgba(255, 255, 255, 0.48)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.78);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card {
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.card:hover,
+.dashboard-card:hover,
+.transactions-card:hover {
+    border-color: rgba(255, 255, 255, 0.95);
+
+    box-shadow: var(--shadow-card-hover);
+}

@@ -1,0 +1,2869 @@
+/* =========================================================
+   RODRON BANK — FINAL DASHBOARD STYLE
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap");
+
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+:root {
+
+    --green-900: #06231a;
+    --green-800: #0a3626;
+    --green-700: #0e4a32;
+    --green-600: #135e3f;
+    --green-500: #1a7a51;
+
+    --green-soft: #e9f3ec;
+
+    --gold: #a9822f;
+    --gold-light: #cca34f;
+    --gold-soft: #f5eeda;
+
+    --navy: #000000;
+    --text: #000000;
+    --muted: #000000;
+    --faint: #000000;
+
+    --bg: #f5f7f4;
+    --white: #ffffff;
+
+    --border: rgba(0, 0, 0, 0.14);
+    --border-strong: rgba(0, 0, 0, 0.22);
+
+    --red: #000000;
+    --red-soft: rgba(0, 0, 0, 0.05);
+
+    --font-display: "Space Grotesk", "Inter", sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --sidebar-width: 236px;
+
+    --radius: 14px;
+    --radius-sm: 9px;
+
+    /* FINAL CARD SHADOW */
+    --shadow:
+        0 2px 5px rgba(0, 0, 0, 0.05),
+        0 8px 22px rgba(0, 0, 0, 0.08);
+
+    --shadow-lg:
+        0 16px 40px rgba(0, 0, 0, 0.14);
+
+    --shadow-hover:
+        0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: var(--bg);
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: #000000;
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    color: #000000;
+    letter-spacing: -0.01em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+}
+
+svg {
+    display: block;
+}
+
+.atm-number,
+.balance-summary-amount,
+.stat-card .num,
+.transactions-card td.amount-positive,
+.transactions-card td.amount-negative,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg,
+.atm-card-foot-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.sidebar-brand-icon svg,
+.sidebar-icon svg,
+.sidebar-secure-icon svg,
+.topbar svg,
+.card-toggle-btn svg,
+.quick-tile-icon svg,
+.sidebar-toggle-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   MOTION
+   ========================================================= */
+
+@keyframes rb-rise {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card,
+.dashboard-card,
+.stat-card,
+.atm-section,
+.transactions-card,
+.balance-summary,
+.quick-actions-section,
+.atm-card-wrapper {
+    animation: rb-rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+
+/* =========================================================
+   APP SHELL
+   ========================================================= */
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+
+    background:
+        linear-gradient(
+            rgba(6, 35, 26, 0.55),
+            rgba(6, 35, 26, 0.55)
+        ),
+        url("/images/bg-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.app-content {
+    min-width: 0;
+    flex: 1 1 auto;
+    width: calc(100% - var(--sidebar-width));
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    z-index: 200;
+
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+
+    flex: 0 0 var(--sidebar-width);
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+    box-shadow:
+        4px 0 18px rgba(0, 0, 0, 0.08);
+
+    scrollbar-width: thin;
+}
+
+.sidebar-brand {
+    width: 100%;
+    height: 88px;
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 20px;
+
+    flex-shrink: 0;
+
+    background: var(--green-800);
+    color: #ffffff;
+}
+
+.sidebar-brand-icon {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--gold);
+    color: var(--green-900);
+}
+
+.sidebar-brand-icon svg {
+    width: 25px;
+    height: 25px;
+
+    fill: currentColor;
+    stroke: none;
+}
+
+.sidebar-brand-text {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+.sidebar-brand-text strong {
+    color: #ffffff;
+
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.sidebar-brand-text small {
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SIDEBAR NAV
+   ========================================================= */
+
+.sidebar-nav {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    padding: 14px 11px;
+}
+
+.sidebar-link {
+    width: 100%;
+    height: 42px;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 13px;
+
+    border-radius: var(--radius-sm);
+    border-left: 2px solid transparent;
+
+    color: #000000;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background: rgba(0, 0, 0, 0.06);
+    color: #000000;
+}
+
+.sidebar-link:hover {
+    transform: translateX(1px);
+}
+
+.sidebar-link.active {
+    border-left-color: var(--green-700);
+    font-weight: 700;
+}
+
+.sidebar-icon {
+    width: 18px;
+    min-width: 18px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000000;
+}
+
+.sidebar-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+   ========================================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+
+    padding: 13px 11px;
+}
+
+.sidebar-logout-form {
+    margin: 0;
+    padding: 0 0 8px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.sidebar-logout-btn {
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 0 13px;
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: #000000;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+.sidebar-logout-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-secure-box {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px;
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(0, 0, 0, 0.035);
+
+    border: 1px dashed rgba(0, 0, 0, 0.22);
+}
+
+.sidebar-secure-icon {
+    width: 21px;
+    height: 21px;
+
+    flex: 0 0 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000000;
+}
+
+.sidebar-secure-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.sidebar-secure-box strong {
+    display: block;
+
+    color: #000000;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.sidebar-secure-box small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #000000;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   SIDEBAR TOGGLE
+   ========================================================= */
+
+.sidebar-toggle-btn {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    border-radius: var(--radius-sm);
+
+    background: #ffffff;
+    color: #000000;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 100;
+}
+
+.sidebar-toggle-btn:hover {
+    background: #f3f3f3;
+}
+
+.sidebar-toggle-btn svg {
+    width: 21px;
+    height: 21px;
+}
+
+.sidebar-backdrop {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 150;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(2px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-backdrop.sidebar-backdrop-open {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    position: relative;
+
+    width: 100%;
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    padding: 16px 28px 13px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.05);
+
+    z-index: 50;
+}
+
+.topbar-welcome {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.topbar-welcome p,
+.topbar-eyebrow {
+    margin: 0;
+
+    color: #000000;
+
+    font-size: 10.5px;
+    font-weight: 600;
+}
+
+.topbar-welcome h1 {
+    margin: 3px 0;
+
+    color: #000000;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+.topbar-subtitle {
+    color: #000000;
+    font-size: 10px;
+}
+
+.topbar-right {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
+
+.topbar-notif-wrapper {
+    position: relative;
+}
+
+.topbar-notif {
+    position: relative;
+
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: var(--radius-sm);
+
+    background: #ffffff;
+    color: #000000;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-notif:hover {
+    background: #f5f5f5;
+    box-shadow: var(--shadow);
+}
+
+.topbar-notif svg {
+    width: 18px;
+    height: 18px;
+}
+
+.topbar-notif-badge {
+    position: absolute;
+
+    top: -5px;
+    right: -5px;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    border: 2px solid #ffffff;
+
+    background: #000000;
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   USER
+   ========================================================= */
+
+.topbar-user {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 3px 9px 3px 3px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+
+    background: #ffffff;
+    color: #000000;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.05);
+
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-user:hover {
+    background: #f5f5f5;
+    box-shadow: var(--shadow);
+}
+
+.topbar-user-avatar {
+    width: 30px;
+    height: 30px;
+
+    flex: 0 0 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #000000;
+    color: #ffffff;
+}
+
+.topbar-user-avatar svg {
+    width: 15px;
+    height: 15px;
+}
+
+.topbar-user-name {
+    max-width: 140px;
+
+    overflow: hidden;
+
+    color: #000000;
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.topbar-chevron {
+    width: 13px;
+    height: 13px;
+    color: #000000;
+}
+
+
+/* =========================================================
+   NOTIFICATION DROPDOWN
+   ========================================================= */
+
+.notif-dropdown {
+    position: absolute;
+
+    top: calc(100% + 9px);
+    right: 0;
+
+    width: 350px;
+    max-width: calc(100vw - 28px);
+
+    max-height: 420px;
+
+    display: none;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 13px;
+
+    box-shadow: var(--shadow-lg);
+
+    overflow: hidden;
+
+    z-index: 1001;
+}
+
+.notif-dropdown.notif-dropdown-open {
+    display: flex;
+    animation: rb-rise 0.18s ease both;
+}
+
+.notif-dropdown-header {
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 11px 14px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.notif-dropdown-header > span {
+    color: #000000;
+
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.notif-dropdown-header button {
+    padding: 5px 7px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #000000;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.notif-dropdown-list {
+    max-height: 355px;
+    overflow-y: auto;
+}
+
+.notif-item {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeeee;
+
+    cursor: pointer;
+}
+
+.notif-item:hover {
+    background: #f7f7f7;
+}
+
+.notif-item-unread {
+    background: #f3f3f3;
+}
+
+.notif-item-icon {
+    width: 31px;
+    height: 31px;
+
+    flex: 0 0 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #000000;
+
+    font-size: 14px;
+}
+
+.notif-item-body {
+    min-width: 0;
+    flex: 1;
+}
+
+.notif-item-message {
+    margin: 0 0 4px;
+
+    color: #000000;
+
+    font-size: 11.5px;
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+.notif-item-time {
+    margin: 0;
+
+    color: #000000;
+
+    font-size: 9.5px;
+}
+
+.notif-empty {
+    padding: 28px 14px;
+
+    text-align: center;
+
+    color: #000000;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CONTAINERS
+   ========================================================= */
+
+.container,
+.page-wrap {
+    width: min(calc(100% - 44px), 1180px);
+
+    margin: 0 auto;
+
+    padding: 26px 0 40px;
+}
+
+.dashboard-container {
+    width: min(calc(100% - 32px), 1180px);
+
+    margin: 0 auto;
+
+    padding: 18px 0 24px;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        248px;
+
+    gap: 15px;
+
+    align-items: start;
+}
+
+.dashboard-main,
+.dashboard-side {
+    min-width: 0;
+}
+
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.dashboard-side {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.dashboard-side .card {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* =========================================================
+   FINAL CARD STYLE
+   ========================================================= */
+
+.card,
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.30);
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.card:hover,
+.dashboard-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card {
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   ATM SECTION
+   ========================================================= */
+
+.atm-section {
+    width: 100%;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: 0;
+
+    box-shadow: none;
+}
+
+.dashboard-section-header {
+    margin: 0;
+
+    padding: 0 2px 8px;
+}
+
+.dashboard-section-header h2 {
+    margin: 0;
+
+    color: #000000;
+
+    font-family: var(--font-display);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ATM CARD WRAPPER
+   ========================================================= */
+
+.atm-card-wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 18px 18px 14px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition: box-shadow 0.18s ease;
+}
+
+.atm-card-wrapper:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* =========================================================
+   ATM CARD
+   ========================================================= */
+
+.atm-card {
+    position: relative;
+
+    width: min(100%, 560px);
+
+    height: 285px;
+    min-height: 285px;
+
+    padding: 24px 26px;
+
+    overflow: hidden;
+
+    border: 0;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            150deg,
+            var(--green-900) 0%,
+            var(--green-700) 55%,
+            var(--green-600) 100%
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 34px rgba(6, 35, 26, 0.24);
+}
+
+.atm-card:hover {
+    box-shadow:
+        0 18px 38px rgba(6, 35, 26, 0.28);
+}
+
+.atm-pattern {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: 0.45;
+
+    background-image:
+        repeating-linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.045) 0,
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px,
+            transparent 34px
+        );
+}
+
+.atm-bank-watermark {
+    position: absolute;
+
+    right: 20px;
+    bottom: 8px;
+
+    width: 210px;
+    height: 165px;
+
+    opacity: 0.09;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.atm-bank-watermark svg {
+    width: 100%;
+    height: 100%;
+
+    fill: #ffffff;
+}
+
+
+/* =========================================================
+   ATM CONTENT
+   ========================================================= */
+
+.atm-card-head,
+.atm-chip-row,
+.atm-number,
+.atm-card-foot {
+    position: relative;
+    z-index: 2;
+}
+
+.atm-card-head {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 14px;
+}
+
+.atm-card-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.atm-card-logo {
+    width: 29px;
+    height: 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.atm-card-logo svg {
+    width: 29px;
+    height: 29px;
+
+    fill: var(--gold-light);
+    stroke: none;
+}
+
+.atm-card-brand strong {
+    color: #ffffff;
+
+    font-family: var(--font-display);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+}
+
+.atm-card-brand small {
+    display: block;
+
+    margin-top: 1px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 7px;
+    font-weight: 600;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.atm-card-type {
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ATM CHIP
+   ========================================================= */
+
+.atm-chip-row {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+.atm-chip {
+    position: relative;
+
+    width: 46px;
+    height: 34px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(100, 70, 10, 0.25);
+
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+}
+
+.atm-chip span {
+    position: absolute;
+
+    background: rgba(60, 42, 6, 0.3);
+}
+
+.atm-chip span:nth-child(1) {
+    left: 50%;
+    top: 0;
+
+    width: 1px;
+    height: 100%;
+}
+
+.atm-chip span:nth-child(2) {
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 1px;
+}
+
+.atm-chip span:nth-child(3) {
+    left: 25%;
+    top: 0;
+
+    width: 1px;
+    height: 100%;
+}
+
+.atm-contactless {
+    width: 23px;
+    height: 23px;
+
+    fill: none;
+
+    stroke: rgba(255, 255, 255, 0.85);
+
+    stroke-width: 2;
+}
+
+
+/* =========================================================
+   ATM NUMBER
+   ========================================================= */
+
+.atm-number {
+    margin-top: 24px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    letter-spacing: 0.12em;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ATM FOOT
+   ========================================================= */
+
+.atm-card-foot {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-top: 26px;
+}
+
+.atm-card-foot-label {
+    color: rgba(255, 255, 255, 0.6);
+
+    font-size: 7.5px;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+.atm-card-foot-value {
+    margin-top: 2px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.atm-card-visa {
+    color: #ffffff;
+
+    font-family: var(--font-display);
+
+    font-size: 22px;
+    font-weight: 700;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   SHOW CARD DETAILS
+   ========================================================= */
+
+.card-toggle-btn {
+    position: relative;
+    z-index: 3;
+
+    width: auto;
+
+    min-width: 150px;
+    max-width: 190px;
+
+    min-height: 32px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 6px 11px;
+
+    border: 1px solid rgba(0, 0, 0, 0.18);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.06);
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.card-toggle-btn:hover {
+    background: #f5f5f5;
+
+    border-color: rgba(0, 0, 0, 0.28);
+
+    color: #000000;
+
+    box-shadow: var(--shadow);
+}
+
+.card-toggle-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+
+/* =========================================================
+   BALANCE SUMMARY
+   ========================================================= */
+
+.balance-summary {
+    padding: 17px;
+
+    min-height: 210px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    color: #000000;
+
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.balance-summary:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.balance-summary-heading,
+.summary-card h2 {
+    margin: 0;
+
+    color: #000000;
+
+    font-family: var(--font-display);
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.balance-summary-heading {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+.balance-summary-heading h2 {
+    margin: 0;
+}
+
+.copy-account-btn {
+    width: 28px;
+    height: 28px;
+
+    flex: 0 0 28px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(0, 0, 0, 0.18);
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    cursor: pointer;
+}
+
+.copy-account-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+.copy-account-btn:hover {
+    background: #f3f3f3;
+}
+
+.copy-account-btn.copied {
+    background: #000000;
+    color: #ffffff;
+}
+
+.account-type-label {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 3px 8px;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.06);
+
+    color: #000000;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.05em;
+
+    text-transform: uppercase;
+}
+
+.balance-summary-amount {
+    margin-top: 7px;
+
+    color: #000000 !important;
+
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.balance-summary-masked {
+    margin-top: 3px;
+
+    color: #000000 !important;
+
+    font-size: 9.5px;
+}
+
+.balance-summary-row {
+    min-height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+}
+
+.balance-summary-row span {
+    color: #000000 !important;
+
+    font-size: 9.5px;
+}
+
+.balance-summary-row strong {
+    color: #000000 !important;
+
+    font-size: 10px;
+}
+
+.balance-summary-link {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-top: 10px;
+
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+
+    color: #000000 !important;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.balance-summary-link:hover {
+    color: #000000 !important;
+}
+
+.balance-summary-link svg {
+    width: 13px;
+    height: 13px;
+}
+
+.balance-summary-details {
+    margin-top: 9px;
+
+    padding-top: 9px;
+
+    border-top: 1px dashed rgba(0, 0, 0, 0.18);
+
+    color: #000000;
+}
+
+.balance-summary-details[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions-section {
+    padding: 16px;
+
+    margin: 0;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    color: #000000;
+
+    transition: box-shadow 0.18s ease;
+}
+
+.quick-actions-section:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.quick-actions-section h2 {
+    margin: 0 0 9px;
+
+    color: #000000;
+
+    font-family: var(--font-display);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.quick-actions-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+.quick-tile {
+    min-height: 64px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 9px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+    border-radius: var(--radius-sm);
+
+    color: #000000 !important;
+
+    font-size: 9.5px;
+    font-weight: 700;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.quick-tile:hover {
+    transform: translateY(-2px);
+
+    background: #f8f8f8;
+
+    border-color: rgba(0, 0, 0, 0.20);
+
+    color: #000000 !important;
+
+    box-shadow: var(--shadow);
+}
+
+.quick-tile-icon {
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #000000 !important;
+
+    font-size: 16px;
+}
+
+.quick-tile-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.quick-tile-deposit,
+.quick-tile-withdraw,
+.quick-tile-transfer,
+.quick-tile-history {
+    background: #ffffff;
+    color: #000000 !important;
+}
+
+
+
+
+
+/* =========================================================
+   AMOUNTS
+   ========================================================= */
+
+.transactions-card td.amount-positive,
+.transactions-card td.amount-negative,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg {
+    color: #000000 !important;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TRANSACTION BADGES
+   ========================================================= */
+
+.transaction-type,
+.transactions-card .badge,
+.transaction-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+
+    padding: 3px 7px;
+
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.06) !important;
+
+    color: #000000 !important;
+
+    font-size: 7.5px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.transaction-status,
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    color: #000000 !important;
+
+    font-size: 8.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.transaction-status::before,
+.status-badge::before {
+    content: "";
+
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background: #000000 !important;
+}
+
+
+/* =========================================================
+   TRANSACTIONS EMPTY / FOOTER
+   ========================================================= */
+
+.transactions-empty {
+    padding: 28px 16px;
+
+    text-align: center;
+
+    color: #000000;
+
+    font-size: 11px;
+}
+
+.transactions-footer {
+    padding: 9px 16px 12px;
+
+    color: #000000;
+
+    font-size: 9px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+
+/* =========================================================
+   GENERIC BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 19px;
+
+    border: 0;
+    border-radius: var(--radius-sm);
+
+    font-family: var(--font-body);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.btn:hover {
+    box-shadow: var(--shadow);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--green-700);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--green-600);
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: #ffffff;
+}
+
+.btn-gold:hover {
+    background: var(--gold-light);
+}
+
+.btn-danger {
+    background: #000000;
+    color: #ffffff;
+
+    border: 1px solid #000000;
+}
+
+.btn-mint {
+    background: rgba(0, 0, 0, 0.06);
+
+    color: #000000;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.btn-small {
+    padding: 6px 11px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+
+.auth-wrap {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px 18px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(6, 35, 26, 0.35),
+            rgba(6, 35, 26, 0.35)
+        ),
+        url("/images/bg-hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.auth-wrap::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: 0.45;
+
+    background-image:
+        repeating-linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.035) 0,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px,
+            transparent 46px
+        );
+}
+
+.auth-card {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    padding: 32px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.10);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-lg);
+
+    animation: rb-rise 0.45s ease both;
+}
+
+.auth-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 0 0 20px;
+}
+
+.auth-brand-icon {
+    width: 37px;
+    height: 37px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: var(--green-800);
+
+    color: var(--gold-light);
+}
+
+.auth-brand-icon svg {
+    width: 23px;
+    height: 23px;
+
+    fill: currentColor;
+
+    stroke: none;
+}
+
+.auth-brand-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+.auth-brand-text strong {
+    font-family: var(--font-display);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #000000;
+}
+
+.auth-brand-text small {
+    margin-top: 2px;
+
+    color: #000000;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.11em;
+
+    text-transform: uppercase;
+}
+
+.auth-card h1 {
+    margin: 0 0 5px;
+
+    color: #000000;
+
+    font-family: var(--font-display);
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.auth-card .sub {
+    margin: 0 0 23px;
+
+    color: #000000;
+
+    font-size: 13px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #000000;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    display: block;
+
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1.5px solid rgba(0, 0, 0, 0.18);
+
+    border-radius: var(--radius-sm);
+
+    background: #fbfcfb;
+
+    color: #000000;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #000000;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #000000;
+
+    font-size: 10px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 9px;
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #000000;
+
+    cursor: pointer;
+}
+
+.link-alt {
+    margin: 18px 0 0;
+
+    text-align: center;
+
+    color: #000000;
+
+    font-size: 13px;
+}
+
+.link-alt a {
+    color: #000000;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert {
+    padding: 11px 14px;
+
+    margin-bottom: 16px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 12.5px;
+}
+
+.alert-error,
+.alert-success {
+    background: rgba(0, 0, 0, 0.06);
+
+    color: #000000;
+
+    border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    width: 100%;
+
+    padding: 18px 10px 22px;
+
+    color: #ffffff !important;
+
+    text-align: center;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) and (min-width: 901px) {
+
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .sidebar {
+        width: 220px;
+        min-width: 220px;
+        max-width: 220px;
+
+        flex-basis: 220px;
+    }
+
+    .app-content {
+        width: calc(100% - 220px);
+    }
+
+    .dashboard-container {
+        width: min(calc(100% - 30px), 1050px);
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            235px;
+
+        gap: 13px;
+    }
+
+    .atm-card {
+        width: min(100%, 540px);
+
+        height: 270px;
+        min-height: 270px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .app-content {
+        width: 100%;
+        margin: 0;
+    }
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: min(290px, 84vw);
+        min-width: 0;
+        max-width: min(290px, 84vw);
+
+        height: 100vh;
+
+        transform: translateX(-105%);
+
+        transition:
+            transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+
+        z-index: 10000;
+
+        box-shadow:
+            18px 0 44px rgba(0, 0, 0, 0.20);
+
+        pointer-events: none;
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+
+        pointer-events: auto;
+    }
+
+    .sidebar-nav {
+        overflow-y: auto;
+
+        flex: 1 1 auto;
+    }
+
+    .sidebar-link,
+    .sidebar-logout-btn {
+        min-height: 44px;
+        height: 44px;
+    }
+
+    .sidebar-toggle-btn {
+        display: inline-flex;
+
+        flex-shrink: 0;
+    }
+
+    .topbar {
+        min-height: 72px;
+
+        padding: 11px 15px;
+
+        gap: 11px;
+    }
+
+    .topbar-welcome h1 {
+        font-size: 19px;
+    }
+
+    .topbar-subtitle {
+        display: none;
+    }
+
+    .topbar-right {
+        gap: 8px;
+    }
+
+    .dashboard-container {
+        width: min(calc(100% - 24px), 760px);
+
+        padding: 15px 0 20px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+    .dashboard-main {
+        order: 1;
+    }
+
+    .dashboard-side {
+        order: 2;
+    }
+
+    .atm-card {
+        width: min(100%, 560px);
+
+        height: 260px;
+        min-height: 260px;
+    }
+
+    .transactions-card table {
+        min-width: 620px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 9px 11px;
+    }
+
+    .sidebar-toggle-btn {
+        width: 38px;
+        height: 38px;
+
+        flex-basis: 38px;
+    }
+
+    .sidebar-toggle-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .topbar-welcome h1 {
+        font-size: 17px;
+    }
+
+    .topbar-eyebrow {
+        font-size: 9px;
+    }
+
+    .topbar-user-name,
+    .topbar-chevron {
+        display: none;
+    }
+
+    .topbar-user {
+        padding: 3px;
+
+        border: 0;
+    }
+
+    .topbar-user-avatar {
+        width: 33px;
+        height: 33px;
+
+        flex-basis: 33px;
+    }
+
+    .dashboard-container {
+        width: calc(100% - 18px);
+
+        padding: 13px 0 18px;
+    }
+
+    .atm-card-wrapper {
+        padding: 14px 12px 12px;
+    }
+
+    .atm-card {
+        width: 100%;
+
+        height: 210px;
+        min-height: 210px;
+
+        padding: 19px;
+
+        border-radius: 15px;
+    }
+
+    .atm-card-brand strong {
+        font-size: 14px;
+    }
+
+    .atm-card-brand small {
+        font-size: 6px;
+    }
+
+    .atm-card-type {
+        font-size: 7.5px;
+    }
+
+    .atm-chip-row {
+        margin-top: 18px;
+    }
+
+    .atm-chip {
+        width: 42px;
+        height: 31px;
+    }
+
+    .atm-number {
+        margin-top: 15px;
+
+        font-size: 15px;
+
+        letter-spacing: 0.09em;
+    }
+
+    .atm-card-foot {
+        margin-top: 17px;
+    }
+
+    .atm-card-foot-label {
+        font-size: 7px;
+    }
+
+    .atm-card-foot-value {
+        font-size: 10px;
+    }
+
+    .atm-card-visa {
+        font-size: 19px;
+    }
+
+    .card-toggle-btn {
+        width: auto;
+
+        min-width: 145px;
+
+        min-height: 34px;
+
+        margin-top: 8px;
+
+        padding: 5px 9px;
+
+        font-size: 8.5px;
+    }
+
+    .balance-summary {
+        padding: 16px;
+    }
+
+    .balance-summary-amount {
+        font-size: 21px;
+    }
+
+    .quick-actions-section {
+        padding: 14px;
+    }
+
+    .quick-actions-grid {
+        gap: 8px;
+    }
+
+    .quick-tile {
+        min-height: 60px;
+    }
+
+    .card {
+        padding: 17px 14px;
+
+        margin-bottom: 11px;
+    }
+
+    .container,
+    .page-wrap {
+        width: 100%;
+
+        padding: 15px 10px 26px;
+    }
+
+    .auth-card {
+        padding: 27px 22px;
+    }
+
+    .transactions-card-header {
+        padding: 13px 13px 8px;
+    }
+
+    .transactions-card-header h2 {
+        font-size: 14px;
+    }
+
+    .transactions-card-header p {
+        font-size: 10px;
+    }
+
+    .transactions-card thead th {
+        padding: 8px 10px;
+
+        font-size: 9.5px;
+    }
+
+    .transactions-card tbody td {
+        padding: 8px 10px;
+
+        font-size: 9.5px;
+    }
+
+    .dashboard-footer {
+        padding: 16px 8px 20px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .topbar {
+        padding: 8px 9px;
+    }
+
+    .topbar-welcome h1 {
+        font-size: 16px;
+    }
+
+    .dashboard-container {
+        width: calc(100% - 14px);
+    }
+
+    .atm-card {
+        height: 202px;
+        min-height: 202px;
+
+        padding: 16px;
+    }
+
+    .atm-card-brand strong {
+        font-size: 13px;
+    }
+
+    .atm-chip-row {
+        margin-top: 16px;
+    }
+
+    .atm-number {
+        margin-top: 14px;
+
+        font-size: 11.5px;
+    }
+
+    .atm-card-foot {
+        margin-top: 15px;
+    }
+
+    .atm-card-visa {
+        font-size: 17px;
+    }
+
+    .balance-summary-amount {
+        font-size: 20px;
+    }
+
+    .quick-tile {
+        min-height: 60px;
+    }
+
+    .dashboard-footer {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .sidebar {
+        width: 285px;
+
+        max-width: 88vw;
+    }
+
+    .topbar {
+        gap: 6px;
+    }
+
+    .topbar-notif {
+        display: none;
+    }
+
+    .atm-card {
+        padding: 14px;
+    }
+
+    .atm-number {
+        font-size: 10.5px;
+
+        letter-spacing: 0.07em;
+    }
+
+    .atm-card-visa {
+        font-size: 16px;
+    }
+
+    .quick-actions-grid {
+        gap: 7px;
+    }
+
+    .transactions-card table {
+        min-width: 590px;
+    }
+
+    .dashboard-footer {
+        font-size: 10.5px;
+    }
+}
+
+
+/* =========================================================
+   GLOBAL FINAL TEXT
+   ========================================================= */
+
+.topbar *,
+.sidebar-link,
+.sidebar-icon,
+.sidebar-bottom *,
+.dashboard-section-header *,
+.balance-summary *,
+.quick-actions-section h2,
+.quick-tile,
+.quick-tile *,
+.transactions-card-header *,
+.transactions-card th,
+.transactions-card td,
+.transactions-empty,
+.transactions-footer,
+.balance-summary-amount,
+.balance-summary-masked,
+.balance-summary-row span,
+.balance-summary-row strong,
+.transaction-status,
+.status-badge,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg {
+    color: #000000;
+}
+
+
+/* =========================================================
+   KEEP ATM TEXT WHITE
+   ========================================================= */
+
+.atm-card *,
+.atm-card .atm-card-brand strong,
+.atm-card .atm-card-brand small,
+.atm-card .atm-card-type,
+.atm-card .atm-number,
+.atm-card .atm-card-foot-label,
+.atm-card .atm-card-foot-value,
+.atm-card .atm-card-visa {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER WHITE
+   ========================================================= */
+
+.dashboard-footer,
+.dashboard-footer * {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #000000;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+
+        transition: none !important;
+
+        scroll-behavior: auto !important;
+    }
+}

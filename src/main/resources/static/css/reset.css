@@ -1,0 +1,119 @@
+/* =========================================================
+   RODRON BANK — RESET FINAL
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.72),
+            transparent 38%
+        ),
+        var(--bg);
+
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: var(--font-body);
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(255, 255, 255, 0.70),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 90% 100%,
+            rgba(211, 230, 218, 0.42),
+            transparent 38%
+        ),
+        var(--bg);
+
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
+}
+
+svg {
+    display: block;
+}
+
+/* NUMBERS */
+
+.atm-number,
+.balance-summary-amount,
+.stat-card .num,
+.transactions-card td.amount-positive,
+.transactions-card td.amount-negative,
+.amount-positive,
+.amount-negative,
+.amount-pos,
+.amount-neg,
+.atm-card-foot-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+}
+
+/* ICONS */
+
+.sidebar-brand-icon svg,
+.sidebar-icon svg,
+.sidebar-secure-icon svg,
+.topbar svg,
+.card-toggle-btn svg,
+.quick-tile-icon svg,
+.sidebar-toggle-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

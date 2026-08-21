@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit &amp; Withdraw | Rodron Bank</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <div th:replace="~{fragments/navbar :: navbar('deposit')}"></div>
+
+    <div class="app-content">
+
+        <div th:replace="~{fragments/topbar :: topbar('', 'Deposit &amp; Withdraw', 'Deposit or withdraw money from your account.')}"></div>
+
+        <div class="page-wrap">
+
+            <!-- Back link -->
+            <p class="link-alt" style="margin:0 0 14px; text-align:left;">
+                <a th:href="@{/dashboard}">← Back to Dashboard</a>
+            </p>
+
+            <!-- Deposit -->
+            <div class="card"><h2 class="section-title">💰 Deposit</h2>
+                <form
+                    th:action="@{/deposit}"
+                    method="post">
+
+                    <!-- CSRF Protection -->
+                    <input
+                        type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}">
+                    <div class="form-group">
+                        <label for="depositAmount">Amount (₱)</label>
+                        <input
+                            id="depositAmount"
+                            type="number"
+                            name="amount"
+                            step="0.01"
+                            min="0.01"
+                            required
+                            inputmode="decimal"
+                            autocomplete="off"
+                            placeholder="0.00">
+                        <small>Minimum amount: ₱0.01</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="depositDescription">Description (optional)</label>
+                        <input
+                            id="depositDescription"
+                            type="text"
+                            name="description"
+                            maxlength="255"
+                            autocomplete="off"
+                            placeholder="e.g. Cash deposit">
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-gold btn-block">Deposit
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Withdraw -->
+            <div class="card">
+                <h2 class="section-title">💸 Withdraw</h2>
+
+                <form
+                    th:action="@{/withdraw}"
+                    method="post">
+
+                    <!-- CSRF Protection -->
+                    <input
+                        type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}">
+                    <div class="form-group">
+                        <label for="withdrawAmount">Amount (₱)</label>
+                        <input
+                            id="withdrawAmount"
+                            type="number"
+                            name="amount"
+                            step="0.01"
+                            min="0.01"
+                            required
+                            inputmode="decimal"
+                            autocomplete="off"
+                            placeholder="0.00">
+                        <small>Minimum amount: ₱0.01</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="withdrawDescription">Description (optional)</label>
+                        <input
+                            id="withdrawDescription"
+                            type="text"
+                            name="description"
+                            maxlength="255"
+                            autocomplete="off"
+                            placeholder="e.g. ATM withdrawal">
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger btn-block">Withdraw
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1059 @@
+/* =========================================================
+   RODRON BANK — ADMIN DASHBOARD
+   FINAL FIX
+   ========================================================= */
+
+/* =========================================================
+   ADMIN PAGE
+   ========================================================= */
+
+.admin-page {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+
+    color: #111111;
+}
+
+/* =========================================================
+   ADMIN HEADER
+   ========================================================= */
+
+.admin-page .page-header,
+.admin-page .admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin-bottom: 20px;
+    padding: 18px 20px;
+
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(210, 222, 215, 0.90);
+    border-radius: 14px;
+
+    box-shadow:
+        0 15px 32px rgba(3, 30, 21, 0.11);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   ADMIN TITLE
+   ========================================================= */
+
+.admin-page .section-title,
+.admin-page h1,
+.admin-page h2,
+.admin-page h3 {
+    color: #111111;
+}
+
+.admin-page .section-title {
+    margin: 0;
+
+    font-size: 25px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.admin-page .page-subtitle {
+    margin: 5px 0 0;
+
+    color: #222222;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* =========================================================
+   SYSTEM ADMINISTRATOR
+   ========================================================= */
+
+.admin-user,
+.admin-profile,
+.system-administrator,
+.admin-user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 44px;
+    padding: 7px 12px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid rgba(210, 222, 215, 0.90);
+    border-radius: 12px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.08),
+        0 2px 5px rgba(0, 0, 0, 0.04);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #111111;
+}
+
+/* System Administrator icon
+   IMPORTANT: never black */
+
+.admin-user svg,
+.admin-profile svg,
+.system-administrator svg,
+.admin-user-chip svg,
+.admin-user .icon,
+.admin-profile .icon,
+.system-administrator .icon,
+.admin-user-chip .icon {
+    width: 34px;
+    height: 34px;
+
+    flex: 0 0 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    border-radius: 9px;
+
+    background: rgba(244, 208, 0, 0.18) !important;
+    color: #c89f00 !important;
+
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+/* If icon is an element instead of SVG */
+
+.admin-user > i,
+.admin-profile > i,
+.system-administrator > i,
+.admin-user-chip > i {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(244, 208, 0, 0.18);
+    color: #c89f00;
+}
+
+/* Administrator name */
+
+.admin-user strong,
+.admin-profile strong,
+.system-administrator strong,
+.admin-user-chip strong {
+    color: #111111 !important;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   USER DASHBOARD BUTTON
+   ========================================================= */
+
+.admin-page a[href*="/dashboard"],
+.admin-back-link,
+.back-dashboard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 9px 15px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid rgba(210, 222, 215, 0.90);
+    border-radius: 11px;
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.05);
+
+    color: #111111 !important;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.admin-page a[href*="/dashboard"]:hover,
+.admin-back-link:hover,
+.back-dashboard:hover {
+    background: rgba(233, 243, 236, 0.97);
+
+    color: #111111 !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.11),
+        0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================================
+   STATISTICS GRID
+   ========================================================= */
+
+.admin-stats,
+.admin-summary,
+.admin-stat-grid,
+.stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+.admin-stat,
+.admin-stat-card,
+.stat-card,
+.summary-card {
+    position: relative;
+
+    min-height: 105px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 18px 20px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid rgba(210, 222, 215, 0.90);
+    border-radius: 14px;
+
+    box-shadow:
+        0 15px 32px rgba(3, 30, 21, 0.11);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    overflow: hidden;
+}
+
+.admin-stat:hover,
+.admin-stat-card:hover,
+.stat-card:hover,
+.summary-card:hover {
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.11),
+        0 3px 9px rgba(0, 0, 0, 0.06);
+
+    transform: translateY(-1px);
+}
+
+/* Big number */
+
+.admin-stat strong,
+.admin-stat-card strong,
+.stat-card strong,
+.summary-card strong,
+.admin-stat .number,
+.admin-stat-card .number,
+.stat-card .number,
+.summary-card .number {
+    display: block;
+
+    color: #111111 !important;
+
+    font-size: 27px;
+    line-height: 1;
+
+    font-weight: 900;
+}
+
+/* Label */
+
+.admin-stat span,
+.admin-stat-card span,
+.stat-card span,
+.summary-card span,
+.admin-stat .label,
+.admin-stat-card .label,
+.stat-card .label,
+.summary-card .label {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #222222 !important;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   GENERAL ADMIN CARDS
+   ========================================================= */
+
+.admin-page > .card,
+.admin-card,
+.admin-panel,
+.admin-section,
+.admin-box {
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.97) !important;
+
+    border: 1px solid rgba(210, 222, 215, 0.90) !important;
+    border-radius: 14px !important;
+
+    box-shadow:
+        0 15px 32px rgba(3, 30, 21, 0.11) !important;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.admin-page .section-header,
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+.admin-page .section-header h2,
+.admin-page .section-header h3,
+.admin-section-header h2,
+.admin-section-header h3 {
+    margin: 0;
+
+    color: #111111 !important;
+
+    font-size: 18px;
+    font-weight: 850;
+}
+
+.admin-page .section-header p,
+.admin-section-header p {
+    margin: 3px 0 0;
+
+    color: #222222 !important;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.admin-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin: 0;
+
+    background: rgba(255, 255, 255, 0.97) !important;
+
+    border: 1px solid rgba(210, 222, 215, 0.90);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 32px rgba(3, 30, 21, 0.11);
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.admin-table,
+.accounts-table,
+.transactions-admin-table {
+    width: 100%;
+
+    min-width: 980px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    table-layout: auto;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.admin-table thead th,
+.accounts-table thead th,
+.transactions-admin-table thead th {
+    height: 48px;
+
+    padding: 0 16px;
+
+    background: rgba(0, 0, 0, 0.035) !important;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+
+    color: #111111 !important;
+
+    font-size: 12px;
+    font-weight: 850;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.admin-table tbody td,
+.accounts-table tbody td,
+.transactions-admin-table tbody td {
+    height: 52px;
+
+    padding: 9px 16px;
+
+    background: transparent !important;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+    color: #111111 !important;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td,
+.accounts-table tbody tr:last-child td,
+.transactions-admin-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Hover */
+
+.admin-table tbody tr:hover td,
+.accounts-table tbody tr:hover td,
+.transactions-admin-table tbody tr:hover td {
+    background: rgba(0, 0, 0, 0.025) !important;
+
+    color: #111111 !important;
+}
+
+/* =========================================================
+   ACCOUNT NUMBER / OWNER / USERNAME
+   ========================================================= */
+
+.accounts-table td:nth-child(1),
+.accounts-table td:nth-child(2),
+.accounts-table td:nth-child(3) {
+    color: #111111 !important;
+}
+
+/* =========================================================
+   BALANCE
+   ========================================================= */
+
+.accounts-table td:nth-child(4),
+.transactions-admin-table td:nth-child(6),
+.transactions-admin-table td:nth-child(7) {
+    color: #111111 !important;
+    font-weight: 800;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-chip,
+.status-badge,
+.badge-active,
+.active {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(34, 197, 94, 0.13) !important;
+
+    border: 1px solid rgba(34, 197, 94, 0.28);
+
+    color: #15803d !important;
+
+    font-size: 10px;
+    font-weight: 850;
+}
+
+/* =========================================================
+   POSITIVE AMOUNT
+   ========================================================= */
+
+.amount-positive,
+.positive,
+.amount.credit,
+.credit {
+    color: #15803d !important;
+
+    font-weight: 850;
+}
+
+/* =========================================================
+   NEGATIVE AMOUNT
+   ========================================================= */
+
+.amount-negative,
+.negative,
+.amount.debit,
+.debit {
+    color: #dc2626 !important;
+
+    font-weight: 850;
+}
+
+/* =========================================================
+   FREEZE BUTTON — YELLOW
+   ========================================================= */
+
+.admin-actions .btn-freeze,
+.admin-actions button[name="action"][value="freeze"],
+.admin-actions .freeze-btn,
+button.btn-freeze,
+button.freeze-btn {
+    min-width: 64px;
+    min-height: 34px;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(234, 179, 8, 0.38) !important;
+    border-radius: 8px;
+
+    background: rgba(234, 179, 8, 0.15) !important;
+
+    color: #a16207 !important;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(234, 179, 8, 0.12);
+}
+
+.admin-actions .btn-freeze:hover,
+.admin-actions button[name="action"][value="freeze"]:hover,
+.admin-actions .freeze-btn:hover,
+button.btn-freeze:hover,
+button.freeze-btn:hover {
+    background: rgba(234, 179, 8, 0.24) !important;
+
+    color: #854d0e !important;
+}
+
+/* =========================================================
+   DELETE BUTTON — RED
+   ========================================================= */
+
+.admin-actions .btn-delete,
+.admin-actions button[name="action"][value="delete"],
+.admin-actions .delete-btn,
+button.btn-delete,
+button.delete-btn {
+    min-width: 64px;
+    min-height: 34px;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(220, 38, 38, 0.35) !important;
+    border-radius: 8px;
+
+    background: rgba(220, 38, 38, 0.12) !important;
+
+    color: #dc2626 !important;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(220, 38, 38, 0.10);
+}
+
+.admin-actions .btn-delete:hover,
+.admin-actions button[name="action"][value="delete"]:hover,
+.admin-actions .delete-btn:hover,
+button.btn-delete:hover,
+button.delete-btn:hover {
+    background: rgba(220, 38, 38, 0.21) !important;
+
+    color: #b91c1c !important;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.admin-actions {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+.admin-actions form {
+    display: inline-flex !important;
+
+    margin: 0;
+    padding: 0;
+}
+
+.admin-actions .btn-small {
+    min-width: 64px;
+    min-height: 34px;
+
+    padding: 7px 12px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   TRANSACTION DESCRIPTION
+   ========================================================= */
+
+.transactions-admin-table td:nth-child(4) {
+    color: #111111 !important;
+}
+
+/* =========================================================
+   COUNTERPARTY
+   ========================================================= */
+
+.transactions-admin-table td:nth-child(5) {
+    color: #222222 !important;
+}
+
+/* =========================================================
+   REMOVE UNWANTED GREEN TEXT
+   ========================================================= */
+
+.admin-page a:not(.btn-freeze):not(.btn-delete):not(.freeze-btn):not(.delete-btn),
+.admin-page p,
+.admin-page span,
+.admin-page label,
+.admin-page td,
+.admin-page th {
+    color: #111111;
+}
+
+/* Keep positive/status colors */
+
+.admin-page .status-chip,
+.admin-page .status-badge,
+.admin-page .badge-active,
+.admin-page .active,
+.admin-page .amount-positive,
+.admin-page .positive,
+.admin-page .credit {
+    color: #15803d !important;
+}
+
+.admin-page .amount-negative,
+.admin-page .negative,
+.admin-page .debit {
+    color: #dc2626 !important;
+}
+
+/* =========================================================
+   BUTTON RESET
+   ========================================================= */
+
+.admin-page button {
+    font-family: inherit;
+}
+
+/* Do not allow generic .btn-danger to become black */
+
+.admin-page .btn-danger {
+    background: rgba(220, 38, 38, 0.12) !important;
+
+    border: 1px solid rgba(220, 38, 38, 0.35) !important;
+
+    color: #dc2626 !important;
+}
+
+/* =========================================================
+   BOX SHADOW FOR ALL MAIN ADMIN ELEMENTS
+   ========================================================= */
+
+.admin-page .card,
+.admin-page .admin-card,
+.admin-page .admin-panel,
+.admin-page .admin-box,
+.admin-page .stat-card,
+.admin-page .admin-stat,
+.admin-page .admin-stat-card,
+.admin-page .summary-card,
+.admin-page .page-header,
+.admin-page .admin-header,
+.admin-page .admin-user,
+.admin-page .admin-profile,
+.admin-page .system-administrator,
+.admin-page .admin-user-chip,
+.admin-page a[href*="/dashboard"],
+.admin-table-wrapper {
+    box-shadow:
+        0 15px 32px rgba(3, 30, 21, 0.11);
+}
+
+/* =========================================================
+   TRANSPARENT TABLE ROWS
+   ========================================================= */
+
+.admin-table tbody tr,
+.accounts-table tbody tr,
+.transactions-admin-table tbody tr {
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .admin-page {
+        width: 100%;
+
+        padding: 18px 14px 35px;
+    }
+
+    .admin-stats,
+    .admin-summary,
+    .admin-stat-grid,
+    .stats-grid {
+        grid-template-columns: repeat(3, minmax(160px, 1fr));
+
+        overflow-x: auto;
+
+        padding-bottom: 3px;
+    }
+
+    .admin-page .page-header,
+    .admin-page .admin-header {
+        padding: 16px;
+    }
+
+    .admin-page > .card,
+    .admin-card,
+    .admin-panel,
+    .admin-section,
+    .admin-box {
+        padding: 18px;
+    }
+
+    .admin-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .admin-table,
+    .accounts-table,
+    .transactions-admin-table {
+        min-width: 980px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-page {
+        padding: 12px 10px 28px;
+    }
+
+    .admin-page .page-header,
+    .admin-page .admin-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 15px;
+
+        border-radius: 12px;
+    }
+
+    .admin-page .section-title {
+        font-size: 20px;
+    }
+
+    .admin-page .page-subtitle {
+        font-size: 12px;
+    }
+
+    .admin-user,
+    .admin-profile,
+    .system-administrator,
+    .admin-user-chip {
+        width: 100%;
+    }
+
+    .admin-stats,
+    .admin-summary,
+    .admin-stat-grid,
+    .stats-grid {
+        grid-template-columns: repeat(3, 180px);
+
+        overflow-x: auto;
+    }
+
+    .admin-stat,
+    .admin-stat-card,
+    .stat-card,
+    .summary-card {
+        min-height: 96px;
+
+        padding: 15px;
+    }
+
+    .admin-stat strong,
+    .admin-stat-card strong,
+    .stat-card strong,
+    .summary-card strong {
+        font-size: 24px;
+    }
+
+    .admin-page > .card,
+    .admin-card,
+    .admin-panel,
+    .admin-section,
+    .admin-box {
+        padding: 15px;
+
+        border-radius: 11px !important;
+    }
+
+    .admin-page .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-table-wrapper {
+        border-radius: 10px;
+    }
+
+    .admin-table,
+    .accounts-table,
+    .transactions-admin-table {
+        min-width: 980px;
+    }
+
+    .admin-table thead th,
+    .accounts-table thead th,
+    .transactions-admin-table thead th {
+        height: 46px;
+
+        padding: 0 13px;
+
+        font-size: 11px;
+    }
+
+    .admin-table tbody td,
+    .accounts-table tbody td,
+    .transactions-admin-table tbody td {
+        height: 48px;
+
+        padding: 8px 13px;
+
+        font-size: 12px;
+    }
+
+    .admin-actions {
+        gap: 6px;
+    }
+
+    .admin-actions .btn-small {
+        min-height: 31px;
+
+        padding: 6px 10px;
+
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .admin-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .admin-page > .card,
+    .admin-card,
+    .admin-panel,
+    .admin-section,
+    .admin-box {
+        padding: 12px;
+    }
+
+    .admin-table,
+    .accounts-table,
+    .transactions-admin-table {
+        min-width: 940px;
+    }
+}
+
+/* =========================================================
+   FINAL OVERRIDE
+   Prevent old CSS from bringing back white cards,
+   green text, or black action buttons.
+   ========================================================= */
+
+.admin-page,
+.admin-page * {
+    box-sizing: border-box;
+}
+
+.admin-page .card,
+.admin-page > .card,
+.admin-page .admin-card,
+.admin-page .admin-panel,
+.admin-page .admin-section,
+.admin-page .admin-box,
+.admin-page .stat-card,
+.admin-page .admin-stat,
+.admin-page .admin-stat-card,
+.admin-page .summary-card {
+    background-color: transparent !important;
+}
+
+.admin-page .admin-table-wrapper {
+    background-color: transparent !important;
+}
+
+.admin-page .admin-table tbody td,
+.admin-page .accounts-table tbody td,
+.admin-page .transactions-admin-table tbody td {
+    background-color: transparent !important;
+}
+
+/* Normal text = black */
+
+.admin-page h1,
+.admin-page h2,
+.admin-page h3,
+.admin-page p,
+.admin-page span,
+.admin-page label,
+.admin-page td,
+.admin-page th,
+.admin-page strong {
+    color: #111111;
+}
+
+/* Exceptions */
+
+.admin-page .status-chip,
+.admin-page .status-badge,
+.admin-page .badge-active,
+.admin-page .active {
+    color: #15803d !important;
+}
+
+.admin-page .amount-positive,
+.admin-page .positive,
+.admin-page .credit {
+    color: #15803d !important;
+}
+
+.admin-page .amount-negative,
+.admin-page .negative,
+.admin-page .debit {
+    color: #dc2626 !important;
+}
+
+.admin-page .btn-freeze,
+.admin-page .freeze-btn {
+    color: #a16207 !important;
+}
+
+.admin-page .btn-delete,
+.admin-page .delete-btn,
+.admin-page .btn-danger {
+    color: #dc2626 !important;
+}
+
+/* Administrator icon stays gold */
+
+.admin-page .system-administrator svg,
+.admin-page .admin-user svg,
+.admin-page .admin-profile svg,
+.admin-page .admin-user-chip svg {
+    background: rgba(244, 208, 0, 0.18) !important;
+    color: #c89f00 !important;
+    fill: currentColor;
+    stroke: currentColor;
+}

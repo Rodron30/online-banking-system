@@ -1,0 +1,1181 @@
+/* =========================================================
+   RODRON BANK — FINAL CREATIVE LAYOUT
+   This file is loaded LAST from style.css.
+   No HTML changes required.
+   ========================================================= */
+
+:root {
+    --rb-sidebar: 218px;
+    --rb-max: 1280px;
+    --rb-gap: 18px;
+    --rb-green-deep: #063a29;
+    --rb-green: #08734f;
+    --rb-green-bright: #0a865b;
+    --rb-gold: #caa14b;
+    --rb-white: rgba(255,255,255,.97);
+    --rb-line: rgba(213,225,218,.92);
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+}
+
+body {
+    background: #f4f7f5 !important;
+}
+
+/* =========================================================
+   LOGIN / AUTH
+   ========================================================= */
+
+.auth-wrap {
+    position: relative !important;
+    isolation: isolate !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 28px !important;
+    background:
+        linear-gradient(135deg, rgba(3,38,27,.84), rgba(5,84,57,.72)),
+        url("/images/bg-hero.jpg") center / cover no-repeat !important;
+}
+
+.auth-card {
+    position: relative !important;
+    z-index: 3 !important;
+    width: min(430px, calc(100vw - 32px)) !important;
+    padding: 32px !important;
+    border-radius: 22px !important;
+    background: rgba(255,255,255,.96) !important;
+    border: 1px solid rgba(255,255,255,.72) !important;
+    box-shadow: 0 30px 80px rgba(0,25,17,.34) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+.auth-card h1 {
+    margin-top: 22px !important;
+    margin-bottom: 5px !important;
+    font-size: 27px !important;
+}
+
+.auth-card .sub {
+    margin-bottom: 24px !important;
+}
+
+.auth-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+}
+
+.auth-brand-icon {
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
+    border-radius: 10px !important;
+}
+
+.auth-brand-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.auth-brand-text strong {
+    font-size: 13px !important;
+    letter-spacing: .06em !important;
+}
+
+.auth-brand-text small {
+    font-size: 6px !important;
+    letter-spacing: .12em !important;
+}
+
+.auth-card .form-group {
+    margin-bottom: 16px !important;
+}
+
+.auth-card input {
+    min-height: 43px !important;
+    border-radius: 9px !important;
+}
+
+.auth-card .btn-block {
+    min-height: 43px !important;
+    margin-top: 4px !important;
+    border-radius: 9px !important;
+}
+
+/* =========================================================
+   DASHBOARD BACKDROP
+   ========================================================= */
+
+.app-shell {
+    position: relative !important;
+    isolation: isolate !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    background:
+        linear-gradient(rgba(4,43,31,.58), rgba(4,43,31,.62)),
+        url("/images/bg-hero.jpg") center / cover fixed no-repeat !important;
+}
+
+.app-content {
+    min-width: 0 !important;
+    width: calc(100% - var(--rb-sidebar)) !important;
+    flex: 1 1 auto !important;
+    background: transparent !important;
+}
+
+.app-content::before,
+.app-content::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar,
+.rd-sidebar {
+    width: var(--rb-sidebar) !important;
+    min-width: var(--rb-sidebar) !important;
+    max-width: var(--rb-sidebar) !important;
+    flex: 0 0 var(--rb-sidebar) !important;
+    background: rgba(255,255,255,.98) !important;
+    border-right: 1px solid #dfe7e2 !important;
+}
+
+.sidebar-brand,
+.sidebar-logo,
+.rd-sidebar-logo {
+    min-height: 86px !important;
+    height: 86px !important;
+    padding: 13px 18px !important;
+}
+
+.sidebar-brand-icon {
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+    border-radius: 10px !important;
+}
+
+.sidebar-brand-icon svg {
+    width: 23px !important;
+    height: 23px !important;
+}
+
+.sidebar-brand-text strong {
+    font-size: 14px !important;
+}
+
+.sidebar-brand-text small {
+    margin-top: 3px !important;
+    font-size: 7px !important;
+}
+
+.sidebar-nav,
+.rd-sidebar-nav {
+    padding: 14px 10px !important;
+    gap: 4px !important;
+}
+
+.sidebar-link,
+.sidebar a,
+.nav-link,
+.rd-sidebar a {
+    height: 41px !important;
+    min-height: 41px !important;
+    padding: 0 12px !important;
+    gap: 10px !important;
+    border-radius: 9px !important;
+    font-size: 11px !important;
+}
+
+.sidebar-link.active {
+    box-shadow: inset 0 0 0 1px rgba(202,161,75,.16) !important;
+}
+
+.sidebar-icon,
+.sidebar-icon svg {
+    width: 17px !important;
+    height: 17px !important;
+}
+
+.sidebar-bottom,
+.rd-sidebar-bottom {
+    padding: 10px !important;
+    gap: 10px !important;
+}
+
+.sidebar-logout-btn,
+.sidebar-bottom .logout {
+    height: 38px !important;
+    min-height: 38px !important;
+    padding: 0 12px !important;
+    font-size: 10px !important;
+}
+
+.sidebar-secure-box,
+.secure-banking,
+.security-card,
+.secure-card {
+    min-height: 60px !important;
+    padding: 10px !important;
+    border-radius: 9px !important;
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    position: relative !important;
+    z-index: 50 !important;
+    min-height: 78px !important;
+    height: 78px !important;
+    padding: 12px 25px !important;
+    background: rgba(255,255,255,.97) !important;
+    border-bottom: 1px solid rgba(210,222,215,.9) !important;
+    box-shadow: 0 5px 22px rgba(4,31,22,.06) !important;
+}
+
+.topbar-welcome h1 {
+    font-size: 21px !important;
+}
+
+.topbar-subtitle {
+    font-size: 9px !important;
+}
+
+/* =========================================================
+   DASHBOARD FRAME
+   ========================================================= */
+
+.dashboard-container {
+    position: relative !important;
+    z-index: 2 !important;
+    width: min(calc(100% - 42px), var(--rb-max)) !important;
+    margin: 0 auto !important;
+    padding: 20px 0 18px !important;
+}
+
+.dashboard-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 260px !important;
+    gap: var(--rb-gap) !important;
+    align-items: start !important;
+}
+
+.dashboard-main,
+.dashboard-side {
+    min-width: 0 !important;
+}
+
+.dashboard-main {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+.dashboard-side {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+}
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+
+.dashboard-section-header {
+    padding: 0 3px 8px !important;
+}
+
+.dashboard-section-header h2,
+.quick-actions-section h2 {
+    margin: 0 !important;
+    color: #f7fffb !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,.35) !important;
+}
+
+/* =========================================================
+   ATM CARD — HERO
+   ========================================================= */
+
+.atm-section {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.atm-card {
+    position: relative !important;
+    isolation: isolate !important;
+    width: 100% !important;
+    height: 246px !important;
+    min-height: 246px !important;
+    padding: 22px 25px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 19px !important;
+    color: #fff !important;
+    background:
+        radial-gradient(circle at 83% 22%, rgba(202,161,75,.15), transparent 26%),
+        linear-gradient(135deg, #053725 0%, #08603f 54%, #08744e 100%) !important;
+    box-shadow:
+        0 24px 45px rgba(2,31,22,.28),
+        inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+.atm-card::before {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 0 !important;
+    width: 460px !important;
+    height: 460px !important;
+    right: -190px !important;
+    top: -280px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, rgba(255,255,255,.08), transparent 66%) !important;
+    pointer-events: none !important;
+}
+
+.atm-card::after {
+    content: "" !important;
+    position: absolute !important;
+    z-index: 0 !important;
+    left: -70px !important;
+    bottom: -130px !important;
+    width: 480px !important;
+    height: 260px !important;
+    border: 1px solid rgba(255,255,255,.07) !important;
+    border-radius: 50% !important;
+    transform: rotate(-12deg) !important;
+    pointer-events: none !important;
+}
+
+.atm-pattern {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    opacity: .48 !important;
+    pointer-events: none !important;
+}
+
+.atm-bank-watermark {
+    position: absolute !important;
+    z-index: 1 !important;
+    right: 20px !important;
+    bottom: 0 !important;
+    width: 235px !important;
+    height: 185px !important;
+    opacity: .085 !important;
+    pointer-events: none !important;
+}
+
+.atm-bank-watermark svg {
+    width: 100% !important;
+    height: 100% !important;
+    fill: #fff !important;
+}
+
+/* Card content must ALWAYS sit above decorative layers */
+.atm-card-head,
+.atm-chip-row,
+.atm-number,
+.atm-card-foot,
+.atm-card > .atm-account-number,
+.atm-card > span,
+.card-toggle-btn {
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+.atm-card-head {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+}
+
+.atm-card-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    color: #fff !important;
+}
+
+.atm-card-brand strong {
+    color: #fff !important;
+    font-size: 15px !important;
+}
+
+.atm-card-brand small {
+    color: rgba(255,255,255,.72) !important;
+}
+
+.atm-card-type {
+    color: rgba(255,255,255,.84) !important;
+}
+
+.atm-chip-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 23px !important;
+}
+
+.atm-chip {
+    width: 43px !important;
+    height: 32px !important;
+}
+
+.atm-number {
+    display: block !important;
+    margin-top: 17px !important;
+    color: #fff !important;
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    letter-spacing: .13em !important;
+    line-height: 1.2 !important;
+}
+
+.atm-card-foot {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    margin-top: 21px !important;
+}
+
+.atm-card-foot-label {
+    color: rgba(255,255,255,.58) !important;
+}
+
+.atm-card-foot-value {
+    color: #fff !important;
+}
+
+.atm-card-visa {
+    color: #fff !important;
+}
+
+.card-toggle-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 34px !important;
+    margin-top: 9px !important;
+    padding: 7px 12px !important;
+    border-color: rgba(255,255,255,.35) !important;
+    border-radius: 9px !important;
+    background: rgba(255,255,255,.09) !important;
+    color: #fff !important;
+    backdrop-filter: blur(7px) !important;
+}
+
+/* =========================================================
+   BALANCE CARD
+   ========================================================= */
+
+.dashboard-side .card,
+.balance-summary {
+    position: relative !important;
+    overflow: hidden !important;
+    background: rgba(255,255,255,.97) !important;
+    border: 1px solid var(--rb-line) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 15px 32px rgba(3,30,21,.11) !important;
+}
+
+.dashboard-side .card::before,
+.balance-summary::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 3px !important;
+    background: linear-gradient(#caa14b, #08734f) !important;
+}
+
+.balance-summary {
+    padding: 18px !important;
+}
+
+.balance-summary-heading h2,
+.summary-card h2 {
+    font-size: 15px !important;
+}
+
+.balance-summary-amount {
+    margin-top: 10px !important;
+    font-size: 25px !important;
+    line-height: 1.1 !important;
+}
+
+.balance-summary-row {
+    margin-top: 13px !important;
+}
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions-section h2 {
+    margin-bottom: 9px !important;
+}
+
+.quick-actions-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 9px !important;
+}
+
+.quick-tile {
+    min-height: 70px !important;
+    padding: 10px 7px !important;
+    border-radius: 11px !important;
+    border: 1px solid rgba(255,255,255,.72) !important;
+    box-shadow: 0 9px 19px rgba(3,28,20,.09) !important;
+    transition: transform .18s ease, box-shadow .18s ease !important;
+}
+
+.quick-tile:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 25px rgba(3,28,20,.14) !important;
+}
+
+.quick-tile-icon,
+.quick-tile-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* =========================================================
+   TRANSACTIONS
+   ========================================================= */
+
+.transactions-card {
+    width: 100% !important;
+    min-height: 205px !important;
+    margin: 0 !important;
+    padding: 16px 18px 13px !important;
+    border-radius: 16px !important;
+    background: rgba(255,255,255,.97) !important;
+    border: 1px solid var(--rb-line) !important;
+    box-shadow: 0 14px 32px rgba(3,30,21,.10) !important;
+}
+
+.transactions-card .section-header {
+    margin-bottom: 8px !important;
+}
+
+.transactions-card .view-all-link,
+.view-all-link {
+    color: var(--rb-green) !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    padding: 10px 0 0 !important;
+    color: rgba(242,250,246,.82) !important;
+    font-size: 9px !important;
+    text-align: center !important;
+    text-shadow: 0 1px 6px rgba(0,0,0,.30) !important;
+}
+
+/* =========================================================
+   SVG SAFETY
+   ========================================================= */
+
+svg {
+    display: block;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) and (min-width: 901px) {
+    :root {
+        --rb-sidebar: 210px;
+    }
+
+    .dashboard-container {
+        width: min(calc(100% - 30px), 1000px) !important;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: minmax(0,1fr) 230px !important;
+        gap: 14px !important;
+    }
+
+    .atm-card {
+        height: 225px !important;
+        min-height: 225px !important;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .app-shell {
+        display: block !important;
+        background-attachment: scroll !important;
+    }
+
+    .app-content {
+        width: 100% !important;
+    }
+
+    .topbar {
+        min-height: 70px !important;
+        height: auto !important;
+        padding: 10px 14px !important;
+    }
+
+    .dashboard-container {
+        width: min(calc(100% - 24px), 760px) !important;
+        padding: 15px 0 20px !important;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 13px !important;
+    }
+
+    .dashboard-side {
+        display: grid !important;
+        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+        gap: 11px !important;
+    }
+
+    .balance-summary {
+        grid-column: 1 / -1 !important;
+    }
+
+    .atm-card {
+        height: 225px !important;
+        min-height: 225px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-container {
+        width: calc(100% - 18px) !important;
+        padding: 12px 0 18px !important;
+    }
+
+    .dashboard-side {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .atm-card {
+        height: 212px !important;
+        min-height: 212px !important;
+        padding: 17px !important;
+        border-radius: 15px !important;
+    }
+
+    .atm-chip-row {
+        margin-top: 18px !important;
+    }
+
+    .atm-number {
+        margin-top: 14px !important;
+        font-size: 15px !important;
+        letter-spacing: .09em !important;
+    }
+
+    .atm-card-foot {
+        margin-top: 17px !important;
+    }
+
+    .atm-bank-watermark {
+        width: 175px !important;
+        height: 140px !important;
+    }
+
+    .transactions-card {
+        min-height: 180px !important;
+        padding: 13px 11px 10px !important;
+    }
+
+    .transactions-card table {
+        min-width: 600px !important;
+    }
+
+    .auth-wrap {
+        padding: 16px !important;
+    }
+
+    .auth-card {
+        width: calc(100vw - 28px) !important;
+        padding: 26px 21px 23px !important;
+        border-radius: 18px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .topbar {
+        padding: 8px 9px !important;
+    }
+
+    .atm-card {
+        height: 202px !important;
+        min-height: 202px !important;
+        padding: 15px !important;
+    }
+
+    .atm-card-brand strong {
+        font-size: 13px !important;
+    }
+
+    .atm-card-type {
+        font-size: 7px !important;
+    }
+
+    .atm-chip-row {
+        margin-top: 16px !important;
+    }
+
+    .atm-number {
+        font-size: 11.5px !important;
+        letter-spacing: .075em !important;
+    }
+
+    .atm-card-foot {
+        margin-top: 15px !important;
+    }
+
+    .atm-card-visa {
+        font-size: 17px !important;
+    }
+
+    .balance-summary-amount {
+        font-size: 21px !important;
+    }
+
+    .quick-tile {
+        min-height: 62px !important;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--green-600) !important;
+    outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========================================================
+   RODRON BANK — GLOBAL GLASSMORPHISM OVERRIDE
+   Applied last so every page uses the same transparent glass
+   surface, blur, border highlight and soft depth.
+   ========================================================= */
+
+:root {
+    --rb-glass-bg: rgba(255, 255, 255, 0.16);
+    --rb-glass-bg-strong: rgba(255, 255, 255, 0.22);
+    --rb-glass-bg-soft: rgba(255, 255, 255, 0.11);
+    --rb-glass-border: rgba(255, 255, 255, 0.46);
+    --rb-glass-border-soft: rgba(255, 255, 255, 0.28);
+    --rb-glass-shadow:
+        0 18px 45px rgba(0, 18, 13, 0.22),
+        0 5px 16px rgba(0, 18, 13, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.58),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.10);
+    --rb-glass-shadow-hover:
+        0 22px 52px rgba(0, 18, 13, 0.28),
+        0 7px 20px rgba(0, 18, 13, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.68),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Keep the banking image visible behind the entire application. */
+.app-shell,
+.app-content,
+.dashboard-container,
+.transaction-page,
+.admin-page {
+    background: transparent !important;
+}
+
+/* Shared glass surfaces. */
+.card,
+.dashboard-card,
+.stat-card,
+.admin-card,
+.content-card,
+.summary-card,
+.balance-summary,
+.transactions-card,
+.transactions-admin-table,
+.atm-card-wrapper,
+.atm-section,
+.quick-actions-section,
+.dashboard-section,
+.admin-section,
+.section-card,
+.panel,
+.page-header,
+.admin-page .page-header,
+.admin-page .admin-header,
+.admin-page .section-header,
+.modal,
+.auth-card {
+    background: var(--rb-glass-bg) !important;
+    border: 1px solid var(--rb-glass-border) !important;
+    box-shadow: var(--rb-glass-shadow) !important;
+    backdrop-filter: blur(18px) saturate(125%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+}
+
+.card:hover,
+.dashboard-card:hover,
+.summary-card:hover,
+.balance-summary:hover,
+.transactions-card:hover,
+.atm-card-wrapper:hover,
+.atm-section:hover,
+.quick-actions-section:hover,
+.panel:hover {
+    box-shadow: var(--rb-glass-shadow-hover) !important;
+}
+
+/* Remove the old opaque white surfaces that were fighting the glass effect. */
+.sidebar,
+.rd-sidebar,
+.topbar,
+.auth-card,
+.admin-user,
+.admin-profile,
+.system-administrator,
+.admin-user-chip,
+.admin-page a[href*="/dashboard"],
+.admin-back-link,
+.back-dashboard,
+.search-box,
+.search-box input,
+.form-control,
+select.form-control,
+textarea.form-control,
+.card-toggle-btn,
+.topbar-notif,
+.topbar-user,
+.sidebar-secure-box,
+.secure-banking,
+.security-card,
+.secure-card {
+    background: var(--rb-glass-bg) !important;
+    border-color: var(--rb-glass-border) !important;
+    box-shadow: var(--rb-glass-shadow) !important;
+    backdrop-filter: blur(16px) saturate(125%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(125%) !important;
+}
+
+/* Sidebar: translucent but still visually separated from the content. */
+.sidebar,
+.rd-sidebar {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.42) !important;
+    box-shadow:
+        8px 0 30px rgba(0, 20, 14, 0.20),
+        inset -1px 0 0 rgba(255, 255, 255, 0.22) !important;
+    backdrop-filter: blur(20px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(135%) !important;
+}
+
+.sidebar-brand,
+.sidebar-logo,
+.rd-sidebar-logo {
+    background: rgba(3, 48, 35, 0.52) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.sidebar-link,
+.sidebar a,
+.nav-link,
+.rd-sidebar a {
+    background: rgba(255,255,255,.055) !important;
+    border: 1px solid transparent !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active,
+.sidebar a:hover,
+.nav-link:hover,
+.rd-sidebar a:hover {
+    background: rgba(255,255,255,.18) !important;
+    border-color: rgba(255,255,255,.30) !important;
+    box-shadow:
+        0 8px 22px rgba(0,18,13,.14),
+        inset 0 1px 0 rgba(255,255,255,.30) !important;
+}
+
+.sidebar-secure-box,
+.secure-banking,
+.security-card,
+.secure-card {
+    background: rgba(255,255,255,.12) !important;
+    border: 1px dashed rgba(255,255,255,.40) !important;
+}
+
+/* Header / topbar. */
+.topbar {
+    background: rgba(255,255,255,.15) !important;
+    border-bottom: 1px solid rgba(255,255,255,.38) !important;
+    box-shadow:
+        0 12px 34px rgba(0,18,13,.18),
+        inset 0 1px 0 rgba(255,255,255,.34) !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+}
+
+.topbar-notif,
+.topbar-user,
+.admin-user,
+.admin-profile,
+.system-administrator,
+.admin-user-chip {
+    background: rgba(255,255,255,.18) !important;
+    border: 1px solid rgba(255,255,255,.42) !important;
+    box-shadow: var(--rb-glass-shadow) !important;
+}
+
+/* Admin page sections and statistics. */
+.admin-page .page-header,
+.admin-page .admin-header,
+.admin-page .section-header {
+    background: rgba(255,255,255,.16) !important;
+}
+
+.admin-stat,
+.admin-stat-card,
+.stat-card,
+.summary-card {
+    background: rgba(255,255,255,.17) !important;
+    border: 1px solid rgba(255,255,255,.45) !important;
+    box-shadow: var(--rb-glass-shadow) !important;
+}
+
+/* Tables: glass shell + subtle translucent rows. */
+.accounts-table,
+.transactions-admin-table,
+.transactions-card table,
+.card table,
+.dashboard-card table {
+    background: rgba(255,255,255,.075) !important;
+    border: 1px solid rgba(255,255,255,.35) !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    box-shadow:
+        0 10px 28px rgba(0,18,13,.14),
+        inset 0 1px 0 rgba(255,255,255,.22) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.accounts-table thead th,
+.transactions-admin-table thead th,
+.transactions-card table thead th,
+.card table thead th,
+.dashboard-card table thead th {
+    background: rgba(255,255,255,.13) !important;
+    border-bottom: 1px solid rgba(255,255,255,.30) !important;
+}
+
+.accounts-table tbody td,
+.transactions-admin-table tbody td,
+.transactions-card table tbody td,
+.card table tbody td,
+.dashboard-card table tbody td {
+    background: rgba(255,255,255,.035) !important;
+    border-bottom-color: rgba(255,255,255,.18) !important;
+}
+
+.accounts-table tbody tr:hover td,
+.transactions-admin-table tbody tr:hover td,
+.transactions-card table tbody tr:hover td,
+.card table tbody tr:hover td,
+.dashboard-card table tbody tr:hover td {
+    background: rgba(255,255,255,.13) !important;
+}
+
+/* Form controls and search/filter controls. */
+.form-control,
+select.form-control,
+textarea.form-control,
+.search-box,
+.search-box input {
+    background: rgba(255,255,255,.15) !important;
+    border: 1px solid rgba(255,255,255,.40) !important;
+    color: #111 !important;
+    box-shadow:
+        0 8px 22px rgba(0,18,13,.12),
+        inset 0 1px 0 rgba(255,255,255,.30) !important;
+}
+
+.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus,
+.search-box input:focus {
+    background: rgba(255,255,255,.22) !important;
+    border-color: rgba(255,255,255,.68) !important;
+    box-shadow:
+        0 0 0 3px rgba(202,161,75,.16),
+        0 12px 28px rgba(0,18,13,.16),
+        inset 0 1px 0 rgba(255,255,255,.40) !important;
+}
+
+/* Buttons keep their semantic colors but become translucent glass controls. */
+.btn,
+button.btn,
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.admin-actions .btn-small,
+.card-toggle-btn,
+.admin-page a[href*="/dashboard"],
+.admin-back-link,
+.back-dashboard {
+    border: 1px solid rgba(255,255,255,.40) !important;
+    box-shadow:
+        0 8px 22px rgba(0,18,13,.15),
+        inset 0 1px 0 rgba(255,255,255,.38) !important;
+    backdrop-filter: blur(12px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(130%) !important;
+}
+
+.btn-primary {
+    background: rgba(26,122,81,.56) !important;
+}
+
+.btn-secondary,
+.admin-page a[href*="/dashboard"],
+.admin-back-link,
+.back-dashboard {
+    background: rgba(255,255,255,.20) !important;
+}
+
+.btn-danger,
+.admin-page .btn-danger {
+    background: rgba(184,67,58,.46) !important;
+}
+
+.btn:hover,
+button.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-danger:hover,
+.admin-actions .btn-small:hover,
+.card-toggle-btn:hover,
+.admin-page a[href*="/dashboard"]:hover,
+.admin-back-link:hover,
+.back-dashboard:hover {
+    box-shadow: var(--rb-glass-shadow-hover) !important;
+}
+
+/* Status/search chips become small glass pills. */
+.status-badge,
+.status-dot,
+.account-type-label,
+.summary-status {
+    box-shadow:
+        0 5px 14px rgba(0,18,13,.12),
+        inset 0 1px 0 rgba(255,255,255,.30) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Modal glass. */
+.modal-backdrop {
+    background: rgba(2,22,16,.48) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.modal {
+    background: rgba(255,255,255,.20) !important;
+    border: 1px solid rgba(255,255,255,.46) !important;
+}
+
+.modal-header {
+    background: rgba(255,255,255,.10) !important;
+    border-bottom-color: rgba(255,255,255,.28) !important;
+}
+
+/* Decorative glass highlight shared by major surfaces. */
+.card::before,
+.dashboard-card::before,
+.balance-summary::before {
+    opacity: .75 !important;
+}
+
+/* Mobile glass surfaces remain readable and consistent. */
+@media (max-width: 900px) {
+    .sidebar,
+    .rd-sidebar {
+        background: rgba(255,255,255,.18) !important;
+        backdrop-filter: blur(22px) saturate(135%) !important;
+        -webkit-backdrop-filter: blur(22px) saturate(135%) !important;
+    }
+
+    .topbar,
+    .card,
+    .dashboard-card,
+    .transactions-card,
+    .balance-summary,
+    .summary-card,
+    .admin-card,
+    .content-card {
+        backdrop-filter: blur(16px) saturate(125%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(125%) !important;
+    }
+}

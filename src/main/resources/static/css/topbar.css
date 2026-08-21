@@ -1,0 +1,353 @@
+/* =========================================================
+   RODRON BANK — TOPBAR FINAL
+   ========================================================= */
+
+.topbar {
+    position: relative;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 30px 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.72),
+            rgba(255, 255, 255, 0.48)
+        );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 7px 22px rgba(10, 35, 25, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.topbar-welcome {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.topbar-welcome p,
+.topbar-eyebrow {
+    margin: 0;
+
+    color: var(--faint);
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.topbar-welcome h1 {
+    margin: 3px 0;
+
+    color: var(--navy);
+
+    font-size: 23px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+.topbar-subtitle {
+    color: var(--muted);
+    font-size: 10.5px;
+}
+
+.topbar-right {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 13px;
+}
+
+.topbar-notif-wrapper {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.topbar-notif {
+    position: relative;
+    z-index: 1002;
+
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.55);
+
+    color: var(--navy);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-notif:hover {
+    background: rgba(233, 243, 236, 0.78);
+
+    border-color: rgba(205, 215, 206, 0.85);
+
+    box-shadow: var(--shadow);
+}
+
+.topbar-notif svg {
+    width: 18px;
+    height: 18px;
+
+    pointer-events: none;
+}
+
+.topbar-notif-badge {
+    position: absolute;
+
+    top: -5px;
+    right: -5px;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    border: 2px solid rgba(255, 255, 255, 0.90);
+
+    background: var(--red);
+
+    color: #ffffff;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    box-shadow:
+        0 4px 10px rgba(184, 67, 58, 0.18);
+}
+
+.topbar-user {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 3px 10px 3px 3px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255, 255, 255, 0.82);
+
+    background: rgba(255, 255, 255, 0.46);
+
+    color: var(--navy);
+
+    box-shadow: var(--shadow-soft);
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.topbar-user:hover {
+    background: rgba(233, 243, 236, 0.72);
+
+    border-color: rgba(205, 215, 206, 0.90);
+
+    box-shadow: var(--shadow);
+}
+
+.topbar-user-avatar {
+    width: 30px;
+    height: 30px;
+
+    flex: 0 0 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 94, 63, 0.96),
+            rgba(10, 54, 38, 0.96)
+        );
+
+    color: var(--gold-light);
+
+    box-shadow:
+        0 5px 13px rgba(6, 35, 26, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.topbar-user-name {
+    max-width: 145px;
+
+    overflow: hidden;
+
+    color: var(--navy);
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* NOTIFICATION */
+
+.notif-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 360px;
+    max-width: calc(100vw - 30px);
+    max-height: 430px;
+
+    display: none;
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.84),
+            rgba(255, 255, 255, 0.58)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.86);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-lg);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+
+    z-index: 1001;
+}
+
+.notif-dropdown.notif-dropdown-open {
+    display: flex;
+    animation: rb-rise 0.18s ease both;
+}
+
+.notif-dropdown-header {
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 12px 15px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+.notif-dropdown-list {
+    width: 100%;
+
+    max-height: 360px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.notif-item {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 255, 255, 0.28);
+
+    border-bottom: 1px solid rgba(230, 237, 232, 0.70);
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.notif-item:hover {
+    background: rgba(248, 250, 248, 0.72);
+}
+
+.notif-item-unread {
+    background: rgba(233, 243, 236, 0.68);
+}
+
+.notif-item-icon {
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(233, 243, 236, 0.82);
+
+    color: var(--green-700);
+
+    box-shadow:
+        0 4px 10px rgba(10, 54, 38, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}

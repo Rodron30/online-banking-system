@@ -1,0 +1,1379 @@
+:root {
+    --glass-bg: rgba(10, 48, 39, 0.46);
+    --glass-bg-strong: rgba(8, 58, 46, 0.62);
+    --glass-bg-soft: rgba(255, 255, 255, 0.075);
+
+    --glass-border: rgba(210, 255, 239, 0.24);
+    --glass-border-strong: rgba(104, 242, 190, 0.42);
+
+    --glass-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+    --glass-shadow-soft:
+        0 10px 28px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    --glass-blur: blur(20px) saturate(135%);
+
+    --text-main: #f5fffb;
+    --text-muted: rgba(235, 250, 244, 0.72);
+
+    --green: #49e6a3;
+    --red: #ef4444;
+    --gold: #c79b2d;
+}
+
+
+/* =========================================================
+   GLOBAL BACKGROUND
+   ========================================================= */
+
+html,
+body {
+    background: #092d24 !important;
+}
+
+body {
+    color: var(--text-main) !important;
+
+    background:
+        linear-gradient(
+            rgba(3, 28, 22, 0.30),
+            rgba(3, 28, 22, 0.30)
+        ),
+        url('/images/bg-hero.jpg')
+        center / cover fixed no-repeat !important;
+}
+
+.app-shell {
+    min-height: 100vh !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 27, 22, 0.58),
+            rgba(3, 27, 22, 0.18) 30%,
+            rgba(3, 27, 22, 0.18)
+        ),
+        url('/images/bg-hero.jpg')
+        center / cover fixed no-repeat !important;
+}
+
+.app-content {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 48, 37, 0.84),
+            rgba(5, 42, 34, 0.62)
+        ) !important;
+
+    border-right: 1px solid var(--glass-border) !important;
+
+    box-shadow:
+        10px 0 35px rgba(0, 0, 0, 0.22),
+        inset -1px 0 rgba(255, 255, 255, 0.08) !important;
+
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+}
+
+.sidebar-brand {
+    background: rgba(2, 40, 31, 0.52) !important;
+    border-bottom: 1px solid rgba(225, 255, 242, 0.14) !important;
+    color: #fff !important;
+}
+
+.sidebar-brand-icon {
+    background: var(--gold) !important;
+    color: #06261d !important;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.22),
+        inset 0 1px rgba(255, 255, 255, 0.25) !important;
+}
+
+.sidebar-brand-text strong,
+.sidebar-brand-text small {
+    color: #fff !important;
+}
+
+.sidebar-link,
+.sidebar-logout-btn {
+    color: rgba(244, 255, 250, 0.88) !important;
+    background: transparent !important;
+
+    border: 1px solid transparent !important;
+}
+
+.sidebar-link:hover,
+.sidebar-logout-btn:hover {
+    color: #fff !important;
+
+    background: rgba(255, 255, 255, 0.08) !important;
+
+    border-color: rgba(255, 255, 255, 0.12) !important;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.sidebar-link.active {
+    color: #fff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(36, 178, 119, 0.30),
+            rgba(16, 103, 73, 0.24)
+        ) !important;
+
+    border-color: rgba(104, 232, 174, 0.34) !important;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.16),
+        inset 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+.sidebar-bottom {
+    border-top-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.sidebar-secure-box {
+    background: rgba(255, 255, 255, 0.07) !important;
+
+    border: 1px dashed rgba(220, 255, 241, 0.28) !important;
+
+    color: #fff !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+
+    backdrop-filter: blur(12px) !important;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(230, 246, 240, 0.12),
+            rgba(10, 51, 41, 0.40)
+        ) !important;
+
+    border-bottom: 1px solid var(--glass-border) !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18),
+        inset 0 -1px rgba(255, 255, 255, 0.07) !important;
+
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+}
+
+.topbar-welcome h1 {
+    color: #fff !important;
+
+    text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.24);
+}
+
+.topbar-welcome p,
+.topbar-eyebrow,
+.topbar-subtitle {
+    color: var(--text-muted) !important;
+}
+
+
+/* =========================================================
+   NOTIFICATION BUTTON
+   ========================================================= */
+
+.topbar-notif {
+    position: relative !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    border-radius: 12px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(239, 68, 68, 0.82),
+            rgba(153, 27, 27, 0.76)
+        ) !important;
+
+    border: 1px solid rgba(255, 170, 170, 0.55) !important;
+
+    color: #fff !important;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(239, 68, 68, 0.14),
+        inset 0 1px rgba(255, 255, 255, 0.20) !important;
+
+    backdrop-filter: blur(14px) !important;
+
+    overflow: visible !important;
+}
+
+.topbar-notif:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(248, 80, 80, 0.90),
+            rgba(170, 30, 30, 0.84)
+        ) !important;
+
+    border-color: rgba(255, 210, 210, 0.70) !important;
+}
+
+
+/* =========================================================
+   NOTIFICATION BADGE
+   ========================================================= */
+
+.topbar-notif .notif-badge,
+.topbar-notif .notification-badge,
+.topbar-notif .badge,
+.topbar-notif > span:last-child {
+    position: absolute !important;
+
+    top: -4px !important;
+    right: -4px !important;
+
+    width: 14px !important;
+    height: 14px !important;
+
+    min-width: 14px !important;
+    min-height: 14px !important;
+
+    padding: 0 !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    border-radius: 50% !important;
+
+    background: #ef4444 !important;
+
+    color: #fff !important;
+
+    border: 2px solid #092d24 !important;
+
+    font-size: 8px !important;
+    line-height: 1 !important;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.35) !important;
+
+    transform: none !important;
+}
+
+.topbar-notif::before,
+.topbar-notif::after {
+    max-width: 14px !important;
+    max-height: 14px !important;
+}
+
+
+/* =========================================================
+   TOPBAR USER
+   ========================================================= */
+
+.topbar-user {
+    background: rgba(255, 255, 255, 0.09) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    color: #fff !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+
+    backdrop-filter: blur(14px) !important;
+}
+
+.topbar-user:hover {
+    background: rgba(255, 255, 255, 0.14) !important;
+}
+
+.topbar-user-name,
+.topbar-chevron {
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   TOPBAR AVATAR
+   ========================================================= */
+
+.topbar-user-avatar {
+    width: 32px !important;
+    height: 32px !important;
+
+    min-width: 32px !important;
+    min-height: 32px !important;
+
+    max-width: 32px !important;
+    max-height: 32px !important;
+
+    border-radius: 50% !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    overflow: hidden !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b8b62,
+            #07523b
+        ) !important;
+
+    color: #fff !important;
+
+    border: 1px solid rgba(159, 255, 215, 0.45) !important;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.24),
+        inset 0 1px rgba(255, 255, 255, 0.18) !important;
+}
+
+.topbar-user-avatar svg {
+    width: 20px !important;
+    height: 20px !important;
+
+    max-width: 20px !important;
+    max-height: 20px !important;
+
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 1.8 !important;
+}
+
+
+/* =========================================================
+   UNIVERSAL GLASS CARDS (EXCLUDING TRANSACTIONS & RECENT)
+   ========================================================= */
+
+.card,
+.balance-summary,
+.quick-actions-section,
+.admin-card,
+.admin-back-card,
+.admin-stat-card,
+.admin-table-card,
+.admin-table-wrapper,
+.profile-card,
+.profile-panel,
+.profile-info,
+.auth-card,
+.auth-panel {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 91, 75, 0.48),
+            rgba(5, 38, 33, 0.36)
+        ) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow: var(--glass-shadow) !important;
+
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+
+    color: #fff !important;
+}
+
+.card:hover,
+.admin-card:hover,
+.admin-stat-card:hover {
+    border-color: var(--glass-border-strong) !important;
+}
+
+
+/* =========================================================
+   TRANSPARENT DASHBOARD CARD & ATM CONTAINER FIX
+   ========================================================= */
+
+.dashboard-card {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    overflow: visible !important;
+}
+
+.dashboard-card:hover {
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+.atm-section {
+    width: 100% !important;
+
+    max-width: 880px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   MY ATM CARD TEXT WITH BOX SHADOW & GLASS BACKGROUND
+   ========================================================= */
+
+.atm-section .dashboard-section-header {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 34px !important;
+    margin: 0 0 14px 0 !important;
+    padding: 0 !important;
+}
+
+.atm-section .dashboard-section-header h2 {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 6px 16px !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+
+    background: linear-gradient(
+        135deg,
+        rgba(24, 91, 75, 0.55),
+        rgba(5, 38, 33, 0.45)
+    ) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 10px !important;
+
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+}
+
+
+/* =========================================================
+   ATM CARD WRAPPER
+   ========================================================= */
+
+.atm-card-wrapper {
+    width: 100% !important;
+
+    max-width: 860px !important;
+
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   ATM CARD ITSELF
+   ========================================================= */
+
+.atm-card {
+    width: min(560px, 100%) !important;
+
+    max-width: 560px !important;
+
+    min-height: 285px !important;
+
+    height: 285px !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 26px !important;
+
+    border-radius: 16px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 91, 75, 0.34),
+            rgba(5, 38, 33, 0.22)
+        ) !important;
+
+    border: 1px solid var(--glass-border-strong) !important;
+
+    box-shadow: var(--glass-shadow) !important;
+
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+
+    overflow: hidden !important;
+}
+
+.atm-pattern {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    border-radius: inherit !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+}
+
+.atm-bank-watermark {
+    width: 150px !important;
+    height: 125px !important;
+
+    max-width: 150px !important;
+    max-height: 125px !important;
+
+    overflow: hidden !important;
+
+    opacity: 0.16 !important;
+}
+
+.atm-bank-watermark svg {
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.atm-card-logo {
+    width: 42px !important;
+    height: 42px !important;
+
+    max-width: 42px !important;
+    max-height: 42px !important;
+}
+
+.atm-chip {
+    width: 48px !important;
+    height: 34px !important;
+
+    max-width: 48px !important;
+    max-height: 34px !important;
+
+    border-radius: 7px !important;
+}
+
+.atm-number {
+    font-size: 22px !important;
+
+    letter-spacing: 3px !important;
+
+    white-space: nowrap !important;
+}
+
+.atm-card-foot {
+    margin-top: auto !important;
+}
+
+.atm-card-foot-value {
+    font-size: 12px !important;
+}
+
+.atm-card-visa {
+    font-size: 22px !important;
+}
+
+
+/* =========================================================
+   SHOW CARD DETAILS BUTTON
+   ========================================================= */
+
+.card-toggle-btn {
+    width: auto !important;
+
+    min-width: 150px !important;
+
+    height: 38px !important;
+
+    margin-top: 9px !important;
+
+    padding: 0 18px !important;
+
+    border-radius: 10px !important;
+
+    background:
+        rgba(255, 255, 255, 0.12) !important;
+
+    border: 1px solid rgba(225, 255, 242, 0.25) !important;
+
+    color: #fff !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+
+    backdrop-filter: blur(12px) !important;
+}
+
+.card-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+}
+
+
+/* =========================================================
+   RECENT TRANSACTIONS (TRANSPARENT GLASS)
+   ========================================================= */
+
+.recent-transactions-card,
+.transactions-card,
+.dashboard-card.recent-transactions-card,
+.dashboard-card.transactions-card {
+    width: 100% !important;
+    min-width: 0 !important;
+
+    padding: 20px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(24, 91, 75, 0.34),
+            rgba(5, 38, 33, 0.22)
+        ) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow: var(--glass-shadow) !important;
+
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+
+    overflow: hidden !important;
+
+    color: #ffffff !important;
+}
+
+.recent-transactions-wrapper,
+.table-wrapper {
+    width: 100% !important;
+
+    background: rgba(0, 0, 0, 0.10) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+    border-radius: 12px !important;
+
+    box-shadow: none !important;
+
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+
+    overflow-x: auto !important;
+}
+
+.recent-transactions-table,
+.transactions-card table,
+.table-wrapper table {
+    width: 100% !important;
+
+    background: transparent !important;
+
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+.recent-transactions-table thead,
+.transactions-card thead,
+.table-wrapper thead {
+    background: rgba(0, 0, 0, 0.20) !important;
+}
+
+.recent-transactions-table th,
+.transactions-card th,
+.table-wrapper th {
+    background: transparent !important;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+
+    color: rgba(255, 255, 255, 0.85) !important;
+
+    padding: 12px 14px !important;
+
+    white-space: nowrap !important;
+}
+
+.recent-transactions-table td,
+.transactions-card td,
+.table-wrapper td {
+    background: transparent !important;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+
+    color: #ffffff !important;
+
+    padding: 12px 14px !important;
+
+    white-space: nowrap !important;
+}
+
+.recent-transactions-table tbody tr,
+.transactions-card tbody tr,
+.table-wrapper tbody tr {
+    background: transparent !important;
+}
+
+.recent-transactions-table tbody tr:hover td,
+.transactions-card tbody tr:hover td,
+.table-wrapper tbody tr:hover td {
+    background: rgba(255, 255, 255, 0.10) !important;
+}
+
+
+/* =========================================================
+   BALANCE SUMMARY
+   ========================================================= */
+
+.balance-summary {
+    color: #fff !important;
+}
+
+.balance-summary-heading h2,
+.balance-summary-amount,
+.balance-amount {
+    color: #fff !important;
+}
+
+.balance-summary-amount {
+    font-size: 28px !important;
+}
+
+.copy-account-btn {
+    width: 38px !important;
+    height: 38px !important;
+
+    border-radius: 11px !important;
+
+    background: rgba(255, 255, 255, 0.12) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    color: #fff !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions-section {
+    color: #fff !important;
+}
+
+.quick-tile,
+.quick-action,
+.quick-action-btn {
+    background: rgba(255, 255, 255, 0.075) !important;
+
+    border: 1px solid rgba(225, 255, 242, 0.22) !important;
+
+    border-radius: 12px !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+
+    color: #fff !important;
+
+    backdrop-filter: blur(12px) !important;
+}
+
+.quick-tile:hover,
+.quick-action:hover,
+.quick-action-btn:hover {
+    background: rgba(73, 230, 163, 0.12) !important;
+
+    border-color: rgba(104, 242, 190, 0.38) !important;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea,
+.search-input,
+.filter-select,
+.form-control {
+    background: rgba(255, 255, 255, 0.08) !important;
+
+    color: #fff !important;
+
+    border: 1px solid rgba(225, 255, 242, 0.24) !important;
+
+    border-radius: 10px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.06),
+        0 8px 18px rgba(0, 0, 0, 0.10) !important;
+
+    backdrop-filter: blur(12px) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(235, 250, 244, 0.50) !important;
+}
+
+option {
+    background: #103c31 !important;
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button,
+.btn,
+.action-btn {
+    border-radius: 10px !important;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease !important;
+}
+
+button:hover,
+.btn:hover,
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary,
+.primary-btn,
+.btn-success,
+.deposit-btn,
+.transfer-btn,
+button[type="submit"] {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 164, 111, 0.78),
+            rgba(10, 92, 64, 0.78)
+        ) !important;
+
+    color: #fff !important;
+
+    border: 1px solid rgba(143, 255, 210, 0.34) !important;
+}
+
+.btn-danger,
+.delete-btn,
+.admin-delete-btn {
+    background: rgba(176, 55, 55, 0.68) !important;
+
+    color: #fff !important;
+}
+
+.btn-secondary,
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.10) !important;
+
+    color: #fff !important;
+}
+
+
+/* =========================================================
+   BACK TO DASHBOARD
+   ========================================================= */
+
+.admin-page a[href*="/dashboard"],
+.admin-back-link,
+.back-dashboard,
+.profile-back-link,
+a.back-dashboard {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 8px !important;
+
+    min-height: 40px !important;
+
+    padding: 9px 18px !important;
+
+    border-radius: 11px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.055)
+        ) !important;
+
+    border: 1px solid rgba(225, 255, 242, 0.25) !important;
+
+    color: #fff !important;
+
+    text-decoration: none !important;
+
+    box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.20),
+        inset 0 1px rgba(255, 255, 255, 0.10) !important;
+
+    backdrop-filter: blur(16px) !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+.admin-page a[href*="/dashboard"]:hover,
+.admin-back-link:hover,
+.back-dashboard:hover,
+.profile-back-link:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(73, 230, 163, 0.18),
+            rgba(255, 255, 255, 0.08)
+        ) !important;
+
+    border-color: var(--glass-border-strong) !important;
+
+    color: #fff !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 15px 32px rgba(0, 0, 0, 0.24),
+        0 0 22px rgba(73, 230, 163, 0.10),
+        inset 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* =========================================================
+   PROFILE PAGE
+   ========================================================= */
+
+.profile-page-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 28px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(21, 83, 69, 0.58),
+            rgba(6, 43, 37, 0.40)
+        ) !important;
+
+    border: 1px solid rgba(158, 255, 220, 0.32) !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.28),
+        inset 0 1px rgba(255, 255, 255, 0.14),
+        0 0 34px rgba(73, 230, 163, 0.10) !important;
+
+    backdrop-filter: blur(24px) saturate(145%) !important;
+}
+
+.profile-hero {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.profile-avatar-large {
+    width: 76px !important;
+    height: 76px !important;
+
+    min-width: 76px !important;
+    min-height: 76px !important;
+
+    max-width: 76px !important;
+    max-height: 76px !important;
+
+    flex: 0 0 76px !important;
+
+    display: grid !important;
+
+    place-items: center !important;
+
+    border-radius: 50% !important;
+
+    color: #eafff6 !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 151, 105, 0.76),
+            rgba(5, 78, 57, 0.74)
+        ) !important;
+
+    border: 1px solid rgba(114, 255, 198, 0.58) !important;
+
+    box-shadow:
+        0 0 0 5px rgba(73, 230, 163, 0.08),
+        0 12px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px rgba(255, 255, 255, 0.20) !important;
+
+    overflow: hidden !important;
+}
+
+.profile-avatar-large svg {
+    width: 40px !important;
+    height: 40px !important;
+
+    max-width: 40px !important;
+    max-height: 40px !important;
+
+    fill: none !important;
+
+    stroke: currentColor !important;
+
+    stroke-width: 1.7 !important;
+}
+
+.profile-details-glass {
+    overflow: hidden;
+
+    border: 1px solid rgba(184, 255, 234, 0.18);
+
+    border-radius: 14px;
+
+    background: rgba(5, 35, 31, 0.28);
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(16px);
+}
+
+.profile-detail-row {
+    display: grid;
+
+    grid-template-columns: minmax(150px, 28%) 1fr;
+
+    gap: 20px;
+
+    padding: 17px 22px;
+
+    border-bottom: 1px solid rgba(190, 255, 235, 0.13);
+}
+
+.profile-detail-row:last-child {
+    border-bottom: 0;
+}
+
+.profile-detail-label {
+    color: rgba(231, 250, 243, 0.72);
+}
+
+.profile-detail-value {
+    color: #fff;
+
+    font-weight: 700;
+}
+
+.profile-detail-value.accent {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   ADMIN
+   ========================================================= */
+
+.admin-page {
+    color: #fff !important;
+}
+
+.admin-user,
+.admin-profile,
+.system-administrator,
+.admin-user-chip {
+    background: rgba(255, 255, 255, 0.10) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    color: #fff !important;
+
+    box-shadow: var(--glass-shadow-soft) !important;
+}
+
+.admin-page .admin-alert,
+.admin-page .admin-message {
+    background: rgba(255, 255, 255, 0.10) !important;
+
+    color: #fff !important;
+
+    border-color: var(--glass-border) !important;
+}
+
+
+/* =========================================================
+   STATUS BADGES
+   ========================================================= */
+
+.admin-status-chip,
+.admin-badge,
+.badge,
+.transaction-type,
+.summary-status {
+    border: 1px solid rgba(210, 255, 239, 0.16) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.08),
+        0 6px 14px rgba(0, 0, 0, 0.10) !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    color: rgba(235, 250, 244, 0.65) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .atm-section {
+        max-width: 100% !important;
+    }
+
+    .atm-card-wrapper {
+        max-width: 100% !important;
+    }
+
+    .atm-card {
+        width: 100% !important;
+
+        max-width: 560px !important;
+    }
+
+    .sidebar {
+        box-shadow:
+            12px 0 36px rgba(0, 0, 0, 0.28) !important;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .atm-section {
+        padding: 0 !important;
+    }
+
+    .atm-card-wrapper {
+        padding: 0 !important;
+    }
+
+    .atm-card {
+        height: 250px !important;
+
+        min-height: 250px !important;
+
+        padding: 20px !important;
+    }
+
+    .atm-number {
+        font-size: 18px !important;
+
+        letter-spacing: 2px !important;
+    }
+
+    .profile-page-card {
+        padding: 18px !important;
+    }
+
+    .profile-hero {
+        align-items: flex-start;
+    }
+
+    .profile-detail-row {
+        grid-template-columns: 1fr;
+
+        gap: 5px;
+
+        padding: 14px 16px;
+    }
+}
+
+
+/* =========================================================
+   FINAL OVERRIDE
+   ========================================================= */
+
+.topbar-notif *,
+.topbar-user-avatar *,
+.atm-card-logo *,
+.atm-chip *,
+.atm-contactless *,
+.profile-avatar-large * {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+.topbar-notif svg {
+    width: 21px !important;
+    height: 21px !important;
+
+    max-width: 21px !important;
+    max-height: 21px !important;
+}
+
+.atm-contactless {
+    width: 28px !important;
+    height: 28px !important;
+
+    max-width: 28px !important;
+    max-height: 28px !important;
+}
+
+
+/* =========================================================
+   NOTIFICATION DROPDOWN (TRANSPARENT GLASS)
+   ========================================================= */
+
+.notif-dropdown {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18, 74, 60, 0.62),
+            rgba(6, 43, 35, 0.56)
+        ) !important;
+
+    border: 1px solid var(--glass-border) !important;
+
+    box-shadow: var(--glass-shadow) !important;
+
+    backdrop-filter: blur(22px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(140%) !important;
+
+    color: #fff !important;
+}
+
+.notif-dropdown-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.notif-dropdown-header > span {
+    color: #fff !important;
+}
+
+.notif-dropdown-header button {
+    background: rgba(255, 255, 255, 0.10) !important;
+    color: #fff !important;
+}
+
+.notif-item {
+    background: transparent !important;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+
+    color: #fff !important;
+}
+
+.notif-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.notif-item-unread {
+    background: rgba(73, 230, 163, 0.08) !important;
+}
+
+.notif-item-icon {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
+}
+
+.notif-item-body,
+.notif-item-body * {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* =========================================================
+   TRANSACTION HISTORY PAGE TABLE WRAPPER (SEE-THROUGH)
+   ========================================================= */
+
+.transactions-table-wrap {
+    background: rgba(0, 0, 0, 0.10) !important;
+
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}

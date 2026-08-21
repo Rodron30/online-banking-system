@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Online Banking System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
+
+</head>
+
+<body>
+
+<main class="auth-wrap">
+
+    <section class="auth-card">
+
+        <!-- Brand -->
+        <div class="auth-brand">
+            <span class="auth-brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 25h50L32 9 7 25Z"/>
+                    <path d="
+                        M12 28h40v5H12z
+                        M16 35h6v18h-6z
+                        M29 35h6v18h-6z
+                        M42 35h6v18h-6z
+                        M10 54h44v4H10z
+                    "/>
+                </svg>
+            </span>
+            <span class="auth-brand-text">
+                <strong>RODRON BANK</strong>
+                <small>Online Banking System</small>
+            </span>
+        </div>
+
+        <!-- Header -->
+        <h1>Welcome back</h1>
+        <p class="sub">Sign in to your banking account</p>
+
+        <!-- Login Error -->
+        <div
+            class="alert alert-error"
+            th:if="${param.error}">Invalid username or password.
+        </div>
+
+        <!-- Registration Success -->
+        <div
+            class="alert alert-success"
+            th:if="${param.registered}">
+            Registration successful!
+            You can now sign in.
+        </div>
+
+        <!-- Logout Success -->
+        <div
+            class="alert alert-success"
+            th:if="${param.logout}">
+            You have been logged out successfully.
+        </div>
+
+        <!-- Login Form -->
+        <form
+            th:action="@{/login}"
+            method="post">
+
+            <!-- CSRF Protection -->
+            <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}">
+
+
+            <!-- Username -->
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    required
+                    minlength="1"
+                    maxlength="50"
+                    pattern="[A-Za-z0-9._-]+"
+                    autocomplete="username"
+                    autofocus
+                    placeholder="Enter your username">
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">
+                    Password
+                </label>
+                <div class="password-wrapper">
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        required
+                        minlength="6"
+                        maxlength="72"
+                        autocomplete="current-password"
+                        placeholder="Enter your password">
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('password', this)"
+                        aria-label="Show password">
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Login Button -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-block">Sign In
+            </button>
+
+        </form>
+
+
+        <!-- Register Link -->
+        <p class="link-alt">Don't have an account?
+            <a th:href="@{/register}">Create an account</a>
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- Show / Hide Password -->
+<script>
+    function togglePassword(inputId, button) {
+        const input = document.getElementById(inputId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.textContent = "🙈";
+            button.setAttribute("aria-label", "Hide password");
+        } else {
+            input.type = "password";
+            button.textContent = "👁";
+            button.setAttribute("aria-label", "Show password");
+        }
+    }
+</script>
+
+</body>
+
+</html>
+
