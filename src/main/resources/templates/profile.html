@@ -4,64 +4,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Profile | Rodron Bank</title>
+
+    <!-- Main Styles -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/glass-reference.css?v=20260821}">
-
 </head>
 
 <body>
 
 <div class="app-shell">
 
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
     <div th:replace="~{fragments/navbar :: navbar('profile')}"></div>
 
+
+    <!-- =========================
+         MAIN APPLICATION CONTENT
+         ========================= -->
     <div class="app-content">
 
+        <!-- Topbar -->
         <div th:replace="~{fragments/topbar :: topbar('', 'Profile', 'View your account holder information.')}"></div>
 
+
+        <!-- =========================
+             PROFILE CONTENT
+             ========================= -->
         <main class="container">
 
-            <section class="profile-page-card">
+            <section class="profile-page-card" aria-labelledby="profile-title">
 
-                <div class="profile-hero">
-                    <div class="profile-avatar-large" aria-hidden="true">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="8" r="4"/>
-                            <path d="M4 21c.8-4 3.4-6 8-6s7.2 2 8 6"/>
+                <!-- =========================
+                     PROFILE HEADER
+                     ========================= -->
+                <header class="profile-hero">
+
+                    <div class="profile-avatar-large"
+                         aria-hidden="true">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <circle cx="12" cy="8" r="4"></circle>
+
+                            <path d="M4 21c.8-4 3.4-6 8-6s7.2 2 8 6"></path>
+
                         </svg>
-                    </div>
-                    <div>
-                        <h2 th:text="${user.fullName}">System Administrator</h2>
-                        <p class="profile-role">Customer</p>
-                    </div>
-                </div>
 
+                    </div>
+
+
+                    <div class="profile-hero-info">
+
+                        <h1 id="profile-title"
+                            th:text="${user.fullName}">
+                            System Administrator
+                        </h1>
+
+                        <p class="profile-role">
+                            Customer
+                        </p>
+
+                    </div>
+
+                </header>
+
+
+                <!-- =========================
+                     PROFILE DETAILS
+                     ========================= -->
                 <div class="profile-details-glass">
+
+                    <!-- Full Name -->
                     <div class="profile-detail-row">
-                        <span class="profile-detail-label">Full Name</span>
-                        <strong class="profile-detail-value" th:text="${user.fullName}">System Administrator</strong>
+
+                        <span class="profile-detail-label">
+                            Full Name
+                        </span>
+
+                        <strong
+                            class="profile-detail-value"
+                            th:text="${user.fullName}">
+                            System Administrator
+                        </strong>
+
                     </div>
+
+
+                    <!-- Username -->
                     <div class="profile-detail-row">
-                        <span class="profile-detail-label">Username</span>
-                        <strong class="profile-detail-value" th:text="${user.username}">admin</strong>
+
+                        <span class="profile-detail-label">
+                            Username
+                        </span>
+
+                        <strong
+                            class="profile-detail-value"
+                            th:text="${user.username}">
+                            admin
+                        </strong>
+
                     </div>
+
+
+                    <!-- Email -->
                     <div class="profile-detail-row">
-                        <span class="profile-detail-label">Email</span>
-                        <strong class="profile-detail-value" th:text="${user.email}">admin@bank.local</strong>
+
+                        <span class="profile-detail-label">
+                            Email
+                        </span>
+
+                        <strong
+                            class="profile-detail-value"
+                            th:text="${user.email}">
+                            admin@bank.local
+                        </strong>
+
                     </div>
+
+
+                    <!-- Role -->
                     <div class="profile-detail-row">
-                        <span class="profile-detail-label">Role</span>
-                        <strong class="profile-detail-value accent" th:text="${user.role != null ? user.role.name() : '—'}">ADMIN</strong>
+
+                        <span class="profile-detail-label">
+                            Role
+                        </span>
+
+                        <strong
+                            class="profile-detail-value accent"
+                            th:text="${user.role != null ? user.role.name() : '—'}">
+                            ADMIN
+                        </strong>
+
                     </div>
+
+
+                    <!-- Member Since -->
                     <div class="profile-detail-row">
-                        <span class="profile-detail-label">Member Since</span>
-                        <strong class="profile-detail-value accent" th:if="${user.createdAt != null}" th:text="${#temporals.format(user.createdAt, 'MMMM dd, yyyy')}">August 10, 2026</strong>
-                        <strong class="profile-detail-value" th:unless="${user.createdAt != null}">—</strong>
+
+                        <span class="profile-detail-label">
+                            Member Since
+                        </span>
+
+                        <strong
+                            class="profile-detail-value accent"
+                            th:if="${user.createdAt != null}"
+                            th:text="${#temporals.format(user.createdAt, 'MMMM dd, yyyy')}">
+                            August 10, 2026
+                        </strong>
+
+                        <strong
+                            class="profile-detail-value"
+                            th:unless="${user.createdAt != null}">
+                            —
+                        </strong>
+
                     </div>
+
                 </div>
 
-                <a class="profile-back-link" th:href="@{/dashboard}">← Back to Dashboard</a>
+
+                <!-- =========================
+                     BACK TO DASHBOARD
+                     ========================= -->
+                <div class="profile-actions">
+
+                    <a
+                        class="profile-back-link"
+                        th:href="@{/dashboard}"
+                        aria-label="Return to Dashboard">
+
+                        <span aria-hidden="true">←</span>
+                        <span>Back to Dashboard</span>
+
+                    </a>
+
+                </div>
 
             </section>
 

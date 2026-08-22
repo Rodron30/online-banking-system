@@ -546,8 +546,8 @@ body {
     background:
         linear-gradient(
             135deg,
-            rgba(24, 91, 75, 0.34),
-            rgba(5, 38, 33, 0.22)
+            rgba(20, 120, 95, 0.62),
+            rgba(8, 65, 55, 0.48)
         ) !important;
 
     border: 1px solid var(--glass-border-strong) !important;
@@ -944,16 +944,15 @@ button[type="submit"] {
 .profile-back-link,
 a.back-dashboard {
     display: inline-flex !important;
-
     align-items: center !important;
-
     justify-content: center !important;
-
     gap: 8px !important;
 
     min-height: 40px !important;
-
     padding: 9px 18px !important;
+
+    /* ibaba nang kaunti */
+    margin-top: 8px !important;
 
     border-radius: 11px !important;
 
@@ -967,7 +966,6 @@ a.back-dashboard {
     border: 1px solid rgba(225, 255, 242, 0.25) !important;
 
     color: #fff !important;
-
     text-decoration: none !important;
 
     box-shadow:
@@ -986,7 +984,8 @@ a.back-dashboard {
 .admin-page a[href*="/dashboard"]:hover,
 .admin-back-link:hover,
 .back-dashboard:hover,
-.profile-back-link:hover {
+.profile-back-link:hover,
+a.back-dashboard:hover {
     background:
         linear-gradient(
             135deg,
@@ -995,7 +994,6 @@ a.back-dashboard {
         ) !important;
 
     border-color: var(--glass-border-strong) !important;
-
     color: #fff !important;
 
     transform: translateY(-1px) !important;
@@ -1013,7 +1011,6 @@ a.back-dashboard {
 
 .profile-page-card {
     position: relative;
-
     overflow: hidden;
 
     padding: 28px !important;
@@ -1026,7 +1023,6 @@ a.back-dashboard {
         ) !important;
 
     border: 1px solid rgba(158, 255, 220, 0.32) !important;
-
     border-radius: 16px !important;
 
     box-shadow:
@@ -1039,13 +1035,10 @@ a.back-dashboard {
 
 .profile-hero {
     position: relative;
-
     z-index: 1;
 
     display: flex;
-
     align-items: center;
-
     gap: 18px;
 
     margin-bottom: 24px;
@@ -1064,7 +1057,6 @@ a.back-dashboard {
     flex: 0 0 76px !important;
 
     display: grid !important;
-
     place-items: center !important;
 
     border-radius: 50% !important;
@@ -1096,9 +1088,7 @@ a.back-dashboard {
     max-height: 40px !important;
 
     fill: none !important;
-
     stroke: currentColor !important;
-
     stroke-width: 1.7 !important;
 }
 
@@ -1106,7 +1096,6 @@ a.back-dashboard {
     overflow: hidden;
 
     border: 1px solid rgba(184, 255, 234, 0.18);
-
     border-radius: 14px;
 
     background: rgba(5, 35, 31, 0.28);
@@ -1139,7 +1128,6 @@ a.back-dashboard {
 
 .profile-detail-value {
     color: #fff;
-
     font-weight: 700;
 }
 
@@ -1614,7 +1602,7 @@ a.back-dashboard {
 
     .app-content a[href*="/dashboard"] {
         margin-bottom: 12px !important;
-        padding: 8px 15px !important;
+        padding: 8px 10px 8px 10px !important;
     }
 
     .deposit-card,
@@ -1628,5 +1616,97 @@ a.back-dashboard {
     .transaction-form-card {
         border-radius: 14px !important;
         padding: 16px !important;
+
+    }
+
+    .deposit-withdraw-card {
+        margin-left: 6px !important;
+        margin-right: 6px !important;
     }
 }
+
+/* =========================================================
+   FINAL DEPOSIT / WITHDRAW POSITION FIX
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+    .deposit-withdraw-page {
+        width: min(calc(100% - 34px), 1000px) !important;
+
+        margin-left: 12px !important;
+        margin-right: auto !important;
+
+        box-sizing: border-box !important;
+
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 14px !important;
+
+        align-items: start !important;
+    }
+
+    /* Back to Dashboard */
+    .deposit-withdraw-page .deposit-withdraw-back {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Deposit + Withdraw cards */
+    .deposit-withdraw-page .deposit-withdraw-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        display: block !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL MOBILE FIX
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .deposit-withdraw-page {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+    .deposit-withdraw-page .deposit-withdraw-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL FORM CARD SAFETY
+   ========================================================= */
+
+.deposit-card,
+.withdraw-card,
+.deposit-section,
+.withdraw-section,
+.deposit-form-card,
+.withdraw-form-card,
+.deposit-form,
+.withdraw-form,
+.transaction-form-card,
+.deposit-withdraw-card {
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+}
+
